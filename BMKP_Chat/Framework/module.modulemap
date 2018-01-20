@@ -1,0 +1,9 @@
+module ImSDK {
+    header "ImSDK.framework/Headers/ImSDK.h"
+    export *
+}
+
+module IMMessageExt {
+    header "IMMessageExt.framework/Headers/IMMessageExt.h"
+    export *
+}

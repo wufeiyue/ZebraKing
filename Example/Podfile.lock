@@ -1,0 +1,43 @@
+PODS:
+  - Alamofire (4.6.0)
+  - BMKP_Chat (1.0.0):
+    - BMKP_Network
+    - DynamicColor
+    - Kingfisher
+    - MJRefresh
+    - SnapKit
+    - SwiftDate
+    - TSVoiceConverter (~> 0.1.6)
+    - YYText (~> 1.0.7)
+  - BMKP_Network (0.1.6):
+    - Alamofire
+  - DynamicColor (4.0.2)
+  - Kingfisher (4.5.0)
+  - MJRefresh (3.1.15.1)
+  - SnapKit (4.0.0)
+  - SwiftDate (4.5.1)
+  - TSVoiceConverter (0.1.6)
+  - YYText (1.0.7)
+
+DEPENDENCIES:
+  - BMKP_Chat (from `../`)
+
+EXTERNAL SOURCES:
+  BMKP_Chat:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  BMKP_Chat: 83576fe8ae00c5b9154f767cfe4e71798f6e5c65
+  BMKP_Network: 7b5aba5f67c60b05a43fe42dfd23c1ec5ff848aa
+  DynamicColor: c7adcfe871781a2b39877a5774e452ba51b79eb3
+  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
+  MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
+  TSVoiceConverter: 4143689b2b5df5fecedf9420bf7ce6fd4c98746c
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+
+PODFILE CHECKSUM: 7a9eac4c11ddef5c2a9882736eca3b801c05d1f5
+
+COCOAPODS: 1.4.0.beta.2
