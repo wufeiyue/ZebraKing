@@ -28,7 +28,12 @@ final class ProximityManager {
     }
     
     private func addListener() {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: UIDevice.proximityStateDidChangeNotification, object: nil)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: UIDevice.proximityStateDidChangeNotification), object: nil)
+        
+        
     }
     
     private func removeListener() {

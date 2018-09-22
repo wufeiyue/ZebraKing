@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C1A8D2ABE04CFEB60F7225C27BC0BB9"
+               BlueprintIdentifier = "F6EF4096CCB84D635060B360E5956FDB"
                BuildableName = "Pods_ZebraKing_Example.framework"
                BlueprintName = "Pods-ZebraKing_Example"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C1A8D2ABE04CFEB60F7225C27BC0BB9"
+            BlueprintIdentifier = "F6EF4096CCB84D635060B360E5956FDB"
             BuildableName = "Pods_ZebraKing_Example.framework"
             BlueprintName = "Pods-ZebraKing_Example"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -12,10 +12,11 @@
     "eppeo": "ieppeo@163.com"
   },
   "source": {
-    "git": "git@github.com/wufeiyue/ZebraKing.git",
+    "git": "git@github.com/wufeiyue/zebraking.git",
     "tag": "2.0.0"
   },
   "requires_arc": true,
+  "swift_version": "4.2",
   "platforms": {
     "ios": "8.2"
   },
