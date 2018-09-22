@@ -17,7 +17,7 @@ ZebraKing是基于腾讯云通信V3.0版本更新而来,此版本较v2.0变化�
   s.homepage         = 'https://github.com/wufeiyue/ZebraKing'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'eppeo' => 'ieppeo@163.com' }
-  s.source           = { :git => 'git@github.com/wufeiyue/ZebraKing.git', :tag => "#{s.version}" }
+  s.source           = { :git => 'git@github.com/wufeiyue/zebraking.git', :tag => "#{s.version}" }
   s.requires_arc = true
   s.ios.deployment_target = '8.2'
   s.pod_target_xcconfig = { 'OTHER_LDFLAGS'            => '-ObjC',
