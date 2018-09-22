@@ -1,0 +1,6 @@
+framework module ZebraKing {
+  umbrella header "ZebraKing-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,6 +1,5 @@
-import UIKit
 import XCTest
-//import BMKP_Chat
+import ZebraKing
 
 class Tests: XCTestCase {
     

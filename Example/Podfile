@@ -1,12 +1,11 @@
-source 'https://github.com/CocoaPods/Specs.git'
-source 'git@gitlab.bmkp.cn:rdc_ios/PodsRepo.git'
-
 use_frameworks!
-platform :ios, '8.2'
-target 'BMKP_Chat_Example' do
-  pod 'BMKP_Chat', :path => '../'
 
+target 'ZebraKing_Example' do
+  pod 'ZebraKing', :path => '../'
+  pod 'Toast-Swift'
+  pod 'Kingfisher'
 
+  
 end
 
 post_install do |installer|
