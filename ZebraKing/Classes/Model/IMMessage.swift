@@ -172,7 +172,8 @@ extension IMMessage {
             }
         }
         
-        let path = "\(cachePath)/\(loginId)/\(elem.uuid)"
+        let uuid = elem.uuid ?? ""
+        let path = "\(cachePath)/\(loginId)/" + uuid
         
         if PathUtility.isExistFile(path: path) {
             let url = URL(fileURLWithPath: path)

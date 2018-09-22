@@ -28,21 +28,29 @@ final class ProximityManager {
     }
     
     private func addListener() {
-        NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: .UIDeviceProximityStateDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: UIDevice.proximityStateDidChangeNotification, object: nil)
     }
     
     private func removeListener() {
-        NotificationCenter.default.removeObserver(self, name: .UIDeviceProximityStateDidChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIDevice.proximityStateDidChangeNotification, object: nil)
     }
     
     @objc
     private func sensorStateChange(_ notification: Notification) {
         if UIDevice.current.proximityState == true {
             //开启红外
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            if #available(iOS 10.0, *) {
+                try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: .interruptSpokenAudioAndMixWithOthers)
+            } else {
+                // Fallback on earlier versions
+            }
         }
         else{
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            if #available(iOS 10.0, *) {
+                try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .interruptSpokenAudioAndMixWithOthers)
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }

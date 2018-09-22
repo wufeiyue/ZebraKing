@@ -13,7 +13,7 @@ open class ZebraKing {
     /// - Parameters:
     ///   - config: 必要的配置项
     ///   - delegate: 消息通知的代理
-    open static func register(config: ZebraKingUserConfig, delegate: ZebraKingDelegate){
+    public static func register(config: ZebraKingUserConfig, delegate: ZebraKingDelegate){
         IMChatManager.default.register(config: config)
         IMChatManager.default.delegate = delegate
     }
@@ -25,7 +25,7 @@ open class ZebraKing {
     ///   - sign: 服务器分配的签名
     ///   - userId: 服务器分配的用户id
     ///   - result: 登录结果的回调
-    open static func login(sign: String, userId: String, result: ((IMResult<Bool>) -> Void)? = nil) {
+    public static func login(sign: String, userId: String, result: ((IMResult<Bool>) -> Void)? = nil) {
         IMChatManager.default.login(sign: sign, userId: userId, result: result)
     }
     
@@ -34,7 +34,7 @@ open class ZebraKing {
     /// - Parameters:
     ///   - id: 为对方用户 identifier
     ///   - result: 返回结果, .success: 会话对象  .failure: 提示出错的log
-    open static func chat(id: String, result: @escaping (IMResult<Conversation>) -> Void) {
+    public static func chat(id: String, result: @escaping (IMResult<Conversation>) -> Void) {
         chat(receiver: Sender(id: id), result: result)
     }
     
@@ -44,7 +44,7 @@ open class ZebraKing {
     /// - Parameters:
     ///   - notification: 内部传出来的通知模型
     ///   - result: 返回结果 .success: 会话对象  .failure: 提示出错的log
-    open static func chat(notification: ChatNotification, result: @escaping (IMResult<Conversation>) -> Void) {
+    public static func chat(notification: ChatNotification, result: @escaping (IMResult<Conversation>) -> Void) {
         chat(receiver: notification.receiver, result: result)
     }
     
@@ -54,7 +54,7 @@ open class ZebraKing {
     /// - Parameters:
     ///   - receiver: 聊天的对象模型, 必要的参数是id
     ///   - result: 返回结果 .success: 会话对象  .failure: 提示出错的log
-    open static func chat(receiver: Sender, result: @escaping (IMResult<Conversation>) -> Void) {
+    public static func chat(receiver: Sender, result: @escaping (IMResult<Conversation>) -> Void) {
         checkLoginStatus { (r) in
             
             switch r {

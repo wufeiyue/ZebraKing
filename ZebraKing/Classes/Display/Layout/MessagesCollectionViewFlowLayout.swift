@@ -209,7 +209,7 @@ extension MessagesCollectionViewFlowLayout {
         guard let attributesList = super.layoutAttributesForElements(in: rect) as? [MessagesCollectionViewLayoutAttributes] else { return nil }
         
         attributesList.forEach { attr in
-            if attr.representedElementCategory == UICollectionElementCategory.cell {
+            if attr.representedElementCategory == UICollectionView.ElementCategory.cell {
                 confiure(attributes: attr)
             }
         }
@@ -221,7 +221,7 @@ extension MessagesCollectionViewFlowLayout {
         
         guard let attributes = super.layoutAttributesForItem(at: indexPath) as? MessagesCollectionViewLayoutAttributes else { return nil }
         
-        if attributes.representedElementCategory == UICollectionElementCategory.cell {
+        if attributes.representedElementCategory == UICollectionView.ElementCategory.cell {
             confiure(attributes: attributes)
         }
         

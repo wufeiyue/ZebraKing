@@ -74,12 +74,16 @@ class IMChatAudioPlayManager: IMChatAudioManager {
     
     
     private func becomeFirstResponder() {
-        try? session.setCategory(AVAudioSessionCategoryPlayback, with: .duckOthers)
+        if #available(iOS 10.0, *) {
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .duckOthers)
+        } else {
+            // Fallback on earlier versions
+        }
         try? session.setActive(true)
     }
     
     private func resignFirstResponder() {
-        try? session.setActive(false, with: .notifyOthersOnDeactivation)
+        try? session.setActive(false, options: .notifyOthersOnDeactivation)
     }
 }
 

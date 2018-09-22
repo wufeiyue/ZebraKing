@@ -36,7 +36,6 @@
     "SystemConfiguration"
   ],
   "libraries": [
-    "stdc++.6",
     "c++",
     "z",
     "sqlite3"

@@ -198,7 +198,7 @@ open class CommonConversationViewController: ConversationViewController, Convers
     }
 }
 
-extension UIControlState {
+extension UIControl.State {
     fileprivate mutating func trigger() {
         if self == .normal {
             self = .selected

@@ -52,7 +52,7 @@ extension CommonConversationViewController: ChatAudioRecordDelegate {
         let alertVC = UIAlertController(title: "\"\(Bundle.displayName)\"想访问您的麦克风", message: "只有打开麦克风,才可以发送语音哦~", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "不允许", style: .cancel, handler: nil))
         alertVC.addAction(UIAlertAction(title: "好", style: .default, handler: { (action) in
-            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.openURL(url)
             }
         }))

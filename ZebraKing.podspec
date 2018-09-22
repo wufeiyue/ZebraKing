@@ -31,8 +31,7 @@ ZebraKing是基于腾讯云通信V3.0版本更新而来,此版本较v2.0变化�
   s.ios.resource_bundle = { 'ZebraKingAssets' => 'ZebraKing/Assets/ZebraKingAssets.bundle/Images' }
 
   s.frameworks = 'CoreTelephony', 'SystemConfiguration'
-  s.libraries ='stdc++.6', 'c++', 'z', 'sqlite3'
-  #  s.dependency 'YYText', '~> 1.0.7'
+  s.libraries = 'c++', 'z', 'sqlite3'
   #s.dependency 'TSVoiceConverter', '~> 0.1.6'
   s.dependency 'SnapKit'
   s.dependency 'Kingfisher'

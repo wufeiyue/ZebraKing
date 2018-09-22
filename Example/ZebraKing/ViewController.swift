@@ -40,15 +40,13 @@ class ViewController: UIViewController {
             return
         }
         
-        ZebraKing.chat(id: <#T##String#>, result: <#T##(IMResult<Conversation>) -> Void#>)
-        
-        IMChatManager.default.login(sign: sign, userId: id)
+        ZebraKing.login(sign: sign, userId: id)
         
         NotificationCenter.default.addObserver(forName: .didRecievedMessage, object: nil, queue: nil) { (notification) in
             self.showToast(message: "即将打开会话页面", completion: { _ in
                 self.openChattingViewController(with: notification)
             })
-            
+
         }
     }
     

@@ -23,7 +23,7 @@ open class InputTextView: UITextView {
         }
     }
     
-    open let placeholdLabel: UILabel = {
+    public let placeholdLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = UIColor.gray

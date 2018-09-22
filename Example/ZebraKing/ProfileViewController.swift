@@ -81,22 +81,19 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let notfiicationControl = NotificationCenter.default
-        //键盘即将弹出
-        notfiicationControl.addObserver(forName: NSNotification.Name(rawValue: NSNotification.Name.UIKeyboardWillShow.rawValue), object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            self?.keyboardControl(notification)
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
+            self.keyboardControl(notification)
+        }
+       
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification, object: nil, queue: .main) { _ in
+            self.tableView.frame.size.height = self.view.bounds.size.height
         }
         
-        notfiicationControl.addObserver(forName: NSNotification.Name(rawValue: NSNotification.Name.UIKeyboardDidHide.rawValue), object: nil, queue: OperationQueue.main) { (notification) in
-            
-            self.tableView.frame.size.height = self.view.bounds.size.height
-            
-        }
     }
     
     func keyboardControl(_ notification: Notification) {
         var userInfo = notification.userInfo!
-        let keybroadRect =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        let keybroadRect =  (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         let convertedFrame = self.view.convert(keybroadRect!, from: nil)
         let heightOffset = self.view.bounds.size.height - convertedFrame.origin.y
         
@@ -244,7 +241,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     weak var delegate: ProfileTableViewCellDelegate?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         [inputTextFile, confirmBtn, titleLabel].forEach{ contentView.addSubview($0) }
