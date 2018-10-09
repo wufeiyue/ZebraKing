@@ -183,8 +183,17 @@ extension ConversationViewController: MessagesLayoutDelegate {
 }
 
 extension ConversationViewController: MessagesDisplayDelegate {
+    
     public func readStatus(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
         return true
+    }
+    
+    public func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+        return [.url, .address, .phoneNumber, .date]
+    }
+    
+    public func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key : Any] {
+        return MessageLabel.defaultAttributes
     }
 }
 

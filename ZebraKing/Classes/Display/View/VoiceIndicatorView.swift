@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 open class VoiceIndicatorView: UIView {
     
@@ -14,51 +13,35 @@ open class VoiceIndicatorView: UIView {
     public private(set) var isFinishRecording: Bool = false
     
     private let containerView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 4
-        view.layer.masksToBounds = true
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        return view
-    }()
-    
-    private let recordingBkg: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named:"chat_recordingBkg")
-        return view
-    }()
+        $0.layer.cornerRadius = 4
+        $0.layer.masksToBounds = true
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        return $0
+    }(UIView())
     
     private let noteLabel: UILabel = {
-        let label = UILabel()
-        label.layer.cornerRadius = 2.0
-        label.layer.masksToBounds = true
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    //音量的图片
-    private let signalValueImageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
+        $0.layer.cornerRadius = 2.0
+        $0.layer.masksToBounds = true
+        $0.textColor = .white
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.textAlignment = .center
+        return $0
+    }(UILabel())
     
     //录音整体的 view，控制是否隐藏
-    private let recordingView: UIView = UIView()
+    private let recordingView: RecordingBackgroundView = RecordingBackgroundView()
     
     //录音时间太短的提示
     private let tooShotPromptImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named:"chat_messageTooShort")
-        return imageView
-    }()
+        $0.image = MessageStyle.messageTooShort.image()
+        return $0
+    }(UIImageView())
     
     //取消提示
     private let cancelImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named:"chat_recordCancel")
-        return imageView
-    }()
+        $0.image = MessageStyle.recordCancel.image()
+        return $0
+    }(UIImageView())
     
     public override init (frame: CGRect) {
         super.init(frame: frame)
@@ -75,53 +58,27 @@ open class VoiceIndicatorView: UIView {
     }
     
     private func setup() {
-        
         addSubview(containerView)
-        containerView.snp.makeConstraints {(make) -> Void in
-            make.size.equalTo(CGSize(width: 150, height: 150))
-            make.center.equalToSuperview()
-        }
+        [noteLabel, cancelImageView, tooShotPromptImageView, recordingView].forEach{ containerView.addSubview($0) }
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
         
-        containerView.addSubview(noteLabel)
-        containerView.addSubview(cancelImageView)
-        containerView.addSubview(tooShotPromptImageView)
-        containerView.addSubview(recordingView)
-        recordingView.addSubview(recordingBkg)
-        recordingView.addSubview(signalValueImageView)
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+        let containerSize: CGSize = CGSize(width: 150, height: 150)
+        let contentSize: CGSize = CGSize(width: 100, height:100)
         
-        noteLabel.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview().inset(8)
-            m.bottom.equalToSuperview().offset(-6)
-            m.height.equalTo(20)
-        }
+        containerView.center = center
+        containerView.bounds.size = containerSize
+        recordingView.bounds.size = contentSize
+        recordingView.center = CGPoint(x: containerSize.width / 2, y: containerSize.height / 2 - 10)
+        noteLabel.frame = CGRect(x: 8, y: containerSize.height - 20 - 6, width: containerSize.width - 16, height: 20)
+        cancelImageView.bounds.size = contentSize
+        cancelImageView.center = CGPoint(x: containerSize.width / 2, y: containerSize.height / 2 - 10)
         
-        cancelImageView.snp.makeConstraints { (m) in
-            m.size.equalTo(CGSize(width: 100, height:100))
-            m.centerY.equalToSuperview().offset(-10)
-            m.centerX.equalToSuperview()
-        }
-        
-        tooShotPromptImageView.snp.makeConstraints { (m) in
-            m.size.equalTo(CGSize(width: 100, height:100))
-            m.centerY.equalToSuperview().offset(-10)
-            m.centerX.equalToSuperview()
-        }
-        
-        recordingView.snp.makeConstraints { (m) in
-            m.size.equalTo(CGSize(width: 100, height:100))
-            m.centerY.equalToSuperview().offset(-10)
-            m.centerX.equalToSuperview()
-        }
-        
-        recordingBkg.snp.makeConstraints { (m) in
-            m.width.equalTo(62)
-            m.top.bottom.left.equalToSuperview()
-        }
-        
-        signalValueImageView.snp.makeConstraints { (m) in
-            m.top.right.bottom.equalToSuperview()
-            m.width.equalTo(38)
-        }
+        tooShotPromptImageView.bounds.size = contentSize
+        tooShotPromptImageView.center = CGPoint(x: containerSize.width / 2, y: containerSize.height / 2 - 10)
     }
     
 }
@@ -172,17 +129,103 @@ extension VoiceIndicatorView {
     
     //更新麦克风的音量大小
     open func updateMetersValue(_ value: Int) {
-        let array = [
-            UIImage(named: "chat_recordingSignal001"),
-            UIImage(named: "chat_recordingSignal002"),
-            UIImage(named: "chat_recordingSignal003"),
-            UIImage(named: "chat_recordingSignal004"),
-            UIImage(named: "chat_recordingSignal005"),
-            UIImage(named: "chat_recordingSignal006"),
-            UIImage(named: "chat_recordingSignal007"),
-            UIImage(named: "chat_recordingSignal008")
-        ]
-        self.signalValueImageView.image = array[value]
+        recordingView.updateMetersValue(value)
+    }
+}
+
+public final class RecordingBackgroundView: UIView {
+    
+    private var addressesView: UIImageView!
+    private var signalView: RecordingSinalImageView!
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    public init() {
+        super.init(frame: .zero)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func setupView() {
         
+        addressesView = UIImageView()
+        addressesView.image = MessageStyle.recordingBkg.image()
+        addSubview(addressesView)
+
+        signalView = RecordingSinalImageView()
+        signalView.image = MessageStyle.recordingSignal.image(index: 8)
+        addSubview(signalView)
+        
+    }
+    
+    public func updateMetersValue(_ index: Int) {
+        let list:Array<CGFloat> = [75, 75, 67, 56, 50, 40, 28, 20]
+        guard index >= 0 && index < list.count else { return }
+        signalView.updateMetersValue(list[index])
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        addressesView.frame = CGRect(x: 0, y: 0, width: 62, height: bounds.height)
+        signalView.frame = CGRect(x: 62, y: 0, width: bounds.width - 62, height: bounds.height)
+    }
+}
+
+public final class RecordingSinalImageView: UIImageView {
+    
+    private let animationKey = "recording-position-key"
+    private var fromValue: CGFloat?
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLayer()
+    }
+    
+    public init() {
+        super.init(frame: .zero)
+        setupLayer()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupLayer() {
+        let pointLayer = CALayer()
+        pointLayer.anchorPoint = .zero
+        pointLayer.position = .zero
+        pointLayer.backgroundColor = UIColor.black.cgColor
+        layer.mask = pointLayer
+    }
+    
+    public func updateMetersValue(_ value: CGFloat, duration: CFTimeInterval = 0.3) {
+        
+        let anim = CABasicAnimation(keyPath: "position")
+        
+        if let unwrappedFromValue = fromValue {
+            anim.fromValue = NSValue(cgPoint: CGPoint(x: 0, y: unwrappedFromValue))
+        }
+        else {
+            anim.fromValue = NSValue(cgPoint: CGPoint(x: 0, y: bounds.height))
+        }
+        
+        anim.toValue = NSValue(cgPoint: CGPoint(x: 0, y: value))
+        anim.duration = duration
+        anim.isRemovedOnCompletion = false
+        anim.fillMode = CAMediaTimingFillMode.forwards
+        layer.mask?.add(anim, forKey: animationKey)
+        
+        fromValue = value
+    }
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.mask?.bounds = bounds
     }
 }

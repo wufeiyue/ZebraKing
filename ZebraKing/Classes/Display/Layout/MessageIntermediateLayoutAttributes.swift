@@ -23,7 +23,7 @@ public struct MessageIntermediateLayoutAttributes {
     //头像大小
     var avatarSize: CGSize = .zero
     
-    var attachmentStyle: AttachmentStyle = AttachmentStyle()
+    var attachmentLayout: AttachmentLayout = AttachmentLayout()
     
     //消息文本
     var messageContainerSize: CGSize = .zero
@@ -118,10 +118,10 @@ public struct MessageIntermediateLayoutAttributes {
         case .leading:
             break
         case .trailing:
-            origin.x = itemWidth - avatarSize.width - messageContainerPadding.right - messageContainerSize.width - attachmentStyle.width - durationSize.width - durationPadding.right - durationPadding.left
+            origin.x = itemWidth - avatarSize.width - messageContainerPadding.right - messageContainerSize.width - attachmentLayout.width - durationSize.width - durationPadding.right - durationPadding.left
         }
         
-        return CGRect(origin: origin, size: CGSize(width: attachmentStyle.width, height: messageContainerSize.height))
+        return CGRect(origin: origin, size: CGSize(width: attachmentLayout.width, height: messageContainerSize.height))
         
     }()
     

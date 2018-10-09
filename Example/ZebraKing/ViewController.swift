@@ -8,7 +8,7 @@
 
 import UIKit
 import ZebraKing
-
+//发送富文本消息转换会失败,变为纯文本消息
 extension UIApplication {
     static var appdelegate: AppDelegate? {
         return UIApplication.shared.delegate as? AppDelegate
@@ -48,6 +48,7 @@ class ViewController: UIViewController {
             })
 
         }
+        
     }
     
     

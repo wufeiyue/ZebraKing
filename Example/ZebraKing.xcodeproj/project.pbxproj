@@ -20,6 +20,11 @@
 
 /* Begin PBXFileReference section */
 		15F0958995613BD179F023F9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		1739FC7E216CAB3700ED88D8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1739FC80216CAB4000ED88D8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1739FC82216CAB4600ED88D8 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		1739FC84216CAB4E00ED88D8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1739FC86216CAB5400ED88D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		17D410832155DE270027553B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		17D410852155DF180027553B /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		17D410872155E1C90027553B /* UIViewController+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
@@ -129,6 +134,11 @@
 		A76DCA0870A7F86F666C37EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1739FC86216CAB5400ED88D8 /* libz.tbd */,
+				1739FC84216CAB4E00ED88D8 /* libsqlite3.tbd */,
+				1739FC82216CAB4600ED88D8 /* libc++.tbd */,
+				1739FC80216CAB4000ED88D8 /* SystemConfiguration.framework */,
+				1739FC7E216CAB3700ED88D8 /* CoreTelephony.framework */,
 				A7835E22D8A6025F9EF31F5F /* Pods_ZebraKing_Example.framework */,
 				17F9EF845F5ED92A5FB2A582 /* Pods_ZebraKing_Tests.framework */,
 			);
@@ -243,14 +253,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ZebraKing_Example/Pods-ZebraKing_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/ZebraKing/ZebraKing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZebraKing.framework",
 			);

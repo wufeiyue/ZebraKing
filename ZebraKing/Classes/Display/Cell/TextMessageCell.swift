@@ -31,10 +31,17 @@ open class TextMessageCell: MessageCollectionViewCell {
     open override func configure(with message: MessageType, at indexPath: IndexPath, and messageCollectionView: MessagesCollectionView) {
         super.configure(with: message, at: indexPath, and: messageCollectionView)
         
-        guard let layoutDelegate = messageCollectionView.messagesDisplayDelegate else { fatalError("messagesDisplayDelegate没有实现") }
-        let textColor = layoutDelegate.textColor(for: message, at: indexPath, in: messageCollectionView)
+        guard let displayDelegate = messageCollectionView.messagesDisplayDelegate else { fatalError("messagesDisplayDelegate没有实现") }
+        let textColor = displayDelegate.textColor(for: message, at: indexPath, in: messageCollectionView)
+        
+        let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messageCollectionView)
         
         messageLabel.configure {
+            messageLabel.enabledDetectors = enabledDetectors
+            for detector in enabledDetectors {
+                let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
+                messageLabel.setAttributes(attributes, detector: detector)
+            }
             
             switch message.data {
             case .text(let text):
@@ -56,6 +63,10 @@ open class TextMessageCell: MessageCollectionViewCell {
             messageLabel.font = attributes.messageLabelFont
             messageLabel.frame = messageContainerView.bounds
         }
+    }
+    
+    open override func cellContentView(canHandle touchPoint: CGPoint) -> Bool {
+        return messageLabel.handleGesture(touchPoint)
     }
     
 }

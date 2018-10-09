@@ -49,7 +49,7 @@ public protocol MessageType {
     
     static func msg(with date: Date) -> Self
 }
-
+/*
 public final class MessageElem: NSObject {
 
     let msg: TIMMessage
@@ -141,4 +141,4 @@ extension MessageElem: MessageType {
     }
 
 }
-
+*/

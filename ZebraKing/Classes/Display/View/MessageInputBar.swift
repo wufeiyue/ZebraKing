@@ -56,17 +56,27 @@ open class MessageInputBar: UIView {
     }
     
     open func setupConstraints() {
-        inputTextView.snp.makeConstraints { (m) in
-            m.left.right.equalToSuperview()
-            m.top.equalToSuperview()
-        }
+
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(padding.top)
-            m.left.equalTo(padding.left)
-            m.right.equalTo(-padding.right)
-            m.bottom.equalTo(-padding.bottom)
-        }
+        contentView.addConstraints([
+            
+            NSLayoutConstraint(item: inputTextView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: inputTextView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: inputTextView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0)
+            
+        ])
+        
+        addConstraints([
+
+            NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: padding.top),
+            NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -padding.right),
+            NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: padding.left),
+            NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -padding.bottom)
+
+        ])
+        
     }
     
     open func setupObservers() {

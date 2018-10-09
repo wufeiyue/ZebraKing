@@ -34,18 +34,15 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return collectionView.bounds.size.width - sectionInset.left - sectionInset.right
     }
     
-    fileprivate var messageLabelFont: UIFont!
+    fileprivate var messageLabelFont: UIFont
     
     public override init() {
         
-        //        emojiLabelFont = messageLabelFont.withSize(2 * messageLabelFont.pointSize)
-        //
+        messageLabelFont = UIFont.systemFont(ofSize: 15)
         super.init()
-        messageLabelFont = UIFont.systemFont(ofSize: 16)
         
         sectionInset = UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10)
-        //
-        //        NotificationCenter.default.addObserver(self, selector: #selector(MessagesCollectionViewFlowLayout.handleOrientationChange(_:)), name: .UIDeviceOrientationDidChange, object: nil)
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -94,7 +91,7 @@ extension MessagesCollectionViewFlowLayout {
         
         let insets = messagesLayoutDelegate.messageInsets(at: indexPath, message: message, in: messagesCollectionView)
         
-        let attachmentStyle = messagesLayoutDelegate.attachmentStyle(at: indexPath, message: message, in: messagesCollectionView)
+        let attachmentLayout = messagesLayoutDelegate.attachmentLayout(at: indexPath, message: message, in: messagesCollectionView)
         
         let durationSize = messagesLayoutDelegate.durationSize(at: indexPath, message: message, in: messagesCollectionView)
         
@@ -124,7 +121,7 @@ extension MessagesCollectionViewFlowLayout {
         
         attributes.durationPadding = durationEdge
         
-        attributes.attachmentStyle = attachmentStyle
+        attributes.attachmentLayout = attachmentLayout
         
         return attributes
     }
@@ -142,6 +139,10 @@ private extension MessagesCollectionViewFlowLayout {
         switch message.data {
         case .text(let text):
             messageContainerSize = labelSize(for: text, considering: maxWidth, font: messageLabelFont)
+            messageContainerSize.width += attributes.messageLabelHorizontalInsets
+            messageContainerSize.height += attributes.messageLabelVerticalInsets
+        case .attributedText(let attr):
+            messageContainerSize = labelSize(for: attr, considering: maxWidth)
             messageContainerSize.width += attributes.messageLabelHorizontalInsets
             messageContainerSize.height += attributes.messageLabelVerticalInsets
         case .audio(_ , let second):
@@ -209,7 +210,7 @@ extension MessagesCollectionViewFlowLayout {
         guard let attributesList = super.layoutAttributesForElements(in: rect) as? [MessagesCollectionViewLayoutAttributes] else { return nil }
         
         attributesList.forEach { attr in
-            if attr.representedElementCategory == UICollectionView.ElementCategory.cell {
+            if attr.representedElementCategory == .cell {
                 confiure(attributes: attr)
             }
         }
@@ -221,7 +222,7 @@ extension MessagesCollectionViewFlowLayout {
         
         guard let attributes = super.layoutAttributesForItem(at: indexPath) as? MessagesCollectionViewLayoutAttributes else { return nil }
         
-        if attributes.representedElementCategory == UICollectionView.ElementCategory.cell {
+        if attributes.representedElementCategory == .cell {
             confiure(attributes: attributes)
         }
         
@@ -235,11 +236,23 @@ extension MessagesCollectionViewFlowLayout {
         attributes.avatarFrame = intermediateAttributes.avatarRect
         attributes.messageLabelInsets = intermediateAttributes.messageLabelInsets
         attributes.messageContainerFrame = intermediateAttributes.messageContainerRect
-        attributes.messageLabelFont = messageLabelFont
         attributes.attachmentFrame = intermediateAttributes.attachmentFrame
-        attributes.messageStatusRect = intermediateAttributes.attachmentStyle.messageRect
-        attributes.readRect = intermediateAttributes.attachmentStyle.readRect
+        attributes.messageStatusRect = intermediateAttributes.attachmentLayout.messageRect
+        attributes.readRect = intermediateAttributes.attachmentLayout.readRect
         attributes.durationRect = intermediateAttributes.durationRect
         attributes.audioIconRect = intermediateAttributes.audioIconRect
+        
+        let message = messageDataSource.messageForItem(at: attributes.indexPath, in: messagesCollectionView)
+        
+        switch message.data {
+        case .text:
+            attributes.messageLabelFont = messageLabelFont
+        case .attributedText(let text):
+            guard let font = text.attribute(.font, at: 0, effectiveRange: nil) as? UIFont else { return }
+            attributes.messageLabelFont = font
+        default:
+            break
+        }
+        
     }
 }

@@ -249,9 +249,10 @@ extension IMConversation {
         for index in (0 ..< array.count).reversed() {
             let message = array[index]
             
-            if message.status() == .MSG_STATUS_SEND_FAIL {
-                continue
-            }
+            //发送失败的消息也展示出来
+//            if message.status() == .MSG_STATUS_SEND_FAIL {
+//                continue
+//            }
             
             let currentTimestamp = message.timestamp()
             

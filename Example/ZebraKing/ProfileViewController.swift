@@ -25,6 +25,12 @@ class ProfileModel {
         }
         
         get {
+            //FIXME: Xcode10.0bug
+            if identifier == "sign" {
+                return "eJxFkFFvgjAUhf8Lr1u2ltpCl*wBR00k6qbOEXlpkBYoC6WBajCL-32MYPb6fbk559wf53O1f0qNUYKnlqNWOC8OcB5HLHujWsnT3Mp2wBBj7AJwtxfZdqrRg3ABxNBFAPxLJaS2KlfjYYgoJgBNqlPFwNbs8LZcbMJezsswPT5H*eYsmcRlpXcU1qd43hUXr4lovlsDti0DxYIqJMlXH*2vCx3HdUGFeWABeSdN8rHU5QFVIltFpy1J-OPrPUx883HdX--Z0M*d*R6cpFW1HHchzyfUJ97E0yxrztpyezVyfMftF2xsVvk_"
+            }
+            
+            
             if let unwrapped = _content {
                 return unwrapped
             }

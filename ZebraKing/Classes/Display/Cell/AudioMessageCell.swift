@@ -73,6 +73,7 @@ open class AudioMessageCell: MessageCollectionViewCell {
         }
         
         resetVoiceButton()
+        displayView(with: message.status)
     }
     
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -83,25 +84,32 @@ open class AudioMessageCell: MessageCollectionViewCell {
         }
     }
     
-    open override func displayView(with messageStatus: MessageStatus) {
+    func displayView(with messageStatus: MessageStatus) {
         switch messageStatus {
         case .sending:
-            if attachmentView.isHidden == false {
-                attachmentView.readStatusLab.isHidden = true
-                durationLab.isHidden = true
-                listenVoiceView.isHidden = true
-                messageContainerView.addAnimation()
-            }
+            durationLab.isHidden = true
+            listenVoiceView.isHidden = true
+            attachmentView.isHidden = true
+            //FIXME: 需要给MessageStatus一个(prepare)状态, 现在语音录制时, 使用的是发送中状态,导致真正到发送中时, 没有loading加载效果不好
+            messageContainerView.addAnimation()
         case .success:
+            durationLab.isHidden = false
+            listenVoiceView.isHidden = false
+            messageContainerView.removeAnimation()
             if attachmentView.isHidden == false {
-                attachmentView.readStatusLab.isHidden = false
-                durationLab.isHidden = false
-                listenVoiceView.isHidden = false
-                messageContainerView.removeAnimation()
+                attachmentView.displayView(with: messageStatus)
+            }
+        case .failure:
+            durationLab.isHidden = false
+            listenVoiceView.isHidden = true
+            messageContainerView.removeAnimation()
+            if attachmentView.isHidden == false {
+                attachmentView.displayView(with: messageStatus)
             }
         default:
             break
         }
+        
     }
     
 }

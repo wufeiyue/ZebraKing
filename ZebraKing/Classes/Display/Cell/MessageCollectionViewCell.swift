@@ -24,8 +24,10 @@ open class MessageCollectionViewCell: UICollectionViewCell {
     open func handleTapGesture(_ gesture: UIGestureRecognizer) {
         let touchLocation = gesture.location(in: self)
         
+        let isGestureContentView = cellContentView(canHandle: convert(touchLocation, to: messageContainerView))
+        
         switch true {
-        case messageContainerView.frame.contains(touchLocation):
+        case messageContainerView.frame.contains(touchLocation) && (isGestureContentView == false):
             delegate?.didTapMessage(in: self, message: messageType)
         case avatarView.frame.contains(touchLocation):
             delegate?.didTapAvatar(in: self, message: messageType)
@@ -50,7 +52,7 @@ open class MessageCollectionViewCell: UICollectionViewCell {
     
     open override func prepareForReuse() {
         super.prepareForReuse()
-        attachmentView.text = nil
+        attachmentView.reset()
     }
     
     open func setupSubViews() {
@@ -64,8 +66,8 @@ open class MessageCollectionViewCell: UICollectionViewCell {
             messageContainerView.frame = attr.messageContainerFrame
             avatarView.frame = attr.avatarFrame
             attachmentView.frame = attr.attachmentFrame
-            attachmentView.messageRect = attr.messageStatusRect
-            attachmentView.readRect = attr.readRect
+            attachmentView.layout.messageRect = attr.messageStatusRect
+            attachmentView.layout.readRect = attr.readRect
         }
     }
     
@@ -73,54 +75,39 @@ open class MessageCollectionViewCell: UICollectionViewCell {
         
         defer {
             messageType = message
+            delegate = messageCollectionView.messageCellDelegate
         }
         
-        guard let messageDataSource = messageCollectionView.messageDataSource, let layoutDelegate = messageCollectionView.messagesDisplayDelegate else { fatalError("messageDataSource没有实现") }
+        guard let messageDataSource = messageCollectionView.messageDataSource,
+            let displayDelegate = messageCollectionView.messagesDisplayDelegate else {
+                fatalError("messageDataSource or messagesDisplayDelegate or messagesLayoutDelegate没有实现")
+        }
         
         //判断是否为我发送的消息
         if messageDataSource.isFromCurrentSender(message: message) {
             //替换为蓝色背景
             messageContainerView.image = MessageStyle.text_area_blue.image()
+            
             //将附件显示出来
             attachmentView.isHidden = false
-            
-            let readStatus = layoutDelegate.readStatus(for: message, at: indexPath, in: messageCollectionView)
-            
-            if readStatus {
-                let textColor = layoutDelegate.readTextColor(for: message, at: indexPath, in: messageCollectionView)
-                let font = layoutDelegate.readTextFont(for: message, at: indexPath, in: messageCollectionView)
-                
-                attachmentView.readStatusLab.textColor = textColor
-                attachmentView.readStatusLab.font = font
-                attachmentView.text = message.isRead ? "已读" : "未读"
-                
-            }
+            attachmentView.style = displayDelegate.attachmentStyle(at: indexPath, message: message, in: messageCollectionView)
+            attachmentView.displayView(with: message.status)
         }
         else {
             //替换为白色背景
             messageContainerView.image = MessageStyle.text_area_white.image()
+            
             //隐藏附件
             attachmentView.isHidden = true
         }
         
         //FIXME: - 缓存的图片要及时清除
         avatarView.kf.setImage(with: message.sender.avatarURL, placeholder: message.sender.placeholder, options: nil, progressBlock: nil, completionHandler: nil)
-        displayView(with: message.status)
-        delegate = messageCollectionView.messageCellDelegate
     }
     
-    open func displayView(with messageStatus: MessageStatus) {
-        switch messageStatus {
-        case .sending:
-            if attachmentView.isHidden == false {
-                attachmentView.readStatusLab.isHidden = true
-            }
-        case .success:
-            if attachmentView.isHidden == false {
-                attachmentView.readStatusLab.isHidden = false
-            }
-        default:
-            break
-        }
+    
+    //当contentView不需要处理点击的时候返回false
+    open func cellContentView(canHandle touchPoint: CGPoint) -> Bool {
+        return false
     }
 }

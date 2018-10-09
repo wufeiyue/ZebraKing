@@ -70,36 +70,47 @@ open class ConversationInputBar: MessageInputBar {
     
     open override func setupConstraints() {
         
-        contentView.snp.makeConstraints { (m) in
-            m.top.equalToSuperview().offset(padding.top)
-            m.left.equalToSuperview()
-            m.right.equalToSuperview()
-            m.bottom.equalTo(-padding.bottom)
-        }
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        controlBtn.translatesAutoresizingMaskIntoConstraints = false
+        senderBtn.translatesAutoresizingMaskIntoConstraints = false
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        recordBtn.translatesAutoresizingMaskIntoConstraints = false
         
-        controlBtn.snp.makeConstraints { (m) in
-            m.leading.equalToSuperview()
-            m.bottom.equalToSuperview().offset(-3)
-            m.size.equalTo(CGSize(width: 50, height: 33))
-        }
+        addConstraints([
+            
+            NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: padding.top),
+            NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -padding.bottom),
+            NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0)
+            
+        ])
         
-        senderBtn.snp.makeConstraints { (m) in
-            m.trailing.equalTo(-8)
-            m.bottom.equalTo(controlBtn)
-            m.size.equalTo(CGSize(width: 44, height: 33))
-        }
         
-        inputTextView.snp.makeConstraints { (m) in
-            m.leading.equalTo(controlBtn.snp.trailing)
-            m.top.equalToSuperview()
-            m.trailing.equalTo(senderBtn.snp.leading).offset(-8)
-        }
+        let list: Array<NSLayoutConstraint> = [
         
-        recordBtn.snp.makeConstraints { (m) in
-            m.leading.equalTo(controlBtn.snp.trailing)
-            m.top.bottom.equalToSuperview()
-            m.trailing.equalTo(-10)
-        }
+        NSLayoutConstraint(item: controlBtn, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: controlBtn, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1.0, constant: -3),
+        NSLayoutConstraint(item: controlBtn, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 33),
+        NSLayoutConstraint(item: controlBtn, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 50),
+            
+        NSLayoutConstraint(item: senderBtn, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1.0, constant: -8),
+        NSLayoutConstraint(item: senderBtn, attribute: .bottom, relatedBy: .equal, toItem: controlBtn, attribute: .bottom, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: senderBtn, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 33),
+        NSLayoutConstraint(item: senderBtn, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 44),
+        
+        NSLayoutConstraint(item: inputTextView, attribute: .leading, relatedBy: .equal, toItem: controlBtn, attribute: .trailing, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: inputTextView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: inputTextView, attribute: .trailing, relatedBy: .equal, toItem: senderBtn, attribute: .leading, multiplier: 1.0, constant: -8),
+        
+        NSLayoutConstraint(item: recordBtn, attribute: .leading, relatedBy: .equal, toItem: controlBtn, attribute: .trailing, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: recordBtn, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: recordBtn, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1.0, constant: 0),
+        NSLayoutConstraint(item: recordBtn, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1.0, constant: -10)
+        
+        ]
+        
+        contentView.addConstraints(list)
+
     }
     
     open override func setupSubviews() {

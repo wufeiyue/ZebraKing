@@ -25,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let config = ZebraKingUserConfig(accountType: accountType,
                                          appidAt3rd: appidAt3rd,
-                                         hostPlaceholder: host,
-                                         receiverPlaceholder: receiver)
+                                         hostAvatar: host,
+                                         receiverAvatar: receiver)
         
         ZebraKing.register(config: config, delegate: self)
         
         //注册推送
-        registerNotification()
+//        registerNotification()
         
         return true
     }

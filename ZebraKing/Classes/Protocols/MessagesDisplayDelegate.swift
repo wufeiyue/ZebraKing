@@ -11,14 +11,11 @@ public protocol MessagesDisplayDelegate: AnyObject {
     /// 消息框里的文本颜色
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
     
-    /// 是否显示已读未读提示文本
-    func readStatus(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool
+    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType]
     
-    /// 配置已读未读文本的颜色
-    func readTextColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
+    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any]
     
-    /// 配置已读未读文本的font
-    func readTextFont(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIFont
+    func attachmentStyle(at indexPath: IndexPath, message: MessageType, in messagesCollectionView: MessagesCollectionView) -> AttachmentStyle
 }
 
 extension MessagesDisplayDelegate {
@@ -33,20 +30,25 @@ extension MessagesDisplayDelegate {
         }
     }
     
-    public func readStatus(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
-        return false
+    public func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+        return []
     }
     
-    public func readTextColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+    public func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any] {
+        return MessageLabel.defaultAttributes
+    }
+    
+    public func attachmentStyle(at indexPath: IndexPath, message: MessageType, in messagesCollectionView: MessagesCollectionView) -> AttachmentStyle {
+        
+        var style = AttachmentStyle()
         if message.isRead {
-            return UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
+            style.textColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
+            style.text = "已读"
         }
         else {
-            return .orange
+            style.textColor = .orange
+            style.text = "未读"
         }
-    }
-    
-    public func readTextFont(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIFont {
-        return .systemFont(ofSize: 12)
+        return style
     }
 }

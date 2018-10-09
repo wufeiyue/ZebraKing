@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import YYText
 import ImSDK
 import IMMessageExt
 import CoreLocation
@@ -21,14 +20,7 @@ public final class IMMessage: NSObject {
     public var receiver: Sender?
     
     private var timeTip: Date?
-    
-    //以下代码要注释
-//    public var richTextLayout: YYTextLayout?
-//    public var richTextLinePositionModifier: IMTextLinePosition?
-//    public var richTextAttributedString: NSMutableAttributedString?
-//    public var cellHeight: CGFloat = 0
-    //以上代码要注释
-    
+ 
     lazy var msgTime: String? = {
         let dateTim: Date = msg.timestamp()
         return dateTim.chatTimeToString
@@ -64,15 +56,6 @@ extension IMMessage {
         msgEle.add(textEle)
         return IMMessage(msg: msgEle , type: .text)
     }
-    
-    //FIXME: - 时间对象构造对象
-//    public class func msgWithDate(timetip: Date) -> IMMessage {
-//        let timeEle = TIMCustomElem()
-//        timeEle.data = NSKeyedArchiver.archivedData(withRootObject: timetip)
-//        let msgEle = TIMMessage()
-//        msgEle.add(timeEle)
-//        return IMMessage(msg: msgEle , type: .timeTip)
-//    }
     
     //语音对象构造对象
     public class func msgWithSound(data: Data?, dur: Int32) -> IMMessage? {
@@ -150,7 +133,7 @@ extension IMMessage {
     /// 通过消息获取发送该消息的IMUserModel对象
     /// - Returns: IMUserModel对象
     public var getSender: IMUserModel? {
-        if msg.getConversation().getType() == .C2C{
+        if msg.getConversation().getType() == .C2C {
             return IMUserModel(userId: msg.sender())
         }
         return nil
@@ -277,8 +260,15 @@ extension IMMessage: MessageType {
     
     private func convertMessageData() -> MessageData {
         if let message = msg.getElem(0) as? TIMTextElem {
+            
+            //如果是纯文本的fontSize需要再MessagesCollectionViewFlowLayout类初始化时设置
+            let attributedText = NSAttributedString(string: message.text, attributes: [
+                .font: UIFont.systemFont(ofSize: 15),
+                .foregroundColor: UIColor.blue
+                ])
+            
             //纯文本
-            return .text(message.text)
+            return .attributedText(attributedText)
         }
         else if let message = msg.getElem(0) as? TIMImageElem {
             //图片

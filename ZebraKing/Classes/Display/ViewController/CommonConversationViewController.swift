@@ -41,17 +41,24 @@ open class CommonConversationViewController: ConversationViewController, Convers
         indicator.isHidden = true
         
         view.addSubview(indicator)
-        indicator.snp.makeConstraints {(make) -> Void in
-            if #available(iOS 11, *) {
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(100)
-                make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-100)
-            }
-            else {
-                make.top.equalTo(self.topLayoutGuide.snp.bottom).offset(100)
-                make.bottom.equalTo(self.bottomLayoutGuide.snp.top).offset(-100)
-            }
-            make.left.right.equalToSuperview()
+        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        var constraints: Array<NSLayoutConstraint> = Array<NSLayoutConstraint>()
+        
+        if #available(iOS 11.0, *) {
+            constraints.append(NSLayoutConstraint(item: indicator, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 100))
+            constraints.append(NSLayoutConstraint(item: indicator, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: -100))
+            
+        } else {
+            constraints.append(NSLayoutConstraint(item: indicator, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .top, multiplier: 1.0, constant: 100))
+            constraints.append(NSLayoutConstraint(item: indicator, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: -100))
         }
+        
+        constraints.append(NSLayoutConstraint(item: indicator, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0))
+        constraints.append(NSLayoutConstraint(item: indicator, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0))
+        
+        view.addConstraints(constraints)
         
         return indicator
     }

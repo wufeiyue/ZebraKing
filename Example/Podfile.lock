@@ -1,10 +1,8 @@
 PODS:
   - Kingfisher (4.10.0)
-  - SnapKit (4.0.1)
   - Toast-Swift (4.0.0)
-  - ZebraKing (2.0.0):
+  - ZebraKing (2.0.1):
     - Kingfisher
-    - SnapKit
 
 DEPENDENCIES:
   - Toast-Swift
@@ -13,7 +11,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Kingfisher
-    - SnapKit
     - Toast-Swift
 
 EXTERNAL SOURCES:
@@ -22,10 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
-  ZebraKing: ce0ce69068d2eaf85ae96038e59a30510f969fab
+  ZebraKing: 3453499ff11d28e3b4403ab7a1251df05a6ad61c
 
-PODFILE CHECKSUM: d8cdd6c6e97889d999f0570fa6292ad6543e5f14
+PODFILE CHECKSUM: fe51713562de9a027efbe16bd87efc3c9a4a4fed
 
 COCOAPODS: 1.6.0.beta.1

@@ -153,7 +153,7 @@ final public class ChatSoundRecorder {
         delegate?.audioRecordStateDidChange(.recoring)
         
         if self.recorderPeakerTimer == nil {
-            let recorderPeakerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(onRecordPeak), userInfo: nil, repeats: true)
+            let recorderPeakerTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(onRecordPeak), userInfo: nil, repeats: true)
             RunLoop.current.add(recorderPeakerTimer, forMode: RunLoop.Mode.common)
             self.recorderPeakerTimer = recorderPeakerTimer
         }

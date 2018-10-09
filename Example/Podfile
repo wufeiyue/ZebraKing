@@ -3,8 +3,6 @@ use_frameworks!
 target 'ZebraKing_Example' do
   pod 'ZebraKing', :path => '../'
   pod 'Toast-Swift'
-  #pod 'Kingfisher'
-
   
 end
 

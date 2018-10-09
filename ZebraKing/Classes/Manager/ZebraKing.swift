@@ -72,7 +72,10 @@ open class ZebraKing {
                 }
                 
                 /// 判断已登录状态, 就可以判定是调用了Login方法, 因为初始化host对象在login方法中进行的
-                let host = IMChatManager.default.userManager.host!
+                guard let host = IMChatManager.default.userManager.host else {
+                    result(.failure(.getHostProfileFailure))
+                    return
+                }
                 
                 // 用于发起聊天的会话对象
                 let task = IMChatManager.default.chat(with: receiver.id)

@@ -100,18 +100,22 @@ open class MessageLabel: UILabel {
     
     public static var defaultAttributes: [NSAttributedString.Key: Any] = {
         return [
-            NSAttributedString.Key.foregroundColor: UIColor.darkText,
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-            NSAttributedString.Key.underlineColor: UIColor.darkText
+            .foregroundColor: UIColor.darkText,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .underlineColor: UIColor.darkText
         ]
     }()
     
+    //地址
     open internal(set) var addressAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
+    //日期
     open internal(set) var dateAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
+    //电话
     open internal(set) var phoneNumberAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
+    //url
     open internal(set) var urlAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
     public func setAttributes(_ attributes: [NSAttributedString.Key: Any], detector: DetectorType) {
@@ -148,14 +152,26 @@ open class MessageLabel: UILabel {
     
     open override func drawText(in rect: CGRect) {
         
-        let insetRectWidth = rect.height - textInsets.top - textInsets.bottom
-        textContainer.size = CGSize(width: insetRectWidth, height: rect.height)
+        let insetRect = edgeInsetsInsetRect(rect, textInsets)
+        textContainer.size = CGSize(width: insetRect.width, height: rect.height)
         
-        let origin = CGPoint(x: rect.origin.x + textInsets.left, y: rect.origin.y + textInsets.top)
+        let origin = insetRect.origin
         let range = layoutManager.glyphRange(for: textContainer)
         
         layoutManager.drawBackground(forGlyphRange: range, at: origin)
         layoutManager.drawGlyphs(forGlyphRange: range, at: origin)
+    }
+    
+    private func edgeInsetsInsetRect(_ rect: CGRect, _ edge: UIEdgeInsets) -> CGRect {
+        
+        var targetRect = rect
+        
+        targetRect.size.width = rect.width - edge.left - edge.right
+        targetRect.size.height = rect.height - edge.top - edge.bottom
+        targetRect.origin.x = rect.origin.x + edge.left
+        targetRect.origin.y = rect.origin.y + edge.top
+        
+        return targetRect
     }
     
     // MARK: - Public Methods
@@ -364,33 +380,17 @@ open class MessageLabel: UILabel {
             addressComponents.forEach { (key, value) in
                 transformedAddressComponents[key.rawValue] = value
             }
-            handleAddress(transformedAddressComponents)
+            delegate?.didSelectAddress(transformedAddressComponents)
         case let .phoneNumber(phoneNumber):
             guard let phoneNumber = phoneNumber else { return }
-            handlePhoneNumber(phoneNumber)
+            delegate?.didSelectPhoneNumber(phoneNumber)
         case let .date(date):
             guard let date = date else { return }
-            handleDate(date)
+            delegate?.didSelectDate(date)
         case let .link(url):
             guard let url = url else { return }
-            handleURL(url)
+            delegate?.didSelectURL(url)
         }
-    }
-    
-    private func handleAddress(_ addressComponents: [String: String]) {
-        delegate?.didSelectAddress(addressComponents)
-    }
-    
-    private func handleDate(_ date: Date) {
-        delegate?.didSelectDate(date)
-    }
-    
-    private func handleURL(_ url: URL) {
-        delegate?.didSelectURL(url)
-    }
-    
-    private func handlePhoneNumber(_ phoneNumber: String) {
-        delegate?.didSelectPhoneNumber(phoneNumber)
     }
     
 }

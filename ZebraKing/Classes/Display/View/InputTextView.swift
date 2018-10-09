@@ -29,6 +29,7 @@ open class InputTextView: UITextView {
         label.textColor = UIColor.gray
         label.backgroundColor = .clear
         label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -64,10 +65,14 @@ open class InputTextView: UITextView {
         isScrollEnabled = false
         
         addSubview(placeholdLabel)
-        placeholdLabel.snp.makeConstraints({ (m) in
-            m.centerY.equalToSuperview().offset(-1)
-            m.left.equalToSuperview().offset(8)
-        })
+
+        addConstraints([
+
+            NSLayoutConstraint(item: placeholdLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: -1),
+            NSLayoutConstraint(item: placeholdLabel, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: 8),
+
+            ])
+        
     }
     
     open override var intrinsicContentSize: CGSize {

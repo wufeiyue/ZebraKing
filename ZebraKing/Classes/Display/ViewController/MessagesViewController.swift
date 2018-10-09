@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 open class MessagesViewController: UIViewController {
 
@@ -103,19 +102,24 @@ open class MessagesViewController: UIViewController {
     }
     
     private func setupConstraints() {
+        
         messagesCollection.translatesAutoresizingMaskIntoConstraints = false
-        messagesCollection.snp.makeConstraints { (maker) in
-            if #available(iOS 11, *) {
-                maker.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                maker.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            }
-            else {
-                maker.top.equalTo(self.topLayoutGuide.snp.bottom)
-                maker.bottom.equalTo(self.bottomLayoutGuide.snp.top)
-            }
-            maker.leading.equalToSuperview()
-            maker.trailing.equalToSuperview()
+        
+        var constraints = Array<NSLayoutConstraint>()
+        
+        if #available(iOS 11.0, *) {
+            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0))
+            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
+            
+        } else {
+            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0))
+            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .bottom, relatedBy: .equal, toItem: bottomLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
         }
+        
+        constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0))
+        constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0))
+        
+        view.addConstraints(constraints)
     }
 
     override open func didReceiveMemoryWarning() {

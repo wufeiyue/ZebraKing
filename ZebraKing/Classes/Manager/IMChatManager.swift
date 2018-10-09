@@ -15,6 +15,7 @@ public enum IMError: Error {
     case unknown                //未知错误
     case getUsersProfileFailure //获取用户资料失败
     case unwrappedUsersProfileFailure //转换用户资料失败
+    case getHostProfileFailure //获取本地用户资料失败
 }
 
 public enum IMResult<T> {
@@ -42,6 +43,8 @@ extension IMError: CustomStringConvertible {
             return "拉取用户资料失败"
         case .unwrappedUsersProfileFailure:
             return "未知错误(用户资料解包失败)"
+        case .getHostProfileFailure:
+            return "获取本地用户资料失败"
         }
     }
 }
@@ -58,11 +61,11 @@ public struct ZebraKingUserConfig {
     var facePath: String?
     var nickName: String = ""
     
-    public init(accountType: String, appidAt3rd: String, hostPlaceholder: UIImage?, receiverPlaceholder: UIImage?) {
+    public init(accountType: String, appidAt3rd: String, hostAvatar: UIImage?, receiverAvatar: UIImage?) {
         self.accountType = accountType
         self.appidAt3rd = appidAt3rd
-        self.hostPlaceholder = hostPlaceholder
-        self.receiverPlaceholder = receiverPlaceholder
+        self.hostPlaceholder = hostAvatar
+        self.receiverPlaceholder = receiverAvatar
     }
 }
 
