@@ -1,4 +1,4 @@
-# ![](https://raw.githubusercontent.com/wufeiyue/ZebraKing/master/zebraking.png)
+# ![](https://raw.githubusercontent.com/wufeiyue/ZebraKing/master/logo.png)
 > 基于腾讯云通信,在swift中优雅的使用即时通讯
 
 [![CI Status](https://img.shields.io/travis/eppeo/ZebraKing.svg?style=flat)](https://travis-ci.org/eppeo/ZebraKing)
