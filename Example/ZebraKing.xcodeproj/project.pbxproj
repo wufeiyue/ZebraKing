@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177848C2216F5590009BCF44 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177848C0216F558F009BCF44 /* MenuCell.xib */; };
+		177848C3216F5590009BCF44 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177848C1216F558F009BCF44 /* MenuCell.swift */; };
 		17D410842155DE270027553B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D410832155DE270027553B /* ProfileViewController.swift */; };
 		17D410862155DF180027553B /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D410852155DF180027553B /* ChattingViewController.swift */; };
 		17D410882155E1C90027553B /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D410872155E1C90027553B /* UIViewController+Toast.swift */; };
@@ -25,6 +27,8 @@
 		1739FC82216CAB4600ED88D8 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		1739FC84216CAB4E00ED88D8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1739FC86216CAB5400ED88D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		177848C0216F558F009BCF44 /* MenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		177848C1216F558F009BCF44 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		17D410832155DE270027553B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		17D410852155DF180027553B /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		17D410872155E1C90027553B /* UIViewController+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				17D410872155E1C90027553B /* UIViewController+Toast.swift */,
 				17D410832155DE270027553B /* ProfileViewController.swift */,
 				17D410852155DF180027553B /* ChattingViewController.swift */,
+				177848C1216F558F009BCF44 /* MenuCell.swift */,
+				177848C0216F558F009BCF44 /* MenuCell.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -220,6 +226,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				177848C2216F5590009BCF44 /* MenuCell.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +283,7 @@
 			files = (
 				17D410862155DF180027553B /* ChattingViewController.swift in Sources */,
 				17D410882155E1C90027553B /* UIViewController+Toast.swift in Sources */,
+				177848C3216F5590009BCF44 /* MenuCell.swift in Sources */,
 				17D410842155DE270027553B /* ProfileViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

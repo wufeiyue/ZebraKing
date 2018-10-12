@@ -117,8 +117,8 @@ open class ConversationInputBar: MessageInputBar {
         super.setupSubviews()
         
         controlBtn = UIButton()
-        controlBtn.setImage(MessageStyle.microphone.image(), for: .normal)
-        controlBtn.setImage(MessageStyle.keyboard.image(), for: .selected)
+        controlBtn.setImage(MessageStyle.microphone.image, for: .normal)
+        controlBtn.setImage(MessageStyle.keyboard.image, for: .selected)
         controlBtn.imageView?.contentMode = .scaleAspectFit
         controlBtn.addTarget(self, action: #selector(controlBtnDidTapped(sender:)), for: .touchUpInside)
         contentView.addSubview(controlBtn)

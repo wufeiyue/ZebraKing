@@ -86,7 +86,7 @@ open class MessageCollectionViewCell: UICollectionViewCell {
         //判断是否为我发送的消息
         if messageDataSource.isFromCurrentSender(message: message) {
             //替换为蓝色背景
-            messageContainerView.image = MessageStyle.text_area_blue.image()
+            messageContainerView.image = MessageStyle.text_area_blue.image
             
             //将附件显示出来
             attachmentView.isHidden = false
@@ -95,7 +95,7 @@ open class MessageCollectionViewCell: UICollectionViewCell {
         }
         else {
             //替换为白色背景
-            messageContainerView.image = MessageStyle.text_area_white.image()
+            messageContainerView.image = MessageStyle.text_area_white.image
             
             //隐藏附件
             attachmentView.isHidden = true

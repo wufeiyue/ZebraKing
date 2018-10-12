@@ -24,7 +24,7 @@ public enum MessageStyle: String {
     /// 录音中的话筒
     case recordingBkg
     
-    /// 音量 001 ~ 008
+    /// 音量
     case recordingSignal
     
     /// 重试
@@ -48,17 +48,17 @@ public enum MessageStyle: String {
     /// 对方消息背景
     case text_area_white
     
-    public func image(index: Int? = nil) -> UIImage? {
+    /// 默认头像
+    case avatar
+    
+    public var image: UIImage? {
         
-        guard let path = imagePath(index: index) else { return nil }
+        guard let path = imagePath() else { return nil }
         
         guard var image = UIImage(contentsOfFile: path) else { return nil }
         
         switch self {
         case .text_area_blue, .text_area_white:
-//            guard let cgImage = image.cgImage else { return nil }
-            //旋转变换图片
-//            let cgimage = UIImage(cgImage: cgImage, scale: image.scale, orientation: imageOrientation)
             image = stretch(image)
         default:
             break
@@ -67,26 +67,15 @@ public enum MessageStyle: String {
         return image
     }
     
-    public func fileURL() -> URL? {
+    public var fileURL: URL? {
         if let path = imagePath() {
             return URL(fileURLWithPath: path)
         }
         return nil
     }
     
-    private func imagePath(index: Int? = nil) -> String? {
-        guard let imageName = imageName(index: index) else { return nil }
-        return sourecePath(imageName: imageName)
-    }
-    
-    private func imageName(index: Int? = nil) -> String? {
-        switch self {
-        case .recordingSignal:
-            guard let unwrappedIndex = index else { return nil }
-            return self.rawValue + "00\(unwrappedIndex)"
-        default:
-            return self.rawValue
-        }
+    private func imagePath() -> String? {
+        return sourecePath(imageName: rawValue)
     }
     
     private func sourecePath(imageName: String) -> String? {

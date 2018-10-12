@@ -33,13 +33,13 @@ open class VoiceIndicatorView: UIView {
     
     //录音时间太短的提示
     private let tooShotPromptImageView: UIImageView = {
-        $0.image = MessageStyle.messageTooShort.image()
+        $0.image = MessageStyle.messageTooShort.image
         return $0
     }(UIImageView())
     
     //取消提示
     private let cancelImageView: UIImageView = {
-        $0.image = MessageStyle.recordCancel.image()
+        $0.image = MessageStyle.recordCancel.image
         return $0
     }(UIImageView())
     
@@ -155,11 +155,11 @@ public final class RecordingBackgroundView: UIView {
     public func setupView() {
         
         addressesView = UIImageView()
-        addressesView.image = MessageStyle.recordingBkg.image()
+        addressesView.image = MessageStyle.recordingBkg.image
         addSubview(addressesView)
 
         signalView = RecordingSinalImageView()
-        signalView.image = MessageStyle.recordingSignal.image(index: 8)
+        signalView.image = MessageStyle.recordingSignal.image
         addSubview(signalView)
         
     }

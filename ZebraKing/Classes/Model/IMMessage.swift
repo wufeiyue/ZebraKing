@@ -93,7 +93,7 @@ extension IMMessage {
         return type != .timeTip && type != .saftyTip
     }
     
-    
+    /// 删除消息
     public func removeMsg() {
         //删除消息TIMMessage--
         if type == .saftyTip || type == .timeTip {
@@ -130,14 +130,6 @@ extension IMMessage {
         return nil
     }
     
-    /// 通过消息获取发送该消息的IMUserModel对象
-    /// - Returns: IMUserModel对象
-    public var getSender: IMUserModel? {
-        if msg.getConversation().getType() == .C2C {
-            return IMUserModel(userId: msg.sender())
-        }
-        return nil
-    }
     
     public func getSoundPath (succ: @escaping (URL?) -> Void, fail: @escaping TIMFail) {
         guard let loginId = TIMManager.sharedInstance().getLoginUser(),
@@ -204,6 +196,13 @@ extension IMMessage {
             return nil
         }
         return soundSavePath
+    }
+    
+    private func ss() {
+        let info = TIMOfflinePushInfo()
+        let iosConfig = TIMIOSOfflinePushConfig()
+        info.iosConfig = iosConfig
+        msg.setOfflinePushInfo(info)
     }
     
 }

@@ -72,16 +72,8 @@ IM聊天支持语音输入,苹果在iOS8.0以后的版本中做了限制, 所以
 // 开发者申请key时可以拿到, 是固定值
 let accountType: String = 12345
 let appidAt3rd: String = 1234512345
-// 设置自己和会话对象的默认头像,防止遇到未设置头像或网络不顺畅时显示效果不理想
-let hostAvatarImage = UIImage(named: "chat_header-host")
-let receiverAvatarImage = UIImage(named: "chat_header-receiver")
-        
-let config = ZebraKingUserConfig(accountType: accountType,
-                                 appidAt3rd: appidAt3rd,
-                                 hostAvatar: hostAvatarImage,
-                                 receiverAvatar: receiverAvatarImage)
-        
-ZebraKing.register(config: config, delegate: self)
+
+ZebraKing.register(accountType: accountType, appidAt3rd: appidAt3rd, delegate: self)
         
 ```
 ZebraKing将消息通知的回调暴露接口供外部使用, 开发者可以利用回调方法处理消息在前台或后台的展示逻辑, 如果消息是在App切到后台发过来的,这个时候还添加本地通知的逻辑,当收到消息需要打开会话页面时, SDK有提供一个专门的接口可实现操作, 这里需要遵守`ZebraKingDelegate`协议:

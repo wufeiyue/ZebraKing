@@ -13,7 +13,6 @@ import IMMessageExt
 public final class IMConversationManager: NSObject {
     
     private(set) var conversationList = Set<IMConversation>()             //会话消息集合
-    private(set) var userModelList = Dictionary<String, IMUserModel>()   //用户信息存储集合
     private var chattingConversation: IMConversation? //活跃的会话对象, 仅当调用chat方法时,跳转IMChatViewController页面此时会话为chattingViewConversation,在onNewMessage回调方法中,监听当前页面的消息,然后会在页面Disappear时,移除该会话的消息监听
     private var listenerList = Dictionary<String, CountCompletion>() //用户会话消息数监听
 
@@ -29,9 +28,15 @@ public final class IMConversationManager: NSObject {
         return chattingConversation
     }
     
-    public func addListener() {
+    public override init() {
+        super.init()
+        addListener()
+    }
+    
+    private func addListener() {
         //消息监听
         TIMManager.sharedInstance().add(self)
+        
     }
     
     public func removeListener() {

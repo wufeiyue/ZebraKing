@@ -1,7 +1,7 @@
 PODS:
   - Kingfisher (4.10.0)
   - Toast-Swift (4.0.0)
-  - ZebraKing (2.0.1):
+  - ZebraKing (2.0.2):
     - Kingfisher
 
 DEPENDENCIES:
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
-  ZebraKing: 3453499ff11d28e3b4403ab7a1251df05a6ad61c
+  ZebraKing: fb4f64fc0cc2ebc65dd4a5b1094616fb1ccf01e9
 
 PODFILE CHECKSUM: fe51713562de9a027efbe16bd87efc3c9a4a4fed
 

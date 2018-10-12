@@ -22,7 +22,7 @@ public struct AttachmentStyle {
     public var font: UIFont = .systemFont(ofSize: 12)
     
     /// 发送失败重试的图标
-    public var image: UIImage? = MessageStyle.retry.image()
+    public var image: UIImage? = MessageStyle.retry.image
     
     public init() { }
 }

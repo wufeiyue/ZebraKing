@@ -13,7 +13,7 @@ import AVFoundation
 //MARK:  播放管理类
 typealias AudioCompleteBlock = () -> ()
 
-class IMChatAudioPlayManager: IMChatAudioManager {
+class IMChatAudioPlayManager: NSObject {
     
     var soundPlayer: AVAudioPlayer?
     public var playCompletion: AudioCompleteBlock?

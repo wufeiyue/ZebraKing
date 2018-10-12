@@ -13,11 +13,14 @@ open class ZebraKing {
     /// - Parameters:
     ///   - config: 必要的配置项
     ///   - delegate: 消息通知的代理
-    public static func register(config: ZebraKingUserConfig, delegate: ZebraKingDelegate){
-        IMChatManager.default.register(config: config)
+    public static func register(accountType: String, appidAt3rd: String, delegate: ZebraKingDelegate){
+        IMChatManager.default.register(accountType: accountType, appidAt3rd: appidAt3rd)
         IMChatManager.default.delegate = delegate
     }
     
+    public static func setToken(_ token: Data, busiId: UInt32) {
+        IMChatManager.default.setToken(token, busiId: busiId)
+    }
     
     /// 登录(账号由服务器配置, 在客户端不存在注册IM账号)
     ///
@@ -27,6 +30,14 @@ open class ZebraKing {
     ///   - result: 登录结果的回调
     public static func login(sign: String, userId: String, result: ((IMResult<Bool>) -> Void)? = nil) {
         IMChatManager.default.login(sign: sign, userId: userId, result: result)
+    }
+    
+    
+    /// 退出登录
+    ///
+    /// - Parameter result: 结果
+    public static func logout(result: ((IMResult<Bool>) -> Void)? = nil) {
+        IMChatManager.default.logout(result: result)
     }
     
     /// 开始聊天
@@ -93,6 +104,35 @@ open class ZebraKing {
             }
             
         }
+    }
+    
+    /// 监听指定会话的未读消息数
+    public static func listenerUnReadcount(with id: String, completion:@escaping CountCompletion) {
+        IMChatManager.default.listenerUnReadcount(with: id, completion: completion)
+    }
+    
+    /// 移除对会话消息数量改变的监听
+    public static func removeListenerUnReadcount(with id: String) {
+        IMChatManager.default.removeListenerUnReadcount(with: id)
+    }
+    
+    /// 获取所有会话的未读消息数
+    public static func unReadCountAllconversation() -> Int32 {
+        return IMChatManager.default.unReadCountAllconversation()
+    }
+    
+    /// 修改我的昵称
+    ///
+    /// - Parameter nickName: 昵称
+    public static func modifySelfNickname(_ nickName: String) {
+        IMChatManager.default.userManager.modifySelfNickname(nickName)
+    }
+    
+    /// 修改我的头像
+    ///
+    /// - Parameter path: 头像地址(服务器存放图片的地址)
+    public static func modifySelfFacePath(path: String) {
+        IMChatManager.default.userManager.modifySelfFacePath(path)
     }
     
     private static func checkLoginStatus(result: @escaping (IMResult<Bool>) -> Void) {

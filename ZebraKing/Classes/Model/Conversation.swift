@@ -12,13 +12,13 @@ import ImSDK
 open class Conversation: NSObject {
     
     /// 主机
-    internal var host: Sender!
+    public var host: Sender!
+    
+    /// 聊天对象
+    public var receiver: Sender!
     
     /// 会话
     internal let conversation: IMConversation
-    
-    /// 聊天对象
-    internal var receiver: Sender!
     
     public init(host: Sender, receiver: Sender, task: IMConversation) {
         self.host = host

@@ -19,7 +19,7 @@ public struct Sender {
     public var facePath: String?
     
     //默认头像
-    public var placeholder: UIImage?
+    public var placeholder: UIImage? = MessageStyle.avatar.image
     
     public init(id: String) {
         self.id = id

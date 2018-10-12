@@ -11,19 +11,11 @@ import IMMessageExt
 
 public final class UserManager: NSObject {
     
-    private var receiverPlaceholder: UIImage?
-    private var hostPlaceholder: UIImage?
-    
     /// 好友列表
     public private(set) var friendsList = Dictionary<String, Sender>()
     
     /// 个人资料
     public fileprivate(set) var host: Sender?
-    
-    func config(hostPlaceholder: UIImage?, receiverPlaceholder: UIImage?) {
-        self.hostPlaceholder = hostPlaceholder
-        self.receiverPlaceholder = receiverPlaceholder
-    }
     
     /// 获取好友资料
     ///
@@ -44,7 +36,6 @@ public final class UserManager: NSObject {
                     var sender = Sender(id: unwrappedProfile.identifier)
                     sender.displayName = unwrappedProfile.nickname
                     sender.facePath = unwrappedProfile.faceURL
-                    sender.placeholder = placeholder ?? self.receiverPlaceholder
                     
                     self.friendsList[id] = sender
                     result(.success(sender))
@@ -60,11 +51,7 @@ public final class UserManager: NSObject {
     }
     
     public func fetchSender(id: String) -> Sender? {
-        var sender = friendsList[id]
-        if sender?.placeholder == nil {
-            sender?.placeholder = receiverPlaceholder
-        }
-        return sender
+        return friendsList[id]
     }
     
     //释放资源
@@ -91,7 +78,6 @@ extension UserManager {
         
         if host == nil {
             host = Sender(id: id)
-            host?.placeholder = hostPlaceholder
         }
         
         //FIXME: - 同步我的个人信息, 如果外面不传facePath过来, 这里同步结果比较慢, 就会造成chatViewController个人信息显示成默认头像

@@ -12,6 +12,7 @@ import IMMessageExt
 
 public enum IMError: Error {
     case loginFailure       //登录失败
+    case logoutFailure      //退出登录失败
     case unknown                //未知错误
     case getUsersProfileFailure //获取用户资料失败
     case unwrappedUsersProfileFailure //转换用户资料失败
@@ -37,6 +38,8 @@ extension IMError: CustomStringConvertible {
         switch self {
         case .loginFailure:
             return "聊天模块初始化失败, 请重新启动"
+        case .logoutFailure:
+            return "退出登录失败, 请稍后重试"
         case .unknown:
             return "发生未知错误, 请联系客服"
         case .getUsersProfileFailure:
@@ -53,22 +56,6 @@ public protocol ZebraKingDelegate: NSObjectProtocol {
     func onResponseNotification(_ notification: ChatNotification)
 }
 
-public struct ZebraKingUserConfig {
-    let accountType: String
-    let appidAt3rd: String
-    var hostPlaceholder: UIImage?
-    var receiverPlaceholder: UIImage?
-    var facePath: String?
-    var nickName: String = ""
-    
-    public init(accountType: String, appidAt3rd: String, hostAvatar: UIImage?, receiverAvatar: UIImage?) {
-        self.accountType = accountType
-        self.appidAt3rd = appidAt3rd
-        self.hostPlaceholder = hostAvatar
-        self.receiverPlaceholder = receiverAvatar
-    }
-}
-
 public final class IMChatManager: NSObject {
     
     public static var `default` = IMChatManager()
@@ -79,9 +66,8 @@ public final class IMChatManager: NSObject {
     public var conversationManager = IMConversationManager()
     
     /// 基本配置
-    public func register(config: ZebraKingUserConfig){
-        loginManager.register(appidAt3rd: config.appidAt3rd, accountType: config.accountType)
-        userManager.config(hostPlaceholder: config.hostPlaceholder, receiverPlaceholder: config.receiverPlaceholder)
+    public func register(accountType: String, appidAt3rd: String){
+        loginManager.register(appidAt3rd: appidAt3rd, accountType: accountType)
     }
     
     /// 登录
@@ -96,7 +82,7 @@ public final class IMChatManager: NSObject {
     public func login(sign: String, userId: String, result: ((IMResult<Bool>) -> Void)? = nil) {
         
         //添加监听和移除监听要合理添加
-        conversationManager.addListener()
+//        conversationManager.addListener()
         
         loginManager.login(identifier: userId, userSig: sign) { [weak self] (r) in
             
@@ -126,11 +112,30 @@ public final class IMChatManager: NSObject {
         
     }
     
+    public func setToken(_ token: Data, busiId: UInt32) {
+        let config = TIMAPNSConfig()
+        config.openPush = 1
+        TIMManager.sharedInstance()?.setAPNS(config, succ: {
+            print("设置APNS成功")
+        }, fail: { (code, stri) in
+            print("APNS失败:\(stri)")
+        })
+        
+        let tokenParam = TIMTokenParam()
+        tokenParam.token = token
+        tokenParam.busiId = busiId
+        TIMManager.sharedInstance()?.setToken(tokenParam, succ: {
+            print("设置Token成功")
+        }, fail: { (code, str) in
+            print("Token失败:\(str)")
+        })
+    }
+    
     
     /// 登出
     ///
     /// - Parameter fail: 登出失败的回调
-    public func logout(failCompletion: @escaping TIMFail) {
+    public func logout(result: ((IMResult<Bool>) -> Void)? = nil) {
         
         /// 移除消息监听
         conversationManager.removeListener()
@@ -139,8 +144,11 @@ public final class IMChatManager: NSObject {
             
             /// 清空本机用户数据
             self?.userManager.free()
+            result?(.success(true))
             
-        }, fail: failCompletion)
+            }, fail: { (_, string) in
+                result?(.failure(.logoutFailure))
+        })
         
     }
     

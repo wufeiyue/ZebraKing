@@ -43,17 +43,17 @@ open class AudioMessageCell: MessageCollectionViewCell {
     
     private func resetVoiceButton(){
         if isMineMsg {
-            listenVoiceView.image = MessageStyle.soundwave_w_n.image()
+            listenVoiceView.image = MessageStyle.soundwave_w_n.image
         }else{
-            listenVoiceView.image = MessageStyle.soundwave_b_n.image()
+            listenVoiceView.image = MessageStyle.soundwave_b_n.image
         }
     }
     
     private func startPlayVoiceBtnChange(){
         if isMineMsg {
-            listenVoiceView.kf.setImage(with: MessageStyle.soundwave_w_s.fileURL())
+            listenVoiceView.kf.setImage(with: MessageStyle.soundwave_w_s.fileURL)
         }else{
-            listenVoiceView.kf.setImage(with: MessageStyle.soundwave_b_s.fileURL())
+            listenVoiceView.kf.setImage(with: MessageStyle.soundwave_b_s.fileURL)
         }
     }
     

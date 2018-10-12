@@ -16,11 +16,11 @@ protocol Toastable {
 
 extension Toastable where Self: UIViewController {
     func showToast(message: String, completion: ((_ didTap: Bool) -> Void)? = nil) {
-        navigationController?.view.makeToast(message, duration: 2, position: .center, title: nil, image: nil, style: ToastManager.shared.style, completion: completion)
+        view.makeToast(message, duration: 2, position: .center, title: nil, image: nil, style: ToastManager.shared.style, completion: completion)
     }
     
     func showCenterToast(message: String) {
-        navigationController?.view.makeToast(message, duration: 1.5, position: ToastPosition.center, title: nil, image: nil, style: .init(), completion: nil)
+        view.makeToast(message, duration: 1.5, position: ToastPosition.center, title: nil, image: nil, style: .init(), completion: nil)
     }
     
 }

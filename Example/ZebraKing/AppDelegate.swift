@@ -15,69 +15,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let mockSource = [ProfileModel(title: "用户的账号类型", identifier: "accountType"),
+                      ProfileModel(title: "用户标识接入SDK的应用", identifier: "appid"),
+                      ProfileModel(title: "本地账户的", identifier: "sign"),
+                      ProfileModel(title: "本地账户的", identifier: "chatId"),
+                      ProfileModel(title: "会话对象的", identifier: "otherChatId")]
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // 注册本地通知
+        registerLocalNotification()
         
         // 开发者申请key时可以拿到, 是固定值
         let accountType: String = mockSource[0].content
         let appidAt3rd: String = mockSource[1].content
-        let host = UIImage(named: "chat_header-passenter")
-        let receiver = UIImage(named: "chat_header-driver")
         
-        let config = ZebraKingUserConfig(accountType: accountType,
-                                         appidAt3rd: appidAt3rd,
-                                         hostAvatar: host,
-                                         receiverAvatar: receiver)
-        
-        ZebraKing.register(config: config, delegate: self)
-        
-        //注册推送
-//        registerNotification()
+        ZebraKing.register(accountType: accountType,
+                           appidAt3rd: appidAt3rd,
+                           delegate: self)
         
         return true
     }
-
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        if let chatNotification = userInfo["chatNotification"] as? ChatNotification {
-            
-            ZebraKing.chat(notification: chatNotification) { result in
-                switch result {
-                case .success(let conversation):
-                    let chattingViewController = ChattingViewController(conversation: conversation)
-                    let nav = UINavigationController(rootViewController: chattingViewController)
-                    self.present(nav, animated: true, completion: nil)
-                case .failure(_):
-                    break
-                }
-            }
-        }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("已经注册通知")
+//        ZebraKing.setToken(deviceToken, busiId: <#T##UInt32#>)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("注册通知失败")
+    }
+   
+    /// 如果 App 在后台的时候接受到推送的话，这个方法会被调用
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         completionHandler(.newData)
     }
-    
-    func registerNotification() {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (isCompleted, error) in
-            }
-            
-        } else {
-            //注册推送
-            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            
-        }
-    }
-    
-    func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        rootViewController?.present(viewController, animated: animated, completion: completion)
-    }
-    
-    let mockSource = [ProfileModel(title: "用户的账号类型  (String) ", identifier: "accountType"), ProfileModel(title: "用户标识接入SDK的应用ID (Int32) ", identifier: "appid"), ProfileModel(title: "本地账户的sign (String) ", identifier: "sign"), ProfileModel(title: "本地账户的chatId (String) ", identifier: "chatId"), ProfileModel(title: "对方账户的chatId (String) ", identifier: "otherChatId")]
+
 }
 
 extension AppDelegate: ZebraKingDelegate {
     
+    //FIXME: - App切到后台挂起状态时, 此回调不执行
     func onResponseNotification(_ notification: ChatNotification) {
         
         //消息发送人的资料
@@ -92,11 +71,43 @@ extension AppDelegate: ZebraKingDelegate {
         if case .background = UIApplication.shared.applicationState {
             //处理本地系统推送(只会在后台推送)
             UIApplication.localNotification(title: "推送消息", body: content ?? "您收到一条新消息", userInfo: ["chatNotification": notification])
-            print("处于后台")
         } else if !isChatting {
             NotificationCenter.default.post(name: .didRecievedMessage, object: self, userInfo: ["chatNotification": notification])
         }
         
+    }
+    
+}
+
+//MARK: - 本地通知
+extension AppDelegate {
+    
+    // 注册本地通知
+    func registerLocalNotification() {
+        let setting = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(setting)
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if let chatNotification = notification.userInfo?["chatNotification"] as? ChatNotification {
+            
+            ZebraKing.chat(notification: chatNotification) { result in
+                switch result {
+                case .success(let conversation):
+                    let vc = ChattingViewController(conversation: conversation)
+                    self.present(vc, animated: true, completion: nil)
+                case .failure(_):
+                    break
+                }
+            }
+        }
+    }
+    
+    private func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        let nav = UINavigationController(rootViewController: viewController)
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        rootViewController?.present(nav, animated: animated, completion: completion)
     }
     
 }
