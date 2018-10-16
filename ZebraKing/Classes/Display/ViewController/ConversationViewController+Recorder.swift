@@ -39,8 +39,7 @@ extension CommonConversationViewController: ChatAudioRecordDelegate {
      */
     public func audioRecordFinish(_ uploadAmrData: Data, recordTime: TimeInterval) {
         //TODO: 替换最后一个消息, 发送消息
-        guard let soundMsg = IMMessage.msgWithSound(data: uploadAmrData, dur: Int32(recordTime)) else { return }
-        soundMsg.receiver = currentSender()
+        let soundMsg = MessageElem(data: uploadAmrData, dur: Int32(recordTime), sender: currentSender())
         dispatch_async_safely_to_main_queue { [weak self] in
             self?.replaceLastMessage(newMsg: soundMsg)
             self?.sendMsg(msg: soundMsg)
@@ -52,7 +51,8 @@ extension CommonConversationViewController: ChatAudioRecordDelegate {
         let alertVC = UIAlertController(title: "\"\(Bundle.displayName)\"想访问您的麦克风", message: "只有打开麦克风,才可以发送语音哦~", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "不允许", style: .cancel, handler: nil))
         alertVC.addAction(UIAlertAction(title: "好", style: .default, handler: { (action) in
-            if let url = URL(string: UIApplication.openSettingsURLString) {
+//            if let url = URL(string: UIApplication.openSettingsURLString) {
+            if let url = URL(string: UIApplicationOpenSettingsURLString) {
                 UIApplication.shared.openURL(url)
             }
         }))
@@ -108,9 +108,8 @@ extension CommonConversationViewController: ChatAudioRecordDelegate {
                 self?.voiceIndicator.messageTooShort()
             case .prepare:      //准备好了
                 //TODO: 插入一个空的音频文件
-                let emptyMsg = IMMessage.msgWithEmptySound()
-                emptyMsg.receiver = self?.currentSender()
-                self?.onMessageWillSend(emptyMsg)
+                let msg = MessageElem(data: Data(), dur: 0, sender: self?.currentSender())
+                self?.onMessageWillSend(msg)
                 break
             default:
                 break

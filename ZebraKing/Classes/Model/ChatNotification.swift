@@ -10,5 +10,4 @@ import Foundation
 public struct ChatNotification {
     public let receiver: Sender
     public let content: String?
-    public let isChatting: Bool
 }

@@ -109,7 +109,7 @@ open class CommonConversationViewController: ConversationViewController, Convers
                 audioCell.selectedAudio()
                 selectedIndexPath = currentIndexPath
                 
-                if let imMessage = message as? IMMessage {
+                if let imMessage = message as? MessageElem {
                     playAudio(message: imMessage) { [weak self] (description) in
                         if let unwrappedSelectedAudioCell = selectedAudioCell {
                             unwrappedSelectedAudioCell.normalAudio()
@@ -133,7 +133,7 @@ open class CommonConversationViewController: ConversationViewController, Convers
         
     }
     
-    public func playAudio(message: IMMessage, result: @escaping (String?) -> Void) {
+    public func playAudio(message: MessageElem, result: @escaping (String?) -> Void) {
         
         message.getSoundPath(succ: { [weak self](url) in
             
@@ -165,7 +165,12 @@ open class CommonConversationViewController: ConversationViewController, Convers
     ///   - btn: 控制手柄按钮对象public
     public func inputBar(_ bar: ConversationInputBar, controlBtnDidTapped btn: UIButton) {
         
-        bar.status.trigger()
+        if bar.status == .normal {
+            bar.status = .selected
+        }
+        else {
+            bar.status = .normal
+        }
         
         switch bar.status {
         case .normal:
@@ -189,8 +194,8 @@ open class CommonConversationViewController: ConversationViewController, Convers
             showToast(message: "输入的内容不能为空")
             return
         }
-        let message = IMMessage.msgWithText(text: text)
-        message.receiver = currentSender()
+        let message = MessageElem(text: text, sender: currentSender())
+//        message.receiver = currentSender()
         onMessageWillSend(message)
         sendMsg(msg: message)
     }
@@ -205,13 +210,3 @@ open class CommonConversationViewController: ConversationViewController, Convers
     }
 }
 
-extension UIControl.State {
-    fileprivate mutating func trigger() {
-        if self == .normal {
-            self = .selected
-        }
-        else {
-            self = .normal
-        }
-    }
-}

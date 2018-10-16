@@ -9,7 +9,7 @@ import UIKit
 
 open class RefreshView: UIView {
     
-    let indicator = UIActivityIndicatorView(style: .gray)
+    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     public let height: CGFloat
     private let action: () -> Void
@@ -81,7 +81,7 @@ open class RefreshView: UIView {
     private func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         if scrollView.contentSize.height <= scrollView.bounds.height { return }
-
+        
         if isRefreshing == false {
             scrollView.contentInset.top += self.height
             isRefreshing = true

@@ -43,7 +43,13 @@ class ViewController: UIViewController {
             return
         }
         
-        ZebraKing.login(sign: sign, userId: id)
+        guard let appid = mockSource.filter({ $0.identifier == "appid" }).first?.content else {
+            return
+        }
+        
+        ZebraKing.login(sign: sign, userId: id, appidAt3rd: appid, result: { _ in
+            
+        })
         
         NotificationCenter.default.addObserver(forName: .didRecievedMessage, object: nil, queue: nil) { (notification) in
             
@@ -60,8 +66,8 @@ class ViewController: UIViewController {
     func openChattingViewController(with notification: ChatNotification) {
         ZebraKing.chat(notification: notification) { result in
             switch result {
-            case .success(let conversation):
-                let chattingViewController = ChattingViewController(conversation: conversation)
+            case .success(let task):
+                let chattingViewController = ChattingViewController(task: task)
                 let nav = UINavigationController(rootViewController: chattingViewController)
                 self.present(nav, animated: true, completion: nil)
             case .failure(_):
@@ -209,12 +215,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
             ZebraKing.chat(id: receiveId) { result in
                 switch result {
-                case .success(let conversation):
+                case .success(let task):
                     
-                    conversation.host.placeholder = UIImage(named: "chat_header-passenter")
-                    conversation.receiver.placeholder = UIImage(named: "chat_header-driver")
+                    task.host.placeholder = UIImage(named: "chat_header-passenter")
+                    task.receiver.placeholder = UIImage(named: "chat_header-driver")
                     
-                    let chattingViewController = ChattingViewController(conversation: conversation)
+                    let chattingViewController = ChattingViewController(task: task)
                     let nav = UINavigationController(rootViewController: chattingViewController)
                     self.present(nav, animated: true, completion: nil)
                     

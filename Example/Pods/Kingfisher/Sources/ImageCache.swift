@@ -93,7 +93,7 @@ open class ImageCache {
     fileprivate var fileManager: FileManager!
     
     ///The disk cache location.
-    public let diskCachePath: String
+    open let diskCachePath: String
   
     /// The default file extension appended to cached files.
     open var pathExtension: String?
@@ -156,11 +156,11 @@ open class ImageCache {
         
 #if !os(macOS) && !os(watchOS)
         NotificationCenter.default.addObserver(
-            self, selector: #selector(clearMemoryCache), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+            self, selector: #selector(clearMemoryCache), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
         NotificationCenter.default.addObserver(
-            self, selector: #selector(cleanExpiredDiskCache), name: UIApplication.willTerminateNotification, object: nil)
+            self, selector: #selector(cleanExpiredDiskCache), name: .UIApplicationWillTerminate, object: nil)
         NotificationCenter.default.addObserver(
-            self, selector: #selector(backgroundCleanExpiredDiskCache), name: UIApplication.didEnterBackgroundNotification, object: nil)
+            self, selector: #selector(backgroundCleanExpiredDiskCache), name: .UIApplicationDidEnterBackground, object: nil)
 #endif
     }
     
@@ -320,7 +320,7 @@ open class ImageCache {
                                         toDisk: false,
                                         completionHandler: nil)
                             options.callbackDispatchQueue.safeAsync {
-                                completionHandler(imageModifier.modify(result), .disk)
+                                completionHandler(imageModifier.modify(result), .memory)
                                 sSelf = nil
                             }
                         }
@@ -540,7 +540,7 @@ open class ImageCache {
 
         func endBackgroundTask(_ task: inout UIBackgroundTaskIdentifier) {
             sharedApplication.endBackgroundTask(task)
-            task = UIBackgroundTaskIdentifier.invalid
+            task = UIBackgroundTaskInvalid
         }
         
         var backgroundTask: UIBackgroundTaskIdentifier!

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                       ProfileModel(title: "本地账户的", identifier: "chatId"),
                       ProfileModel(title: "会话对象的", identifier: "otherChatId")]
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // 注册本地通知
         registerLocalNotification()
@@ -30,16 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let accountType: String = mockSource[0].content
         let appidAt3rd: String = mockSource[1].content
         
-        ZebraKing.register(accountType: accountType,
-                           appidAt3rd: appidAt3rd,
-                           delegate: self)
+        ZebraKing.register(accountType: accountType, appidAt3rd: Int32(appidAt3rd)!) { notification in
+            self.onResponseNotification(notification)
+        }
         
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("已经注册通知")
-//        ZebraKing.setToken(deviceToken, busiId: <#T##UInt32#>)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -54,16 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: ZebraKingDelegate {
+extension AppDelegate {
     
     //FIXME: - App切到后台挂起状态时, 此回调不执行
-    func onResponseNotification(_ notification: ChatNotification) {
+    private func onResponseNotification(_ notification: ChatNotification) {
         
         //消息发送人的资料
         //let sender = notification.receiver
-        
-        //是否处于会话活跃窗口(一般处于会话窗口就不让在前台推送了)
-        let isChatting = notification.isChatting
         
         //推送的内容
         let content = notification.content
@@ -71,7 +67,7 @@ extension AppDelegate: ZebraKingDelegate {
         if case .background = UIApplication.shared.applicationState {
             //处理本地系统推送(只会在后台推送)
             UIApplication.localNotification(title: "推送消息", body: content ?? "您收到一条新消息", userInfo: ["chatNotification": notification])
-        } else if !isChatting {
+        } else {
             NotificationCenter.default.post(name: .didRecievedMessage, object: self, userInfo: ["chatNotification": notification])
         }
         
@@ -83,7 +79,7 @@ extension AppDelegate: ZebraKingDelegate {
 extension AppDelegate {
     
     // 注册本地通知
-    func registerLocalNotification() {
+    private func registerLocalNotification() {
         let setting = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(setting)
         UIApplication.shared.registerForRemoteNotifications()
@@ -94,8 +90,8 @@ extension AppDelegate {
             
             ZebraKing.chat(notification: chatNotification) { result in
                 switch result {
-                case .success(let conversation):
-                    let vc = ChattingViewController(conversation: conversation)
+                case .success(let task):
+                    let vc = ChattingViewController(task: task)
                     self.present(vc, animated: true, completion: nil)
                 case .failure(_):
                     break

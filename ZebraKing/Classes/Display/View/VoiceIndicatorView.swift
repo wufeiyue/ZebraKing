@@ -148,7 +148,7 @@ public final class RecordingBackgroundView: UIView {
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -192,7 +192,7 @@ public final class RecordingSinalImageView: UIImageView {
         setupLayer()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -218,7 +218,7 @@ public final class RecordingSinalImageView: UIImageView {
         anim.toValue = NSValue(cgPoint: CGPoint(x: 0, y: value))
         anim.duration = duration
         anim.isRemovedOnCompletion = false
-        anim.fillMode = CAMediaTimingFillMode.forwards
+        anim.fillMode = kCAFillModeForwards
         layer.mask?.add(anim, forKey: animationKey)
         
         fromValue = value

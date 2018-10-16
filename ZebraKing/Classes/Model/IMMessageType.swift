@@ -13,6 +13,7 @@ import IMMessageExt
 /**
  消息类型
  */
+/*
 public enum IMMessageType: Int {
     case unknown            // 未知消息类型
     case text               // 文本
@@ -23,7 +24,7 @@ public enum IMMessageType: Int {
     case location           // 定位
     case video              // 视频消息
     case custom             // 自定义
-    case timeTip            // 时间提醒标签，不存在于IMSDK缓存的数据库中，业务动态生成
+//    case timeTip            // 时间提醒标签，不存在于IMSDK缓存的数据库中，业务动态生成
     case inputStatus        // 对方输入状态
     case saftyTip           // 敏感词消息提醒标签，不存在缓存中，退出聊天界面再进入，则不存在了
     case multi              // 富文消息，后期所有聊天消息全部使用富文本显示
@@ -55,5 +56,5 @@ public enum IMMessageType: Int {
         
     }
 }
-
+*/
 

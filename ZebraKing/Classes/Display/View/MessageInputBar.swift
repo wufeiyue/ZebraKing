@@ -80,9 +80,9 @@ open class MessageInputBar: UIView {
     }
     
     open func setupObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChange), name: UITextView.textDidChangeNotification, object: inputTextView)
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBeginEditing), name: UITextView.textDidBeginEditingNotification, object: inputTextView)
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidEndEditing), name: UITextView.textDidEndEditingNotification, object: inputTextView)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChange), name: .UITextViewTextDidChange, object: inputTextView)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBeginEditing), name: .UITextViewTextDidBeginEditing, object: inputTextView)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidEndEditing), name: .UITextViewTextDidEndEditing, object: inputTextView)
     }
 
     open override var intrinsicContentSize: CGSize {

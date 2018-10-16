@@ -8,74 +8,78 @@
 
 /* Begin PBXBuildFile section */
 		008D5DDE0942B5C3EC51E6D4557DFD64 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4AA346644928C3381BB2DF02FB8288 /* Placeholder.swift */; };
-		07A217F1E84705C0DB0AFAEFB3E4B44F /* MessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FED9A0B9AB3CC6288F097980BF6FE42 /* MessageStyle.swift */; };
-		07BD2F822160101E7B62A8931295C2C5 /* MessagesViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF2EB107F2A26DAE0E8404657451849 /* MessagesViewController+DataSource.swift */; };
+		013DD98077832573158129B1742DE8E9 /* MessageIntermediateLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3DA3E1F6C1356D81AEDED592CE0C1 /* MessageIntermediateLayoutAttributes.swift */; };
+		03D27EB6D16BB3CC59B411322E2200DF /* VoiceIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E45B3CA769609D71C5CE86E20EC7EE4 /* VoiceIndicatorView.swift */; };
+		056493BA753D60BFEDB538366491D392 /* ZebraKing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D150488BE65ED1CB038FA7D0BB8D0E /* ZebraKing-dummy.m */; };
+		070DE10486CFAC0193EFCED11DA726AD /* MediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EB220C9FC5F6FC3589B2DD53B15616 /* MediaMessageCell.swift */; };
 		07C0515BAB41A01EDFCB5164FB622170 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627FE0636036E8AFFF170400252FCCD /* ImageModifier.swift */; };
+		0BED2223850B43DE61EB74228EB0D7EF /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BFBF501AB0CC756190F8763305FBAF /* MessageData.swift */; };
 		0C5632D0F8CD23880B1267C35F05306A /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72D9F4418159EC68B533C5CD3798E71 /* Toast.swift */; };
-		0E2DCABD79B8CEA7E2DCA11E91681814 /* ConversationViewController+Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D96D43D4196761A30A911EFB4B5CF /* ConversationViewController+Recorder.swift */; };
-		0FBE3ABAB33FD20A22C0661411BD5A81 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB1EC535E4F6FF99246C0C47CE177C3 /* InputTextView.swift */; };
-		1212C2807CFF4D0C85A2FB8BEED7EA31 /* DetectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDFCB13EDE55ECDC04FA4F23D0C21B /* DetectorType.swift */; };
-		17245BD2544B314706B1A6B28F5A6CAF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFADBB5B4B10CAB3F941DA4995FEC84B /* UserManager.swift */; };
+		0D69A6F660263F27D63C7DF6AAA3AC9F /* MessagesViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EE13820D23A04B13EB2B9DA3BB18E /* MessagesViewController+DataSource.swift */; };
+		0DC8DEC64AEECF6794EBDF7D971E1901 /* MessagesCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0893DD8A2D28B399DDF674E91FB42DF3 /* MessagesCollectionViewFlowLayout.swift */; };
+		0F3A7401E58145BA5D9389C10512D599 /* LocationMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFFEF09F1DFEED3AD067AECC45A6D2C /* LocationMessageCell.swift */; };
+		11A1C86F84323128687BB92B2A119DEF /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B0BF5A6BB244D29D745F956C99895C /* MessageCellDelegate.swift */; };
+		125D5A897FC8607CD4A7641ABA7539BE /* ChatNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D009B16F7576945319FD9B853D1C8678 /* ChatNotification.swift */; };
 		179FCD8BC40E115DFA9C05F603A878A9 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2641603AA667A404FF5C261D51856 /* Resource.swift */; };
-		187739868352610F35E59E8D4D3F87E7 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9DEA5BAC794D775AC296FEFB00047 /* Bundle+Extension.swift */; };
-		1995596EB40DF50F25D13F92B8B0C844 /* IMMessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C024E26A5C5A31B8986E6B6ECE74C /* IMMessageList.swift */; };
+		1C783D06AACD347C47AB8FC8B556C8CA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F501E74BB6BB73C75E35A41DE7368A43 /* UserManager.swift */; };
+		1C8E293786C04BD847B6F011C6DBFC9F /* IMResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA43476B31276B83BFF94C796307660 /* IMResult.swift */; };
+		1E1AE43727BEEEAB8F80D056559D3CCD /* SeparatorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0803137FB384066FC591ACAB8BD127 /* SeparatorLine.swift */; };
 		20FEB969513418DFAC5090C858D10516 /* Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73238C3A19EB7B550F46B127B9E3F5 /* Kingfisher.swift */; };
-		26C40B3B106122A29A71701DA9073012 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = F3C522DF9EC89EB172B67BA61AE09B91 /* Images */; };
-		2E595D96BC1B52295CF14B3A721C2B3D /* MessagesCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DC78F137F31049ECFE91F3F05C801 /* MessagesCollectionViewFlowLayout.swift */; };
-		2F1DD84551500DAE234A3B39E76E8990 /* ZebraKing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF5780EF4CCEFFB2B2056B56C390E07 /* ZebraKing.swift */; };
+		23AF5B41FFA99D495940B51A5FD9CC05 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D274ABB5EBF2CC587F042225AE0A8701 /* CentralManager.swift */; };
+		256AC8EE6086FF4FDD8ED05B2F026116 /* DetectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423E59663EB4858A735AC2638B56CA26 /* DetectorType.swift */; };
+		26C40B3B106122A29A71701DA9073012 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 36FC9BD184FB31617C14EFA69CC19C8F /* Images */; };
+		28C448121F377104762D7730BCCCE5BA /* MessagesDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949608E33E161ABE44D1012A7D0A104 /* MessagesDisplayDelegate.swift */; };
+		28EEFCDB9CF5145953A461BC426BACE3 /* MessageInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19882DBE4EE4B4BE24186C7F6395BBCB /* MessageInputBar.swift */; };
+		2AECD58D1269028E12CE27F98A8B4BEC /* CommonConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801C8E43DACA2741CF9050FAE24EA61 /* CommonConversationViewController.swift */; };
 		2F84C0A84F2B5A0E9E3073417CA651C3 /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E88DC0E3EA78613535BECF9A3143600 /* ImageTransition.swift */; };
-		302D3808F16BF46B1D048F31BBABF13D /* AudioMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FFB5721F85B7D5C94B84587F89C402 /* AudioMessageCell.swift */; };
 		34AEF9EE16EAEAF7FA0E66A48982F0C8 /* UIButton+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916776D5F477846F3E39D8D32D2AD36 /* UIButton+Kingfisher.swift */; };
 		3554E5702FFEA0C2FC74B19EEC7D6325 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD662AE6E680D7F3D3C4D8A222C81D7F /* Indicator.swift */; };
-		35AFE223AF41B95F3DA3E79969E1D05C /* ProximityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5503EAF07607F073A0C0F82E04F4320 /* ProximityManager.swift */; };
-		361F11180A2AC5160F03C346ECFAF1B0 /* MessagesLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203FA5BC8468CD7B342F71B25C0E1118 /* MessagesLayoutDelegate.swift */; };
 		376DB471535B462344E077E57A477D1C /* Toast-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 81AA9951AD68CEC52D03569CB621D1CC /* Toast-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37BE6BA805F6B6551C82E68D8E9B37EC /* ZebraKingAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0FA35BBC080AEEF2EF062E24DE0C588 /* ZebraKingAssets.bundle */; };
-		3EBCE03C31AA497F15B7E4A082366496 /* LocationMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5303CBE0568B831F5A7142EA6C976FD /* LocationMessageCell.swift */; };
-		3F845E7137F4F496D65A3C834FF242B4 /* ChatNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D7586E935D30885BC0A3857BE85478 /* ChatNotification.swift */; };
+		40079510DF51E8A8D899C0FEA48B0FB7 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CBB3F47C193CFA36B7ACD119E381E4 /* RefreshView.swift */; };
 		41D22E6F4C3E24D8FE690DE6D644AC3E /* ImagePrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1A98F61A7B51871DE600D684386FB6 /* ImagePrefetcher.swift */; };
-		4457582CA5FDBCF256E2F8ACDDC03326 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A817108BCDA07D6DD40F9E63464F140 /* MessageLabel.swift */; };
-		44C65A0A90D73F9B69FE7976CD5E27D3 /* MessagesViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F381D1FBF82B3E60DADF9A2FF48150ED /* MessagesViewController+Menu.swift */; };
+		434475527E4B9BEF692D4C4F9F57132B /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301679E273C9D333EDB6D7F5F0419C27 /* SessionManager.swift */; };
 		453378DA661AD7FCBA79D1BFA59302EB /* FormatIndicatedCacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF8DD4675ED083738C954AB835E3C1 /* FormatIndicatedCacheSerializer.swift */; };
-		472F764F37F0A3FD6B98DA4592CDE466 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF81EB41EF8F2AF1A2E081232A01965 /* RefreshView.swift */; };
-		491961412234159562808681C355F26F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04FE8CE6ACB6F21A90455BEBC8F5E5 /* MessagesViewController.swift */; };
+		4698F0E08301EAD636288A8C29AE915B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F36556C7CE56FBBD966AB7E67377C /* Task.swift */; };
 		498C4047C24FCD01CD62B5FC612C3423 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3C03CB305B9130CD335F63A4572A76 /* CoreTelephony.framework */; };
-		4F6A17659FE3E01DA35884C6849801A7 /* MessagesViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074B43396FB6AFABE077613834EB101 /* MessagesViewController+Keyboard.swift */; };
-		53816D8D36D32BFB3FCF5737CC152D46 /* IMMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E321D6E787D6BFE2176453EBE33F153 /* IMMessageType.swift */; };
+		4B29A57A70818CE63ACE7EEEFE019B98 /* TimestampCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FA857599452B5A4BAFE1BF692A0CF /* TimestampCell.swift */; };
+		5900BA649627757687DF32576BE22003 /* IMMessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD6B5CF867FE23668B893AAB5ACFB9 /* IMMessageList.swift */; };
+		5B599228432555FB4067DEFDF488FD65 /* ZebraKing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C42D63C24CD07186F34808C17AD05B /* ZebraKing.swift */; };
+		5F88C288147109ABA41EBD68433739E3 /* MessageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDEE20D5EE2EC62B44E9852546399B5 /* MessageStyle.swift */; };
+		5FD3B061625889118EB4A4206B51E6AA /* MessagesViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA4372C217ACA513DC7E8E5457FB51 /* MessagesViewController+Delegate.swift */; };
+		61049E11B15EFAB09ABD738A21A5A2E8 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E41E9F5DC7A6D9EB22ADBEE87764A /* Sender.swift */; };
+		622D286C55E7EFEBB69AE660FA3CBEC5 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C7D1537FBF88F90353286E541D5A7 /* InputTextView.swift */; };
 		66CCE448DAB752E36445FD69CD761C93 /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9123249EE9F59A3778CE398559A87FD5 /* KingfisherManager.swift */; };
-		6BBDB71604D614D0F2CB98D8DD5177B0 /* SeparatorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5792D30509C6DE0E5F3CA27583406A44 /* SeparatorLine.swift */; };
-		6D7E612E60E7CF7875C0B2E2A5856896 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D30ED6AA6806EFE63D68F022F08D1 /* ToastView.swift */; };
-		6F0F1964D72CDF17EDBE604A94E0E106 /* IMLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6138C221BBA08988CF1300CC26760269 /* IMLoginManager.swift */; };
+		67FACC79375749AD98B5B0C34CF038EA /* AudioMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACCE80B37515C5F549A8F01134F8052 /* AudioMessageCell.swift */; };
+		688696984512DABE71E6CF68CD49A26B /* ConversationViewController+Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8781023CD7BEED5E0ADBF36D08A1F /* ConversationViewController+Recorder.swift */; };
+		6CCF74F40A9B51F12BAB5DE5C0A878E2 /* MessagesViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE47ED796FA5E8839ADB5C610ACD1CD6 /* MessagesViewController+Keyboard.swift */; };
+		6D8797E134D676D99FC61CFC135A7A41 /* Date+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A5927AA5D4F3789D862C5C957B17E9 /* Date+Helper.swift */; };
+		6D89F47C376A80E357166B6A509F07F3 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A090366C6439EC943810DB1B203EE32 /* MessageCollectionViewCell.swift */; };
+		6E91117F5091D9BF016E68CF39BC6E5D /* MessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A668EA2A4BD5BBF4772E21B7625842B /* MessagesList.swift */; };
 		6FC6FEF6A64C76B789316ABF44D5B1BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0F5C07A15FC9705CC6D88EF318E1E /* Foundation.framework */; };
-		715A517165E1A98E4ADDFECCFC1361FC /* SafelyQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F287EF52C848CEC044AF8ADB5370E352 /* SafelyQueue.swift */; };
 		74991D9F2A55044D75545D00A70C8CA9 /* Kingfisher.h in Headers */ = {isa = PBXBuildFile; fileRef = 6977B4119D800AD4E07688C9A7BFF576 /* Kingfisher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750C07EE18A2608CEE95B62B163FE6EB /* MessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580CBF22C3E1344CD8DBDE4BC7929657 /* MessagesList.swift */; };
 		75A1E4900C0AA7CE6E2454C64AA169E2 /* ImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7869B0588E7921F9E9106C89DA9F043B /* ImageView+Kingfisher.swift */; };
-		777FD711F0287A304C6B7951D6727214 /* MessagesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AEA18C3B16324ED5992E10A717CC7 /* MessagesCollectionView.swift */; };
-		78415E0E1BC4D7915ACA678500FB0BAF /* IMChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D02296C568B2F799A2E1171DE59B6D /* IMChatManager.swift */; };
-		78B76657BF545C32B2D2857998BD0CC0 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C172E845A09CAFFFDB7B85616975F3 /* MessageData.swift */; };
+		7B54C6DDE54C3E9E9F1C240DA1309E0D /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4FF9D02E41B91F0CFD36C2601F877 /* Bundle+Extension.swift */; };
+		80C79045468DFE0D47DE50CE42546F70 /* MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0F2429045C79A1877E59BB22170831 /* MessagesDataSource.swift */; };
+		811701929E2EABFD2FC48C76BEDFB072 /* IMChatAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC02E7B0A80D8486D22D1E2E93B4DDA /* IMChatAudioPlayManager.swift */; };
 		833B4550B26D2A945E08C978BB7BD505 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F69BB3F83EC2D2A70621F95FFD3E36E /* String+MD5.swift */; };
-		842641C1D8C328A4762EE24CFE91ADF2 /* MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF772D4884520B5293B6C38F8CEC77 /* MessagesDataSource.swift */; };
-		84508FD56AACF541DD76777D39A9221A /* MessagesDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF1D76D9CE737551F6D55DB1FDF2BA1 /* MessagesDisplayDelegate.swift */; };
-		854DF3F4E8269936036759593B778C53 /* ZebraKing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FA065854B5952FB79BD3387C5386744 /* ZebraKing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		854DF3F4E8269936036759593B778C53 /* ZebraKing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADBCE86D31299DD19D9FAF7437A2EF82 /* ZebraKing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8817D540387423EC2EE25988C3153ED9 /* ConversationInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27CAD8975B6EDFA6393E50244DAF3F9 /* ConversationInputBar.swift */; };
 		88CE4EE02A104D4BD65DE024ACF209F7 /* KingfisherOptionsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759EE54C4FAF8934330F940A4B8032D7 /* KingfisherOptionsInfo.swift */; };
-		89549DF0CA041349E5EE7929A489AA0E /* ChatSoundRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D1737C2B6064C80781321AFD0836D /* ChatSoundRecorder.swift */; };
-		8957C8FBE96F06CBAD0129901AB86658 /* IMConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89D40335B6665BC4D79238859C44D12 /* IMConversation.swift */; };
-		8FA8D7A1E77C81F8D518B2929F239377 /* IMChatAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E350AE92859CDF163B00D4F8FA168936 /* IMChatAudioPlayManager.swift */; };
-		903193DADB25F7E83F02FF8ED7A48362 /* MessageInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE4C2CFDA8266E02C82B08C74AA6DCC /* MessageInputBar.swift */; };
 		90523ACEFEF8D56C35F5CF41CB70EE58 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366ECA4E837FBDB92707922879EF294 /* ImageCache.swift */; };
 		934FFAD6C00282736B5B0F1D496AFBBC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E12C0381F80FC952042600CD4B7093 /* SystemConfiguration.framework */; };
-		9584EFA740E6A5C801CC4F97A762EFDC /* IMConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55A88C89C5F9CAF3B0FD4AEDBF6218A /* IMConversationManager.swift */; };
 		95AB33523EE2DA5C145714D7279E8D27 /* CacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AED674AE4419FE06B353769976E0048 /* CacheSerializer.swift */; };
+		97041597AA59AC6E9C7789948FF2150C /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F123557315E38D5A798B187E2E95C /* LoginManager.swift */; };
 		97EB2E795C2BE40106D734B5C0AEBDB3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA50CA53FC4175F07A3B6DF6679855 /* ImageDownloader.swift */; };
+		98846FF62C7274DC31D9031B53E46D33 /* MessagesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795B7572F7B83EB92606EFFF187CC06A /* MessagesCollectionView.swift */; };
 		9B229611323B5F2ABF8F79A60044D30F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0F5C07A15FC9705CC6D88EF318E1E /* Foundation.framework */; };
+		9EAFB3C0C308042A3D93F8BA718A57E8 /* IMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181958153AABDB16FA518FEF35FF178C /* IMMessage.swift */; };
+		9EB40AE51A5E90D427061146A4C8ABF7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB35B46CB2DB6A6AC1EF92B124052 /* MessagesViewController.swift */; };
 		9EDFA1C34D4853B76A78B8E40B89C775 /* RequestModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30557C2FA71847FFE1013A461AB702E9 /* RequestModifier.swift */; };
-		A04666335FA0C1046E2AD6583E3B64BE /* ConversationInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA161ACAA8655DF0CE52F0CB71F4E4D6 /* ConversationInputBar.swift */; };
-		A053C38F477E18A5E7227ED193279762 /* ZebraKing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B23B5FCEC026A0D294B01A0CB859B /* ZebraKing-dummy.m */; };
-		AB6C0F895697AFA8E4459ACFCC94D36E /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59679B8EDE55B66A4BA2681DB2C00DED /* NSAttributedString+Extension.swift */; };
-		ADC05C48837A1D0A0D3072F34C0782B6 /* MessagesCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2BDD54492997135C4D95E506CFE1B3 /* MessagesCollectionViewLayoutAttributes.swift */; };
+		A1E643482BFE53D148EF6C52A950D71A /* ChatSoundRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C606CA508C6434E3F2B89E1931355FF /* ChatSoundRecorder.swift */; };
+		A68E920D9CC6A0C6ED489EB5EDC7B503 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16C69900294532B942AC2DC1CDAC8B4 /* AttachmentView.swift */; };
+		A72C795BBC269BA3566CD3B7EC2DE449 /* IMMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045290284A21B06D0BD59238CA23812 /* IMMessageType.swift */; };
 		ADD5853B4F7C384FEE2C28C647D71991 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AB46106511BC760CFEA13F96008451 /* Kingfisher.framework */; };
-		AE550A3E56BD3EC3E51011116F374478 /* MessageIntermediateLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20C400BD227F01B7DB07B5C7EAE9295 /* MessageIntermediateLayoutAttributes.swift */; };
 		AE633B3532903E2EF04B5D7BA480C3C7 /* Kingfisher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD1D081C61D1F795CD985EA2FC66929 /* Kingfisher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AF810FEE120205D8E7E2A384705878D9 /* Pods-ZebraKing_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD94D269DFBAEBEFFE310F184B0FCB5F /* Pods-ZebraKing_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B103FFF462F99A406FF5C29810715D0D /* Toast-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 481050F43FD79EF12A548CA35CD9671B /* Toast-Swift-dummy.m */; };
@@ -83,35 +87,31 @@
 		B239F6D91EC58C8046497C0909CB2E78 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88104A2D264EA5138D66463305CEF30A /* Box.swift */; };
 		B23A9C578701A9F8FE2F33BD167BB878 /* Pods-ZebraKing_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D81CF6F82A0722FF96EA7E5F15A06761 /* Pods-ZebraKing_Example-dummy.m */; };
 		B2EFCB251998FC9F2F1D168E53BD2111 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A2E6A73440A62EB18C86772A2EAE7B /* CFNetwork.framework */; };
-		B5F188362F5F67149C40F8CE92D11FA4 /* IMResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0B3588408000C85211E774F3E22523 /* IMResult.swift */; };
-		B6BADFE64B2884D8B40A77950748433F /* PathUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85EB0278CE922392B679D8D4A833EE8 /* PathUtility.swift */; };
-		B97F8EF6477149BE538B7BEB7612C1A0 /* CommonConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6BB79EF96BEBD2EF92D8D997C2E1F9 /* CommonConversationViewController.swift */; };
-		B9C8A112887A09F4ACD1528F36C6F037 /* TimestampCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72D4804D3AAD5176A9376B8A77570BE /* TimestampCell.swift */; };
-		B9FBAC5726305EBB9FB93A4CA9D655AA /* ReceiptListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452568EF760EA8BF0DD6FB45487B6BE /* ReceiptListenerManager.swift */; };
-		BAEB00D1CD13793460E87D07BEF589AA /* MediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A124D335528D6AF7B7F5F30758713 /* MediaMessageCell.swift */; };
 		BBE6B85E960BF7927A44E2329DE05A5F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B7A64F5DB5E6FE21D6EF33F95F9A7 /* Image.swift */; };
-		BE99607237AA577BAEF07CADD7489B00 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EAFF49769B9842D4698083616A6178 /* AttachmentView.swift */; };
+		BC0C8D71A0F2B8D2C1A6D50063F9A727 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838947FC933E96DABD294727E9FE9875 /* NSAttributedString+Extension.swift */; };
+		BC8DBDB49484EEDECDD41FA17D18FA75 /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CB1B84A0262A18B2707D394E2FE60 /* TextMessageCell.swift */; };
 		C00BBB533565D38D9F75BE760F359279 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0F5C07A15FC9705CC6D88EF318E1E /* Foundation.framework */; };
-		C039448C013C19A3E7364445E1E97EEB /* VoiceIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99262EE26775D4DDBFC3CBA42AEE81 /* VoiceIndicatorView.swift */; };
-		C45CD56C9D0E8620B538D45EA03A7322 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643FCA57C7BCCAF2511570E8F9DD304 /* MessageCollectionViewCell.swift */; };
+		C0920F11B1F92D0E3CAF067A5990C70F /* MessagesLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581D38FA14785F644A140FBFC9F09DD /* MessagesLayoutDelegate.swift */; };
+		C2614899F3658D62360C8456A9EA05E2 /* MessageLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EC85D8AF3D1D44BAC6FEC731F0229 /* MessageLabelDelegate.swift */; };
+		C539D5A3529B2244AF70426C1E0781DC /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C1C4F0B3B5D369FAD35CD6309BC9C /* MessageLabel.swift */; };
+		C77163B3C1D403520A6A0F52E166DC0A /* PathUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3E5B9DA847169733FE726ECD37A17 /* PathUtility.swift */; };
 		C9538BAC268AB8AAB4336A4E62B2EA1F /* Kingfisher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 753B70A860B77D51E8E6D9CD435DA657 /* Kingfisher-dummy.m */; };
-		D023998C4DD7B1D854FA793494BAAE3B /* IMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8154F35E7E25AEFBAB07D45ACD188318 /* IMMessage.swift */; };
+		D268608ADD82BC46334500997E36B67A /* MessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B0784794F93A83EDA8F859539B9DA /* MessageContainerView.swift */; };
 		D274C2230E53457776F9D4EF567A0E65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0F5C07A15FC9705CC6D88EF318E1E /* Foundation.framework */; };
-		D33536D9E359005FB69D8CEEA252BB7A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C397E36316C7720DE4E0E356E6D9AA /* Sender.swift */; };
-		D5D60DC3D26E5ECA5DA60AC5F65C7672 /* MessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366F8143FFB5D40B97CB338A44306E6 /* MessageContainerView.swift */; };
-		D912279C1D9D4E131E8188705FA2E006 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476881994DB31DAE33351E2E0EFDF2B7 /* ConversationViewController.swift */; };
+		D2C371891CF2A172F15C3FAEB10821A2 /* IMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E6FBEED9547B52C3F0350F9F0B353F /* IMError.swift */; };
+		D9EA562AA3AB481C2E4E523735EC7870 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99270B95B5A72F9294F40037D72C2A /* ToastView.swift */; };
+		DA72B99F0E5364EAB06F7ECF0A6DB805 /* MessagesCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225E52B71D327A8EC9D96353F4A9EFB /* MessagesCollectionViewLayoutAttributes.swift */; };
 		DAC3F0C65BA82526594477C6DDF06745 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516FFA9D7866F1C8230625F1E9DDB987 /* ImageProcessor.swift */; };
-		DD685E5D077289FB059739A73CD2865B /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97E868B6389B28EF82637E2C15E401 /* TextMessageCell.swift */; };
-		DFBB4DCC124DC93B02E18C48B4226A15 /* MessagesViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA7D43D96EF1513F6F9FF16BC454FF /* MessagesViewController+Delegate.swift */; };
-		E7F24E8C88C65D28B8BDCC25083E33CE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC21F3459BBB703DB7CD75C6791CFC /* String+Extension.swift */; };
+		DBFD6C36AA07783FAD17A08CF6A8F00B /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB28B3BF97C6C8311285BD32B74226B /* ConversationViewController.swift */; };
+		E07C7B0782992B70D275E376E98A480E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A2447078807E56B792B98120FA4F82 /* String+Extension.swift */; };
+		E396F5D70DC1D9451EB74678C9BDD5B9 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E5133527F419B0553557DFEBFD4643 /* Conversation.swift */; };
 		EA9BE16ECCC17CC9AD847C52D1B64671 /* AnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF4789A7B1F6AFB1575EDDF9CF71BF2 /* AnimatedImageView.swift */; };
-		F465B72874BED72BE59536026068A3A8 /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113D775B5914FED2663F8D8C0D21924 /* MessageCellDelegate.swift */; };
-		F4ABED2597A27BA6690D8BE438D7329C /* Date+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60EC4A903D9988C0DBE109C3F79723 /* Date+Helper.swift */; };
+		EAD6C702CE0FA589B2FECD75C9075916 /* MessagesViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73601D1910304F3238370879AD75638 /* MessagesViewController+Menu.swift */; };
+		ED659DE23B8331FCC0BB8FF6BC11BF88 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BA320D58A7F50793F3D06532BC300 /* MessageType.swift */; };
 		F667936752E8742E44668CC80FC31720 /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FA1071AF892588A3E66FB471CC9950 /* ThreadHelper.swift */; };
-		F7F77BB84D74447C894286111E91B750 /* MessageLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61327E1BA114863BD23684E33F78017 /* MessageLabelDelegate.swift */; };
-		FC005874DA80DF03276E7264BBF2BF34 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B6B5820100430F2230E2C36FF66E3F /* Conversation.swift */; };
+		FBD7777256FC85477EE2272EB69006BB /* ProximityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F0F1DCFFC0FE7F3C49E16EF6D6B6A /* ProximityManager.swift */; };
 		FD799BF9F80376BBF64F048AC592A67B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2316F584563B1483C60B3DEA0A7C32FB /* QuartzCore.framework */; };
-		FFD43C0801EF6B2BA3EB53095E52507D /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5D33786887058B326391D4D8D1CDB /* MessageType.swift */; };
+		FFE4C8FFE90B208A4DD5EFDE74A9E33C /* SafelyQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98986D1265A2DB533943262F5E2C2A80 /* SafelyQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,140 +153,140 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0045290284A21B06D0BD59238CA23812 /* IMMessageType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMMessageType.swift; sourceTree = "<group>"; };
+		018CB1B84A0262A18B2707D394E2FE60 /* TextMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
+		019F36556C7CE56FBBD966AB7E67377C /* Task.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		02A2E6A73440A62EB18C86772A2EAE7B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		0366ECA4E837FBDB92707922879EF294 /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Sources/ImageCache.swift; sourceTree = "<group>"; };
 		03B3EF64D360819E6A7935285986AAD0 /* Pods-ZebraKing_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZebraKing_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		08C172E845A09CAFFFDB7B85616975F3 /* MessageData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
+		06CBB3F47C193CFA36B7ACD119E381E4 /* RefreshView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		0801C8E43DACA2741CF9050FAE24EA61 /* CommonConversationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonConversationViewController.swift; sourceTree = "<group>"; };
+		0893DD8A2D28B399DDF674E91FB42DF3 /* MessagesCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		0BE8781023CD7BEED5E0ADBF36D08A1F /* ConversationViewController+Recorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ConversationViewController+Recorder.swift"; sourceTree = "<group>"; };
+		0C0803137FB384066FC591ACAB8BD127 /* SeparatorLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeparatorLine.swift; sourceTree = "<group>"; };
+		0C29E31B16408E38F91D102CC8EA4F3D /* ZebraKing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZebraKing-prefix.pch"; sourceTree = "<group>"; };
 		0E423438600EF5AF1859B4E234D3D856 /* Kingfisher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Kingfisher.modulemap; sourceTree = "<group>"; };
 		0E88DC0E3EA78613535BECF9A3143600 /* ImageTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageTransition.swift; path = Sources/ImageTransition.swift; sourceTree = "<group>"; };
 		0F69BB3F83EC2D2A70621F95FFD3E36E /* String+MD5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Sources/String+MD5.swift"; sourceTree = "<group>"; };
-		141F2CBA6D121879F3D167BC2F9A0501 /* ZebraKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZebraKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		18B1327CB2968E71F3CDF7ADFA54C630 /* Toast_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toast_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C0B3588408000C85211E774F3E22523 /* IMResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMResult.swift; sourceTree = "<group>"; };
+		1107CEB6FB3F85C6F04D90B586D979B0 /* QALSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QALSDK.framework; path = ZebraKing/Framework/QALSDK.framework; sourceTree = "<group>"; };
+		12A2447078807E56B792B98120FA4F82 /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		13B0BF5A6BB244D29D745F956C99895C /* MessageCellDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
+		141F2CBA6D121879F3D167BC2F9A0501 /* ZebraKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZebraKing.framework; path = ZebraKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		181958153AABDB16FA518FEF35FF178C /* IMMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMMessage.swift; sourceTree = "<group>"; };
+		18B1327CB2968E71F3CDF7ADFA54C630 /* Toast_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Toast_Swift.framework; path = "Toast-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		19882DBE4EE4B4BE24186C7F6395BBCB /* MessageInputBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageInputBar.swift; sourceTree = "<group>"; };
+		19A5927AA5D4F3789D862C5C957B17E9 /* Date+Helper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Date+Helper.swift"; sourceTree = "<group>"; };
 		1D33248B7F2B7E5B9AF3C3B3A5DA5DB7 /* Pods-ZebraKing_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZebraKing_Example.modulemap"; sourceTree = "<group>"; };
 		1E1A98F61A7B51871DE600D684386FB6 /* ImagePrefetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePrefetcher.swift; path = Sources/ImagePrefetcher.swift; sourceTree = "<group>"; };
-		203FA5BC8468CD7B342F71B25C0E1118 /* MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesLayoutDelegate.swift; sourceTree = "<group>"; };
+		1F6BA320D58A7F50793F3D06532BC300 /* MessageType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		2316F584563B1483C60B3DEA0A7C32FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		29B47624C369870DB6A614C59A2F0839 /* ZebraKing-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZebraKing-Info.plist"; sourceTree = "<group>"; };
-		2A817108BCDA07D6DD40F9E63464F140 /* MessageLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
-		2B99262EE26775D4DDBFC3CBA42AEE81 /* VoiceIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VoiceIndicatorView.swift; sourceTree = "<group>"; };
+		233A617CC3A872147025E2B77C3BE41E /* ZebraKing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZebraKing.modulemap; sourceTree = "<group>"; };
+		24D150488BE65ED1CB038FA7D0BB8D0E /* ZebraKing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZebraKing-dummy.m"; sourceTree = "<group>"; };
+		2A090366C6439EC943810DB1B203EE32 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C606CA508C6434E3F2B89E1931355FF /* ChatSoundRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatSoundRecorder.swift; sourceTree = "<group>"; };
+		2E45B3CA769609D71C5CE86E20EC7EE4 /* VoiceIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VoiceIndicatorView.swift; sourceTree = "<group>"; };
+		301679E273C9D333EDB6D7F5F0419C27 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		30557C2FA71847FFE1013A461AB702E9 /* RequestModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestModifier.swift; path = Sources/RequestModifier.swift; sourceTree = "<group>"; };
-		3074B43396FB6AFABE077613834EB101 /* MessagesViewController+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+Keyboard.swift"; sourceTree = "<group>"; };
-		34E3477257ED2C716EF4CFCD7274A36F /* ZebraKing.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = ZebraKing.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		312314DE1711DC76B923BBC7C18E314A /* ResourceBundle-ZebraKingAssets-ZebraKing-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-ZebraKingAssets-ZebraKing-Info.plist"; sourceTree = "<group>"; };
+		327F123557315E38D5A798B187E2E95C /* LoginManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		343C7D1537FBF88F90353286E541D5A7 /* InputTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		361E41E9F5DC7A6D9EB22ADBEE87764A /* Sender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		36FC9BD184FB31617C14EFA69CC19C8F /* Images */ = {isa = PBXFileReference; includeInIndex = 1; name = Images; path = ZebraKing/Assets/ZebraKingAssets.bundle/Images; sourceTree = "<group>"; };
 		38B6E099A2C8C41762ABAF65203B263F /* Kingfisher-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Kingfisher-Info.plist"; sourceTree = "<group>"; };
+		38E4FF9D02E41B91F0CFD36C2601F877 /* Bundle+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		3F99270B95B5A72F9294F40037D72C2A /* ToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		423E59663EB4858A735AC2638B56CA26 /* DetectorType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetectorType.swift; sourceTree = "<group>"; };
 		43AAFDF99A21ADC3FA79F7B94420C747 /* Toast-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Toast-Swift.xcconfig"; sourceTree = "<group>"; };
 		448C5E10A45F80A013066D6AA782E29E /* Pods-ZebraKing_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZebraKing_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4535F80A4EC915A88692259CFD407B24 /* Pods-ZebraKing_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZebraKing_Example.release.xcconfig"; sourceTree = "<group>"; };
 		45AB46106511BC760CFEA13F96008451 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4627FE0636036E8AFFF170400252FCCD /* ImageModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageModifier.swift; path = Sources/ImageModifier.swift; sourceTree = "<group>"; };
-		476881994DB31DAE33351E2E0EFDF2B7 /* ConversationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		481050F43FD79EF12A548CA35CD9671B /* Toast-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Toast-Swift-dummy.m"; sourceTree = "<group>"; };
+		49B123731A2BF700706CACA11A9C60FB /* ZebraKing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZebraKing.xcconfig; sourceTree = "<group>"; };
 		4A86BC235298EAA83E38485FD78F10B3 /* Toast-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Toast-Swift.modulemap"; sourceTree = "<group>"; };
 		4AED674AE4419FE06B353769976E0048 /* CacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CacheSerializer.swift; path = Sources/CacheSerializer.swift; sourceTree = "<group>"; };
-		4AF5780EF4CCEFFB2B2056B56C390E07 /* ZebraKing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZebraKing.swift; sourceTree = "<group>"; };
-		4E321D6E787D6BFE2176453EBE33F153 /* IMMessageType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMMessageType.swift; sourceTree = "<group>"; };
+		4B5FC4DC4E863DCBC2451BB51C81A0C1 /* IMMessageExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IMMessageExt.framework; path = ZebraKing/Framework/IMMessageExt.framework; sourceTree = "<group>"; };
+		4E6EC85D8AF3D1D44BAC6FEC731F0229 /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
+		4FB28B3BF97C6C8311285BD32B74226B /* ConversationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		516FFA9D7866F1C8230625F1E9DDB987 /* ImageProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageProcessor.swift; path = Sources/ImageProcessor.swift; sourceTree = "<group>"; };
-		5792D30509C6DE0E5F3CA27583406A44 /* SeparatorLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeparatorLine.swift; sourceTree = "<group>"; };
-		580CBF22C3E1344CD8DBDE4BC7929657 /* MessagesList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesList.swift; sourceTree = "<group>"; };
-		59679B8EDE55B66A4BA2681DB2C00DED /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		58A62EBE86C35E04A34D50FD88E65EEB /* ZebraKing.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = ZebraKing.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5A39C10D6473D035D437665515F36327 /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TLSSDK.framework; path = ZebraKing/Framework/TLSSDK.framework; sourceTree = "<group>"; };
+		5A668EA2A4BD5BBF4772E21B7625842B /* MessagesList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesList.swift; sourceTree = "<group>"; };
+		5BC02E7B0A80D8486D22D1E2E93B4DDA /* IMChatAudioPlayManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMChatAudioPlayManager.swift; sourceTree = "<group>"; };
 		5C4AA346644928C3381BB2DF02FB8288 /* Placeholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Placeholder.swift; path = Sources/Placeholder.swift; sourceTree = "<group>"; };
-		5EEA7D43D96EF1513F6F9FF16BC454FF /* MessagesViewController+Delegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+Delegate.swift"; sourceTree = "<group>"; };
-		5F3C024E26A5C5A31B8986E6B6ECE74C /* IMMessageList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMMessageList.swift; sourceTree = "<group>"; };
-		5FED9A0B9AB3CC6288F097980BF6FE42 /* MessageStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageStyle.swift; sourceTree = "<group>"; };
-		60BDFCB13EDE55ECDC04FA4F23D0C21B /* DetectorType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetectorType.swift; sourceTree = "<group>"; };
-		6138C221BBA08988CF1300CC26760269 /* IMLoginManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMLoginManager.swift; sourceTree = "<group>"; };
+		645A5DB6D4E5991852239B5F9DFC17A7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		65FC72C23F19D6280C2FE249024390B6 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Filter.swift; sourceTree = "<group>"; };
-		66CF772D4884520B5293B6C38F8CEC77 /* MessagesDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesDataSource.swift; sourceTree = "<group>"; };
 		66FA1071AF892588A3E66FB471CC9950 /* ThreadHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThreadHelper.swift; path = Sources/ThreadHelper.swift; sourceTree = "<group>"; };
-		6722EAD1CE4C53AABF72BB6EC356BD5B /* Pods_ZebraKing_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZebraKing_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6722EAD1CE4C53AABF72BB6EC356BD5B /* Pods_ZebraKing_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZebraKing_Example.framework; path = "Pods-ZebraKing_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6977B4119D800AD4E07688C9A7BFF576 /* Kingfisher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Kingfisher.h; path = Sources/Kingfisher.h; sourceTree = "<group>"; };
-		6B032E501EB73D4D4FCB5CC2ABB92C53 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6CFFEF09F1DFEED3AD067AECC45A6D2C /* LocationMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationMessageCell.swift; sourceTree = "<group>"; };
+		6E0F2429045C79A1877E59BB22170831 /* MessagesDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesDataSource.swift; sourceTree = "<group>"; };
 		6EEA50CA53FC4175F07A3B6DF6679855 /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Sources/ImageDownloader.swift; sourceTree = "<group>"; };
 		6F7598215C2E05D7C6EA2F979DCD6CC8 /* Pods-ZebraKing_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZebraKing_Example-frameworks.sh"; sourceTree = "<group>"; };
-		6FB1EC535E4F6FF99246C0C47CE177C3 /* InputTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		70652205512A4D8600264AEC0C309CF5 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = ZebraKing/Framework/ImSDK.framework; sourceTree = "<group>"; };
+		72AA4372C217ACA513DC7E8E5457FB51 /* MessagesViewController+Delegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+Delegate.swift"; sourceTree = "<group>"; };
+		74BFBF501AB0CC756190F8763305FBAF /* MessageData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		7534683E6F1EDCC8E904B848DF69C032 /* Kingfisher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kingfisher.xcconfig; sourceTree = "<group>"; };
 		753B70A860B77D51E8E6D9CD435DA657 /* Kingfisher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kingfisher-dummy.m"; sourceTree = "<group>"; };
 		759EE54C4FAF8934330F940A4B8032D7 /* KingfisherOptionsInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KingfisherOptionsInfo.swift; path = Sources/KingfisherOptionsInfo.swift; sourceTree = "<group>"; };
 		7869B0588E7921F9E9106C89DA9F043B /* ImageView+Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ImageView+Kingfisher.swift"; path = "Sources/ImageView+Kingfisher.swift"; sourceTree = "<group>"; };
-		7B0B23B5FCEC026A0D294B01A0CB859B /* ZebraKing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZebraKing-dummy.m"; sourceTree = "<group>"; };
-		7B2BDD54492997135C4D95E506CFE1B3 /* MessagesCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
+		795B7572F7B83EB92606EFFF187CC06A /* MessagesCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesCollectionView.swift; sourceTree = "<group>"; };
 		7BF4789A7B1F6AFB1575EDDF9CF71BF2 /* AnimatedImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatedImageView.swift; path = Sources/AnimatedImageView.swift; sourceTree = "<group>"; };
+		7C1FA857599452B5A4BAFE1BF692A0CF /* TimestampCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimestampCell.swift; sourceTree = "<group>"; };
 		7CA2641603AA667A404FF5C261D51856 /* Resource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Sources/Resource.swift; sourceTree = "<group>"; };
-		7D60EC4A903D9988C0DBE109C3F79723 /* Date+Helper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Date+Helper.swift"; sourceTree = "<group>"; };
-		7DF2EB107F2A26DAE0E8404657451849 /* MessagesViewController+DataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+DataSource.swift"; sourceTree = "<group>"; };
 		7E3C03CB305B9130CD335F63A4572A76 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
-		7E669885E0B68D44F7C61FB81ABE4296 /* IMMessageExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IMMessageExt.framework; path = ZebraKing/Framework/IMMessageExt.framework; sourceTree = "<group>"; };
-		7F0D96D43D4196761A30A911EFB4B5CF /* ConversationViewController+Recorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ConversationViewController+Recorder.swift"; sourceTree = "<group>"; };
-		7F6BB79EF96BEBD2EF92D8D997C2E1F9 /* CommonConversationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonConversationViewController.swift; sourceTree = "<group>"; };
-		7F97E868B6389B28EF82637E2C15E401 /* TextMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
-		8154F35E7E25AEFBAB07D45ACD188318 /* IMMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMMessage.swift; sourceTree = "<group>"; };
+		7EA43476B31276B83BFF94C796307660 /* IMResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMResult.swift; sourceTree = "<group>"; };
 		81AA9951AD68CEC52D03569CB621D1CC /* Toast-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-Swift-umbrella.h"; sourceTree = "<group>"; };
-		8452568EF760EA8BF0DD6FB45487B6BE /* ReceiptListenerManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReceiptListenerManager.swift; sourceTree = "<group>"; };
+		838947FC933E96DABD294727E9FE9875 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		85AE3E173EE9A7F426EE00B37976EA9B /* Toast-Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Toast-Swift-Info.plist"; sourceTree = "<group>"; };
 		88104A2D264EA5138D66463305CEF30A /* Box.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Box.swift; path = Sources/Box.swift; sourceTree = "<group>"; };
-		8BAC21F3459BBB703DB7CD75C6791CFC /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		8E3D5070A579FA1B51092B537E75F73D /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TLSSDK.framework; path = ZebraKing/Framework/TLSSDK.framework; sourceTree = "<group>"; };
-		8EF1D76D9CE737551F6D55DB1FDF2BA1 /* MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesDisplayDelegate.swift; sourceTree = "<group>"; };
 		8F793229A61872EE4A7BAD3F65347888 /* Kingfisher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kingfisher-prefix.pch"; sourceTree = "<group>"; };
-		8FA065854B5952FB79BD3387C5386744 /* ZebraKing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZebraKing-umbrella.h"; sourceTree = "<group>"; };
-		8FE4C2CFDA8266E02C82B08C74AA6DCC /* MessageInputBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageInputBar.swift; sourceTree = "<group>"; };
-		90A5D33786887058B326391D4D8D1CDB /* MessageType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		9123249EE9F59A3778CE398559A87FD5 /* KingfisherManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KingfisherManager.swift; path = Sources/KingfisherManager.swift; sourceTree = "<group>"; };
-		927A124D335528D6AF7B7F5F30758713 /* MediaMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MediaMessageCell.swift; sourceTree = "<group>"; };
-		92D02296C568B2F799A2E1171DE59B6D /* IMChatManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMChatManager.swift; sourceTree = "<group>"; };
-		9366F8143FFB5D40B97CB338A44306E6 /* MessageContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageContainerView.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95E6FBEED9547B52C3F0350F9F0B353F /* IMError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMError.swift; sourceTree = "<group>"; };
+		98986D1265A2DB533943262F5E2C2A80 /* SafelyQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SafelyQueue.swift; sourceTree = "<group>"; };
+		992EE13820D23A04B13EB2B9DA3BB18E /* MessagesViewController+DataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+DataSource.swift"; sourceTree = "<group>"; };
 		9A944B4CA9E6BD2D63CD3B675DA9B5B7 /* Pods-ZebraKing_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZebraKing_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		9CDEE20D5EE2EC62B44E9852546399B5 /* MessageStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageStyle.swift; sourceTree = "<group>"; };
 		9FD1D081C61D1F795CD985EA2FC66929 /* Kingfisher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kingfisher-umbrella.h"; sourceTree = "<group>"; };
-		A20C400BD227F01B7DB07B5C7EAE9295 /* MessageIntermediateLayoutAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageIntermediateLayoutAttributes.swift; sourceTree = "<group>"; };
-		A5303CBE0568B831F5A7142EA6C976FD /* LocationMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationMessageCell.swift; sourceTree = "<group>"; };
-		A5503EAF07607F073A0C0F82E04F4320 /* ProximityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProximityManager.swift; sourceTree = "<group>"; };
-		A72D4804D3AAD5176A9376B8A77570BE /* TimestampCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimestampCell.swift; sourceTree = "<group>"; };
-		A89D40335B6665BC4D79238859C44D12 /* IMConversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMConversation.swift; sourceTree = "<group>"; };
+		A2EB220C9FC5F6FC3589B2DD53B15616 /* MediaMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MediaMessageCell.swift; sourceTree = "<group>"; };
+		A581D38FA14785F644A140FBFC9F09DD /* MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesLayoutDelegate.swift; sourceTree = "<group>"; };
 		A916776D5F477846F3E39D8D32D2AD36 /* UIButton+Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+Kingfisher.swift"; path = "Sources/UIButton+Kingfisher.swift"; sourceTree = "<group>"; };
+		A9FFB35B46CB2DB6A6AC1EF92B124052 /* MessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		AAC0F5C07A15FC9705CC6D88EF318E1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		B0C397E36316C7720DE4E0E356E6D9AA /* Sender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
-		B113D775B5914FED2663F8D8C0D21924 /* MessageCellDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
-		B61327E1BA114863BD23684E33F78017 /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
+		ADBCE86D31299DD19D9FAF7437A2EF82 /* ZebraKing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZebraKing-umbrella.h"; sourceTree = "<group>"; };
+		B4F3DA3E1F6C1356D81AEDED592CE0C1 /* MessageIntermediateLayoutAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageIntermediateLayoutAttributes.swift; sourceTree = "<group>"; };
 		B6EF8DD4675ED083738C954AB835E3C1 /* FormatIndicatedCacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormatIndicatedCacheSerializer.swift; path = Sources/FormatIndicatedCacheSerializer.swift; sourceTree = "<group>"; };
-		B711AC21D235AFDF9B551D21A8219CAA /* ZebraKing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZebraKing.modulemap; sourceTree = "<group>"; };
-		BEB0956AB36E62B6A8C60BCD2C9CE96E /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C20C2B5C48474D1999E9D6D87B14D2CE /* ResourceBundle-ZebraKingAssets-ZebraKing-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-ZebraKingAssets-ZebraKing-Info.plist"; sourceTree = "<group>"; };
+		B73601D1910304F3238370879AD75638 /* MessagesViewController+Menu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+Menu.swift"; sourceTree = "<group>"; };
+		B949608E33E161ABE44D1012A7D0A104 /* MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesDisplayDelegate.swift; sourceTree = "<group>"; };
+		BACD6B5CF867FE23668B893AAB5ACFB9 /* IMMessageList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMMessageList.swift; sourceTree = "<group>"; };
+		BCF3E5B9DA847169733FE726ECD37A17 /* PathUtility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PathUtility.swift; sourceTree = "<group>"; };
+		BEB0956AB36E62B6A8C60BCD2C9CE96E /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Kingfisher.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C27CAD8975B6EDFA6393E50244DAF3F9 /* ConversationInputBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConversationInputBar.swift; sourceTree = "<group>"; };
 		C28B7A64F5DB5E6FE21D6EF33F95F9A7 /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Sources/Image.swift; sourceTree = "<group>"; };
 		C327C949E2715ADE420BE56E122FCA00 /* Toast-Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toast-Swift-prefix.pch"; sourceTree = "<group>"; };
-		C643FCA57C7BCCAF2511570E8F9DD304 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3F53584A3CEE11D97EADE73CE192D17 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		C6C42D63C24CD07186F34808C17AD05B /* ZebraKing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZebraKing.swift; sourceTree = "<group>"; };
 		C72D9F4418159EC68B533C5CD3798E71 /* Toast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Toast.swift; path = Toast/Toast.swift; sourceTree = "<group>"; };
-		CED6AE7452D1C92D85001D39B7409F7B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D1B6B5820100430F2230E2C36FF66E3F /* Conversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
-		D34D1737C2B6064C80781321AFD0836D /* ChatSoundRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatSoundRecorder.swift; sourceTree = "<group>"; };
-		D4EAFF49769B9842D4698083616A6178 /* AttachmentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
-		D7D7586E935D30885BC0A3857BE85478 /* ChatNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatNotification.swift; sourceTree = "<group>"; };
+		CACCE80B37515C5F549A8F01134F8052 /* AudioMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AudioMessageCell.swift; sourceTree = "<group>"; };
+		CF3F0F1DCFFC0FE7F3C49E16EF6D6B6A /* ProximityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProximityManager.swift; sourceTree = "<group>"; };
+		D009B16F7576945319FD9B853D1C8678 /* ChatNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatNotification.swift; sourceTree = "<group>"; };
+		D225E52B71D327A8EC9D96353F4A9EFB /* MessagesCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
+		D274ABB5EBF2CC587F042225AE0A8701 /* CentralManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
+		D3C6D4986AA1C3EBD0C89DCAA752363B /* ZebraKing-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZebraKing-Info.plist"; sourceTree = "<group>"; };
 		D81CF6F82A0722FF96EA7E5F15A06761 /* Pods-ZebraKing_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZebraKing_Example-dummy.m"; sourceTree = "<group>"; };
-		DA161ACAA8655DF0CE52F0CB71F4E4D6 /* ConversationInputBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConversationInputBar.swift; sourceTree = "<group>"; };
-		DBB08EEF58B168D5A671658AC8CA8D0E /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDK.framework; path = ZebraKing/Framework/ImSDK.framework; sourceTree = "<group>"; };
-		DBB9DEA5BAC794D775AC296FEFB00047 /* Bundle+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
-		DC04FE8CE6ACB6F21A90455BEBC8F5E5 /* MessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		DD662AE6E680D7F3D3C4D8A222C81D7F /* Indicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Indicator.swift; path = Sources/Indicator.swift; sourceTree = "<group>"; };
 		DD94D269DFBAEBEFFE310F184B0FCB5F /* Pods-ZebraKing_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZebraKing_Example-umbrella.h"; sourceTree = "<group>"; };
-		DE3DC78F137F31049ECFE91F3F05C801 /* MessagesCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		E350AE92859CDF163B00D4F8FA168936 /* IMChatAudioPlayManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMChatAudioPlayManager.swift; sourceTree = "<group>"; };
-		E3FFB5721F85B7D5C94B84587F89C402 /* AudioMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AudioMessageCell.swift; sourceTree = "<group>"; };
-		E85EB0278CE922392B679D8D4A833EE8 /* PathUtility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PathUtility.swift; sourceTree = "<group>"; };
-		E8D3F019CDA8E5184E660DEA8186084E /* ZebraKing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZebraKing-prefix.pch"; sourceTree = "<group>"; };
+		DF6B0784794F93A83EDA8F859539B9DA /* MessageContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageContainerView.swift; sourceTree = "<group>"; };
+		E16C69900294532B942AC2DC1CDAC8B4 /* AttachmentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		E9E12C0381F80FC952042600CD4B7093 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		EB73238C3A19EB7B550F46B127B9E3F5 /* Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kingfisher.swift; path = Sources/Kingfisher.swift; sourceTree = "<group>"; };
-		EFADBB5B4B10CAB3F941DA4995FEC84B /* UserManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		F06D30ED6AA6806EFE63D68F022F08D1 /* ToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		F0FA35BBC080AEEF2EF062E24DE0C588 /* ZebraKingAssets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZebraKingAssets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		F287EF52C848CEC044AF8ADB5370E352 /* SafelyQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SafelyQueue.swift; sourceTree = "<group>"; };
-		F2DCA656B3DEEA2B577705D0D2B76D3B /* QALSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QALSDK.framework; path = ZebraKing/Framework/QALSDK.framework; sourceTree = "<group>"; };
-		F381D1FBF82B3E60DADF9A2FF48150ED /* MessagesViewController+Menu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+Menu.swift"; sourceTree = "<group>"; };
-		F3C522DF9EC89EB172B67BA61AE09B91 /* Images */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Images; path = ZebraKing/Assets/ZebraKingAssets.bundle/Images; sourceTree = "<group>"; };
-		F43E81A0EDD8BAA11EAE56895670215D /* ZebraKing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZebraKing.xcconfig; sourceTree = "<group>"; };
-		F55A88C89C5F9CAF3B0FD4AEDBF6218A /* IMConversationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMConversationManager.swift; sourceTree = "<group>"; };
+		EE47ED796FA5E8839ADB5C610ACD1CD6 /* MessagesViewController+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MessagesViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		F0FA35BBC080AEEF2EF062E24DE0C588 /* ZebraKingAssets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ZebraKingAssets.bundle; path = "ZebraKing-ZebraKingAssets.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F41C1C4F0B3B5D369FAD35CD6309BC9C /* MessageLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
+		F4E5133527F419B0553557DFEBFD4643 /* Conversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		F501E74BB6BB73C75E35A41DE7368A43 /* UserManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		F99A7C26FE2558683B25F910B414303A /* Pods-ZebraKing_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZebraKing_Example-Info.plist"; sourceTree = "<group>"; };
-		FCF81EB41EF8F2AF1A2E081232A01965 /* RefreshView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
-		FE7AEA18C3B16324ED5992E10A717CC7 /* MessagesCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessagesCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,23 +337,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		049CEBDEB8195E410996B9F7654DA71A /* ZebraKing */ = {
-			isa = PBXGroup;
-			children = (
-				104B7E37B5872E88D813E2142FF8506D /* Display */,
-				4D1BF83F44EAD8CCF80B49B274C652FD /* Frameworks */,
-				BFDF7A6AF3112711F9E2A4DA4E7B349E /* Manager */,
-				3E9D293755C554E09A2EC05701031EBF /* Model */,
-				07FB1C36178FE5A4384BD8AA8919342F /* Other */,
-				2703AC2459D92581164B15DE554CC25F /* Pod */,
-				B4CEDFD89F4F868405E5DCFBDB990073 /* Protocols */,
-				23E88002E994EFD6C2F4D64256718F05 /* Resources */,
-				89720C0A25A6F4DC8393675548AC7346 /* Support Files */,
-			);
-			name = ZebraKing;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		062F58CD538A34AAAE869F9DC80C8833 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,109 +361,93 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07FB1C36178FE5A4384BD8AA8919342F /* Other */ = {
+		0F0AEB58231E44CD5708A93C61A688AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D34D1737C2B6064C80781321AFD0836D /* ChatSoundRecorder.swift */,
-				7D60EC4A903D9988C0DBE109C3F79723 /* Date+Helper.swift */,
-				59679B8EDE55B66A4BA2681DB2C00DED /* NSAttributedString+Extension.swift */,
-				A5503EAF07607F073A0C0F82E04F4320 /* ProximityManager.swift */,
-				F287EF52C848CEC044AF8ADB5370E352 /* SafelyQueue.swift */,
-				8BAC21F3459BBB703DB7CD75C6791CFC /* String+Extension.swift */,
+				38E4FF9D02E41B91F0CFD36C2601F877 /* Bundle+Extension.swift */,
+				D009B16F7576945319FD9B853D1C8678 /* ChatNotification.swift */,
+				F4E5133527F419B0553557DFEBFD4643 /* Conversation.swift */,
+				423E59663EB4858A735AC2638B56CA26 /* DetectorType.swift */,
+				95E6FBEED9547B52C3F0350F9F0B353F /* IMError.swift */,
+				181958153AABDB16FA518FEF35FF178C /* IMMessage.swift */,
+				BACD6B5CF867FE23668B893AAB5ACFB9 /* IMMessageList.swift */,
+				0045290284A21B06D0BD59238CA23812 /* IMMessageType.swift */,
+				7EA43476B31276B83BFF94C796307660 /* IMResult.swift */,
+				74BFBF501AB0CC756190F8763305FBAF /* MessageData.swift */,
+				5A668EA2A4BD5BBF4772E21B7625842B /* MessagesList.swift */,
+				9CDEE20D5EE2EC62B44E9852546399B5 /* MessageStyle.swift */,
+				1F6BA320D58A7F50793F3D06532BC300 /* MessageType.swift */,
+				BCF3E5B9DA847169733FE726ECD37A17 /* PathUtility.swift */,
+				361E41E9F5DC7A6D9EB22ADBEE87764A /* Sender.swift */,
+				019F36556C7CE56FBBD966AB7E67377C /* Task.swift */,
 			);
-			name = Other;
-			path = ZebraKing/Classes/Other;
+			name = Model;
+			path = ZebraKing/Classes/Model;
 			sourceTree = "<group>";
 		};
-		104B7E37B5872E88D813E2142FF8506D /* Display */ = {
+		1903E58661A6F823A54E7993C854B7EC /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				38F045AB8EBAD09EB5E82128B5EE8B45 /* Cell */,
-				4A3AD63B44447A6233FA64397D25963D /* Layout */,
-				168B36AAEB62CD51852399AF74279407 /* View */,
-				C3F202AE4434E51F8EB9805367A2304E /* ViewController */,
-			);
-			name = Display;
-			path = ZebraKing/Classes/Display;
-			sourceTree = "<group>";
-		};
-		168B36AAEB62CD51852399AF74279407 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D4EAFF49769B9842D4698083616A6178 /* AttachmentView.swift */,
-				DA161ACAA8655DF0CE52F0CB71F4E4D6 /* ConversationInputBar.swift */,
-				6FB1EC535E4F6FF99246C0C47CE177C3 /* InputTextView.swift */,
-				9366F8143FFB5D40B97CB338A44306E6 /* MessageContainerView.swift */,
-				8FE4C2CFDA8266E02C82B08C74AA6DCC /* MessageInputBar.swift */,
-				2A817108BCDA07D6DD40F9E63464F140 /* MessageLabel.swift */,
-				FE7AEA18C3B16324ED5992E10A717CC7 /* MessagesCollectionView.swift */,
-				90A5D33786887058B326391D4D8D1CDB /* MessageType.swift */,
-				FCF81EB41EF8F2AF1A2E081232A01965 /* RefreshView.swift */,
-				5792D30509C6DE0E5F3CA27583406A44 /* SeparatorLine.swift */,
-				F06D30ED6AA6806EFE63D68F022F08D1 /* ToastView.swift */,
-				2B99262EE26775D4DDBFC3CBA42AEE81 /* VoiceIndicatorView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		23E88002E994EFD6C2F4D64256718F05 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F3C522DF9EC89EB172B67BA61AE09B91 /* Images */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		2703AC2459D92581164B15DE554CC25F /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				6B032E501EB73D4D4FCB5CC2ABB92C53 /* LICENSE */,
-				CED6AE7452D1C92D85001D39B7409F7B /* README.md */,
-				34E3477257ED2C716EF4CFCD7274A36F /* ZebraKing.podspec */,
+				C3F53584A3CEE11D97EADE73CE192D17 /* LICENSE */,
+				645A5DB6D4E5991852239B5F9DFC17A7 /* README.md */,
+				58A62EBE86C35E04A34D50FD88E65EEB /* ZebraKing.podspec */,
 			);
 			name = Pod;
+			sourceTree = "<group>";
+		};
+		1A60868130052C5E9B315A38F8DF345B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D274ABB5EBF2CC587F042225AE0A8701 /* CentralManager.swift */,
+				5BC02E7B0A80D8486D22D1E2E93B4DDA /* IMChatAudioPlayManager.swift */,
+				327F123557315E38D5A798B187E2E95C /* LoginManager.swift */,
+				301679E273C9D333EDB6D7F5F0419C27 /* SessionManager.swift */,
+				F501E74BB6BB73C75E35A41DE7368A43 /* UserManager.swift */,
+				C6C42D63C24CD07186F34808C17AD05B /* ZebraKing.swift */,
+			);
+			name = Manager;
+			path = ZebraKing/Classes/Manager;
 			sourceTree = "<group>";
 		};
 		316803E522E876E8CBCD6E144DF933B2 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				049CEBDEB8195E410996B9F7654DA71A /* ZebraKing */,
+				75C93893A7743FA5D123341AFF8E56D3 /* ZebraKing */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		38F045AB8EBAD09EB5E82128B5EE8B45 /* Cell */ = {
+		363EA169C1FD055CF7F888F673280C64 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E3FFB5721F85B7D5C94B84587F89C402 /* AudioMessageCell.swift */,
-				A5303CBE0568B831F5A7142EA6C976FD /* LocationMessageCell.swift */,
-				927A124D335528D6AF7B7F5F30758713 /* MediaMessageCell.swift */,
-				C643FCA57C7BCCAF2511570E8F9DD304 /* MessageCollectionViewCell.swift */,
-				7F97E868B6389B28EF82637E2C15E401 /* TextMessageCell.swift */,
-				A72D4804D3AAD5176A9376B8A77570BE /* TimestampCell.swift */,
+				CACCE80B37515C5F549A8F01134F8052 /* AudioMessageCell.swift */,
+				6CFFEF09F1DFEED3AD067AECC45A6D2C /* LocationMessageCell.swift */,
+				A2EB220C9FC5F6FC3589B2DD53B15616 /* MediaMessageCell.swift */,
+				2A090366C6439EC943810DB1B203EE32 /* MessageCollectionViewCell.swift */,
+				018CB1B84A0262A18B2707D394E2FE60 /* TextMessageCell.swift */,
+				7C1FA857599452B5A4BAFE1BF692A0CF /* TimestampCell.swift */,
 			);
+			name = Cell;
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		3E9D293755C554E09A2EC05701031EBF /* Model */ = {
+		3D515577528BF1136BE4BAEA77C38FF4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DBB9DEA5BAC794D775AC296FEFB00047 /* Bundle+Extension.swift */,
-				D7D7586E935D30885BC0A3857BE85478 /* ChatNotification.swift */,
-				D1B6B5820100430F2230E2C36FF66E3F /* Conversation.swift */,
-				60BDFCB13EDE55ECDC04FA4F23D0C21B /* DetectorType.swift */,
-				8154F35E7E25AEFBAB07D45ACD188318 /* IMMessage.swift */,
-				5F3C024E26A5C5A31B8986E6B6ECE74C /* IMMessageList.swift */,
-				4E321D6E787D6BFE2176453EBE33F153 /* IMMessageType.swift */,
-				1C0B3588408000C85211E774F3E22523 /* IMResult.swift */,
-				08C172E845A09CAFFFDB7B85616975F3 /* MessageData.swift */,
-				580CBF22C3E1344CD8DBDE4BC7929657 /* MessagesList.swift */,
-				5FED9A0B9AB3CC6288F097980BF6FE42 /* MessageStyle.swift */,
-				E85EB0278CE922392B679D8D4A833EE8 /* PathUtility.swift */,
-				B0C397E36316C7720DE4E0E356E6D9AA /* Sender.swift */,
+				E16C69900294532B942AC2DC1CDAC8B4 /* AttachmentView.swift */,
+				C27CAD8975B6EDFA6393E50244DAF3F9 /* ConversationInputBar.swift */,
+				343C7D1537FBF88F90353286E541D5A7 /* InputTextView.swift */,
+				DF6B0784794F93A83EDA8F859539B9DA /* MessageContainerView.swift */,
+				19882DBE4EE4B4BE24186C7F6395BBCB /* MessageInputBar.swift */,
+				F41C1C4F0B3B5D369FAD35CD6309BC9C /* MessageLabel.swift */,
+				795B7572F7B83EB92606EFFF187CC06A /* MessagesCollectionView.swift */,
+				06CBB3F47C193CFA36B7ACD119E381E4 /* RefreshView.swift */,
+				0C0803137FB384066FC591ACAB8BD127 /* SeparatorLine.swift */,
+				3F99270B95B5A72F9294F40037D72C2A /* ToastView.swift */,
+				2E45B3CA769609D71C5CE86E20EC7EE4 /* VoiceIndicatorView.swift */,
 			);
-			name = Model;
-			path = ZebraKing/Classes/Model;
+			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		49C10F8EDA9179FCAF37562EED692440 /* Toast-Swift */ = {
@@ -489,28 +456,16 @@
 				C72D9F4418159EC68B533C5CD3798E71 /* Toast.swift */,
 				6FEE49D8DC0476AD2038ABD9594B8994 /* Support Files */,
 			);
+			name = "Toast-Swift";
 			path = "Toast-Swift";
 			sourceTree = "<group>";
 		};
-		4A3AD63B44447A6233FA64397D25963D /* Layout */ = {
+		69C082427219FFF4A277C4DEC1182B3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A20C400BD227F01B7DB07B5C7EAE9295 /* MessageIntermediateLayoutAttributes.swift */,
-				DE3DC78F137F31049ECFE91F3F05C801 /* MessagesCollectionViewFlowLayout.swift */,
-				7B2BDD54492997135C4D95E506CFE1B3 /* MessagesCollectionViewLayoutAttributes.swift */,
+				36FC9BD184FB31617C14EFA69CC19C8F /* Images */,
 			);
-			path = Layout;
-			sourceTree = "<group>";
-		};
-		4D1BF83F44EAD8CCF80B49B274C652FD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7E669885E0B68D44F7C61FB81ABE4296 /* IMMessageExt.framework */,
-				DBB08EEF58B168D5A671658AC8CA8D0E /* ImSDK.framework */,
-				F2DCA656B3DEEA2B577705D0D2B76D3B /* QALSDK.framework */,
-				8E3D5070A579FA1B51092B537E75F73D /* TLSSDK.framework */,
-			);
-			name = Frameworks;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		6FEE49D8DC0476AD2038ABD9594B8994 /* Support Files */ = {
@@ -525,6 +480,23 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Toast-Swift";
+			sourceTree = "<group>";
+		};
+		75C93893A7743FA5D123341AFF8E56D3 /* ZebraKing */ = {
+			isa = PBXGroup;
+			children = (
+				960E91C2A3845B8069E08F145F5E93CB /* Display */,
+				B4ED0CBA1B6038BD19104CD26EC456B0 /* Frameworks */,
+				1A60868130052C5E9B315A38F8DF345B /* Manager */,
+				0F0AEB58231E44CD5708A93C61A688AF /* Model */,
+				FD58779A8A00788B67C1C0DBA0ADF75F /* Other */,
+				1903E58661A6F823A54E7993C854B7EC /* Pod */,
+				8166A69433287DBDF02256FF627E465B /* Protocols */,
+				69C082427219FFF4A277C4DEC1182B3A /* Resources */,
+				B55425736DAE3E2A20FAC94D0B8339BE /* Support Files */,
+			);
+			name = ZebraKing;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -548,19 +520,45 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		89720C0A25A6F4DC8393675548AC7346 /* Support Files */ = {
+		8166A69433287DBDF02256FF627E465B /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C20C2B5C48474D1999E9D6D87B14D2CE /* ResourceBundle-ZebraKingAssets-ZebraKing-Info.plist */,
-				B711AC21D235AFDF9B551D21A8219CAA /* ZebraKing.modulemap */,
-				F43E81A0EDD8BAA11EAE56895670215D /* ZebraKing.xcconfig */,
-				7B0B23B5FCEC026A0D294B01A0CB859B /* ZebraKing-dummy.m */,
-				29B47624C369870DB6A614C59A2F0839 /* ZebraKing-Info.plist */,
-				E8D3F019CDA8E5184E660DEA8186084E /* ZebraKing-prefix.pch */,
-				8FA065854B5952FB79BD3387C5386744 /* ZebraKing-umbrella.h */,
+				13B0BF5A6BB244D29D745F956C99895C /* MessageCellDelegate.swift */,
+				4E6EC85D8AF3D1D44BAC6FEC731F0229 /* MessageLabelDelegate.swift */,
+				6E0F2429045C79A1877E59BB22170831 /* MessagesDataSource.swift */,
+				B949608E33E161ABE44D1012A7D0A104 /* MessagesDisplayDelegate.swift */,
+				A581D38FA14785F644A140FBFC9F09DD /* MessagesLayoutDelegate.swift */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/ZebraKing";
+			name = Protocols;
+			path = ZebraKing/Classes/Protocols;
+			sourceTree = "<group>";
+		};
+		8945A29A6B1B79F723D7C0187C1FE10D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0801C8E43DACA2741CF9050FAE24EA61 /* CommonConversationViewController.swift */,
+				4FB28B3BF97C6C8311285BD32B74226B /* ConversationViewController.swift */,
+				0BE8781023CD7BEED5E0ADBF36D08A1F /* ConversationViewController+Recorder.swift */,
+				A9FFB35B46CB2DB6A6AC1EF92B124052 /* MessagesViewController.swift */,
+				992EE13820D23A04B13EB2B9DA3BB18E /* MessagesViewController+DataSource.swift */,
+				72AA4372C217ACA513DC7E8E5457FB51 /* MessagesViewController+Delegate.swift */,
+				EE47ED796FA5E8839ADB5C610ACD1CD6 /* MessagesViewController+Keyboard.swift */,
+				B73601D1910304F3238370879AD75638 /* MessagesViewController+Menu.swift */,
+			);
+			name = ViewController;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		960E91C2A3845B8069E08F145F5E93CB /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				363EA169C1FD055CF7F888F673280C64 /* Cell */,
+				B4180657887D69BD8DA01881D5EFCC55 /* Layout */,
+				3D515577528BF1136BE4BAEA77C38FF4 /* View */,
+				8945A29A6B1B79F723D7C0187C1FE10D /* ViewController */,
+			);
+			name = Display;
+			path = ZebraKing/Classes/Display;
 			sourceTree = "<group>";
 		};
 		AEF007232280A7E90D4E2FF44007700E /* Support Files */ = {
@@ -577,17 +575,41 @@
 			path = "../Target Support Files/Kingfisher";
 			sourceTree = "<group>";
 		};
-		B4CEDFD89F4F868405E5DCFBDB990073 /* Protocols */ = {
+		B4180657887D69BD8DA01881D5EFCC55 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				B113D775B5914FED2663F8D8C0D21924 /* MessageCellDelegate.swift */,
-				B61327E1BA114863BD23684E33F78017 /* MessageLabelDelegate.swift */,
-				66CF772D4884520B5293B6C38F8CEC77 /* MessagesDataSource.swift */,
-				8EF1D76D9CE737551F6D55DB1FDF2BA1 /* MessagesDisplayDelegate.swift */,
-				203FA5BC8468CD7B342F71B25C0E1118 /* MessagesLayoutDelegate.swift */,
+				B4F3DA3E1F6C1356D81AEDED592CE0C1 /* MessageIntermediateLayoutAttributes.swift */,
+				0893DD8A2D28B399DDF674E91FB42DF3 /* MessagesCollectionViewFlowLayout.swift */,
+				D225E52B71D327A8EC9D96353F4A9EFB /* MessagesCollectionViewLayoutAttributes.swift */,
 			);
-			name = Protocols;
-			path = ZebraKing/Classes/Protocols;
+			name = Layout;
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		B4ED0CBA1B6038BD19104CD26EC456B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B5FC4DC4E863DCBC2451BB51C81A0C1 /* IMMessageExt.framework */,
+				70652205512A4D8600264AEC0C309CF5 /* ImSDK.framework */,
+				1107CEB6FB3F85C6F04D90B586D979B0 /* QALSDK.framework */,
+				5A39C10D6473D035D437665515F36327 /* TLSSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B55425736DAE3E2A20FAC94D0B8339BE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				312314DE1711DC76B923BBC7C18E314A /* ResourceBundle-ZebraKingAssets-ZebraKing-Info.plist */,
+				233A617CC3A872147025E2B77C3BE41E /* ZebraKing.modulemap */,
+				49B123731A2BF700706CACA11A9C60FB /* ZebraKing.xcconfig */,
+				24D150488BE65ED1CB038FA7D0BB8D0E /* ZebraKing-dummy.m */,
+				D3C6D4986AA1C3EBD0C89DCAA752363B /* ZebraKing-Info.plist */,
+				0C29E31B16408E38F91D102CC8EA4F3D /* ZebraKing-prefix.pch */,
+				ADBCE86D31299DD19D9FAF7437A2EF82 /* ZebraKing-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ZebraKing";
 			sourceTree = "<group>";
 		};
 		B805F5E83D11A6A06A99136EBD131190 /* Pods */ = {
@@ -614,37 +636,6 @@
 			);
 			name = "Pods-ZebraKing_Example";
 			path = "Target Support Files/Pods-ZebraKing_Example";
-			sourceTree = "<group>";
-		};
-		BFDF7A6AF3112711F9E2A4DA4E7B349E /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				E350AE92859CDF163B00D4F8FA168936 /* IMChatAudioPlayManager.swift */,
-				92D02296C568B2F799A2E1171DE59B6D /* IMChatManager.swift */,
-				A89D40335B6665BC4D79238859C44D12 /* IMConversation.swift */,
-				F55A88C89C5F9CAF3B0FD4AEDBF6218A /* IMConversationManager.swift */,
-				6138C221BBA08988CF1300CC26760269 /* IMLoginManager.swift */,
-				8452568EF760EA8BF0DD6FB45487B6BE /* ReceiptListenerManager.swift */,
-				EFADBB5B4B10CAB3F941DA4995FEC84B /* UserManager.swift */,
-				4AF5780EF4CCEFFB2B2056B56C390E07 /* ZebraKing.swift */,
-			);
-			name = Manager;
-			path = ZebraKing/Classes/Manager;
-			sourceTree = "<group>";
-		};
-		C3F202AE4434E51F8EB9805367A2304E /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7F6BB79EF96BEBD2EF92D8D997C2E1F9 /* CommonConversationViewController.swift */,
-				476881994DB31DAE33351E2E0EFDF2B7 /* ConversationViewController.swift */,
-				7F0D96D43D4196761A30A911EFB4B5CF /* ConversationViewController+Recorder.swift */,
-				DC04FE8CE6ACB6F21A90455BEBC8F5E5 /* MessagesViewController.swift */,
-				7DF2EB107F2A26DAE0E8404657451849 /* MessagesViewController+DataSource.swift */,
-				5EEA7D43D96EF1513F6F9FF16BC454FF /* MessagesViewController+Delegate.swift */,
-				3074B43396FB6AFABE077613834EB101 /* MessagesViewController+Keyboard.swift */,
-				F381D1FBF82B3E60DADF9A2FF48150ED /* MessagesViewController+Menu.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C6D28EBEA5A887A7CC40A0D59B461056 /* Kingfisher */ = {
@@ -676,6 +667,7 @@
 				A916776D5F477846F3E39D8D32D2AD36 /* UIButton+Kingfisher.swift */,
 				AEF007232280A7E90D4E2FF44007700E /* Support Files */,
 			);
+			name = Kingfisher;
 			path = Kingfisher;
 			sourceTree = "<group>";
 		};
@@ -685,6 +677,20 @@
 				B93A4FA1D841310EAFE4B6249426651D /* Pods-ZebraKing_Example */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		FD58779A8A00788B67C1C0DBA0ADF75F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2C606CA508C6434E3F2B89E1931355FF /* ChatSoundRecorder.swift */,
+				19A5927AA5D4F3789D862C5C957B17E9 /* Date+Helper.swift */,
+				838947FC933E96DABD294727E9FE9875 /* NSAttributedString+Extension.swift */,
+				CF3F0F1DCFFC0FE7F3C49E16EF6D6B6A /* ProximityManager.swift */,
+				98986D1265A2DB533943262F5E2C2A80 /* SafelyQueue.swift */,
+				12A2447078807E56B792B98120FA4F82 /* String+Extension.swift */,
+			);
+			name = Other;
+			path = ZebraKing/Classes/Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -749,7 +755,7 @@
 			buildConfigurationList = 89B76307599A9BF617115AFD66EBC5A9 /* Build configuration list for PBXNativeTarget "ZebraKing" */;
 			buildPhases = (
 				82AE20B7F74B7E304EF123894D53526A /* Headers */,
-				E0EC635EA7BDE3CC9E500ADABEFACD33 /* Sources */,
+				FD5100A06EBDB6926371A3648A7AE9B5 /* Sources */,
 				E8CF1B9867A8CDD040C4C4F93B05FE9E /* Frameworks */,
 				DE537289E9D769A1AB0F0998B4730804 /* Resources */,
 			);
@@ -827,7 +833,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -946,72 +952,72 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E0EC635EA7BDE3CC9E500ADABEFACD33 /* Sources */ = {
+		FD5100A06EBDB6926371A3648A7AE9B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE99607237AA577BAEF07CADD7489B00 /* AttachmentView.swift in Sources */,
-				302D3808F16BF46B1D048F31BBABF13D /* AudioMessageCell.swift in Sources */,
-				187739868352610F35E59E8D4D3F87E7 /* Bundle+Extension.swift in Sources */,
-				3F845E7137F4F496D65A3C834FF242B4 /* ChatNotification.swift in Sources */,
-				89549DF0CA041349E5EE7929A489AA0E /* ChatSoundRecorder.swift in Sources */,
-				B97F8EF6477149BE538B7BEB7612C1A0 /* CommonConversationViewController.swift in Sources */,
-				FC005874DA80DF03276E7264BBF2BF34 /* Conversation.swift in Sources */,
-				A04666335FA0C1046E2AD6583E3B64BE /* ConversationInputBar.swift in Sources */,
-				0E2DCABD79B8CEA7E2DCA11E91681814 /* ConversationViewController+Recorder.swift in Sources */,
-				D912279C1D9D4E131E8188705FA2E006 /* ConversationViewController.swift in Sources */,
-				F4ABED2597A27BA6690D8BE438D7329C /* Date+Helper.swift in Sources */,
-				1212C2807CFF4D0C85A2FB8BEED7EA31 /* DetectorType.swift in Sources */,
-				8FA8D7A1E77C81F8D518B2929F239377 /* IMChatAudioPlayManager.swift in Sources */,
-				78415E0E1BC4D7915ACA678500FB0BAF /* IMChatManager.swift in Sources */,
-				8957C8FBE96F06CBAD0129901AB86658 /* IMConversation.swift in Sources */,
-				9584EFA740E6A5C801CC4F97A762EFDC /* IMConversationManager.swift in Sources */,
-				6F0F1964D72CDF17EDBE604A94E0E106 /* IMLoginManager.swift in Sources */,
-				D023998C4DD7B1D854FA793494BAAE3B /* IMMessage.swift in Sources */,
-				1995596EB40DF50F25D13F92B8B0C844 /* IMMessageList.swift in Sources */,
-				53816D8D36D32BFB3FCF5737CC152D46 /* IMMessageType.swift in Sources */,
-				B5F188362F5F67149C40F8CE92D11FA4 /* IMResult.swift in Sources */,
-				0FBE3ABAB33FD20A22C0661411BD5A81 /* InputTextView.swift in Sources */,
-				3EBCE03C31AA497F15B7E4A082366496 /* LocationMessageCell.swift in Sources */,
-				BAEB00D1CD13793460E87D07BEF589AA /* MediaMessageCell.swift in Sources */,
-				F465B72874BED72BE59536026068A3A8 /* MessageCellDelegate.swift in Sources */,
-				C45CD56C9D0E8620B538D45EA03A7322 /* MessageCollectionViewCell.swift in Sources */,
-				D5D60DC3D26E5ECA5DA60AC5F65C7672 /* MessageContainerView.swift in Sources */,
-				78B76657BF545C32B2D2857998BD0CC0 /* MessageData.swift in Sources */,
-				903193DADB25F7E83F02FF8ED7A48362 /* MessageInputBar.swift in Sources */,
-				AE550A3E56BD3EC3E51011116F374478 /* MessageIntermediateLayoutAttributes.swift in Sources */,
-				4457582CA5FDBCF256E2F8ACDDC03326 /* MessageLabel.swift in Sources */,
-				F7F77BB84D74447C894286111E91B750 /* MessageLabelDelegate.swift in Sources */,
-				777FD711F0287A304C6B7951D6727214 /* MessagesCollectionView.swift in Sources */,
-				2E595D96BC1B52295CF14B3A721C2B3D /* MessagesCollectionViewFlowLayout.swift in Sources */,
-				ADC05C48837A1D0A0D3072F34C0782B6 /* MessagesCollectionViewLayoutAttributes.swift in Sources */,
-				842641C1D8C328A4762EE24CFE91ADF2 /* MessagesDataSource.swift in Sources */,
-				84508FD56AACF541DD76777D39A9221A /* MessagesDisplayDelegate.swift in Sources */,
-				361F11180A2AC5160F03C346ECFAF1B0 /* MessagesLayoutDelegate.swift in Sources */,
-				750C07EE18A2608CEE95B62B163FE6EB /* MessagesList.swift in Sources */,
-				07A217F1E84705C0DB0AFAEFB3E4B44F /* MessageStyle.swift in Sources */,
-				07BD2F822160101E7B62A8931295C2C5 /* MessagesViewController+DataSource.swift in Sources */,
-				DFBB4DCC124DC93B02E18C48B4226A15 /* MessagesViewController+Delegate.swift in Sources */,
-				4F6A17659FE3E01DA35884C6849801A7 /* MessagesViewController+Keyboard.swift in Sources */,
-				44C65A0A90D73F9B69FE7976CD5E27D3 /* MessagesViewController+Menu.swift in Sources */,
-				491961412234159562808681C355F26F /* MessagesViewController.swift in Sources */,
-				FFD43C0801EF6B2BA3EB53095E52507D /* MessageType.swift in Sources */,
-				AB6C0F895697AFA8E4459ACFCC94D36E /* NSAttributedString+Extension.swift in Sources */,
-				B6BADFE64B2884D8B40A77950748433F /* PathUtility.swift in Sources */,
-				35AFE223AF41B95F3DA3E79969E1D05C /* ProximityManager.swift in Sources */,
-				B9FBAC5726305EBB9FB93A4CA9D655AA /* ReceiptListenerManager.swift in Sources */,
-				472F764F37F0A3FD6B98DA4592CDE466 /* RefreshView.swift in Sources */,
-				715A517165E1A98E4ADDFECCFC1361FC /* SafelyQueue.swift in Sources */,
-				D33536D9E359005FB69D8CEEA252BB7A /* Sender.swift in Sources */,
-				6BBDB71604D614D0F2CB98D8DD5177B0 /* SeparatorLine.swift in Sources */,
-				E7F24E8C88C65D28B8BDCC25083E33CE /* String+Extension.swift in Sources */,
-				DD685E5D077289FB059739A73CD2865B /* TextMessageCell.swift in Sources */,
-				B9C8A112887A09F4ACD1528F36C6F037 /* TimestampCell.swift in Sources */,
-				6D7E612E60E7CF7875C0B2E2A5856896 /* ToastView.swift in Sources */,
-				17245BD2544B314706B1A6B28F5A6CAF /* UserManager.swift in Sources */,
-				C039448C013C19A3E7364445E1E97EEB /* VoiceIndicatorView.swift in Sources */,
-				A053C38F477E18A5E7227ED193279762 /* ZebraKing-dummy.m in Sources */,
-				2F1DD84551500DAE234A3B39E76E8990 /* ZebraKing.swift in Sources */,
+				A68E920D9CC6A0C6ED489EB5EDC7B503 /* AttachmentView.swift in Sources */,
+				67FACC79375749AD98B5B0C34CF038EA /* AudioMessageCell.swift in Sources */,
+				7B54C6DDE54C3E9E9F1C240DA1309E0D /* Bundle+Extension.swift in Sources */,
+				23AF5B41FFA99D495940B51A5FD9CC05 /* CentralManager.swift in Sources */,
+				125D5A897FC8607CD4A7641ABA7539BE /* ChatNotification.swift in Sources */,
+				A1E643482BFE53D148EF6C52A950D71A /* ChatSoundRecorder.swift in Sources */,
+				2AECD58D1269028E12CE27F98A8B4BEC /* CommonConversationViewController.swift in Sources */,
+				E396F5D70DC1D9451EB74678C9BDD5B9 /* Conversation.swift in Sources */,
+				8817D540387423EC2EE25988C3153ED9 /* ConversationInputBar.swift in Sources */,
+				688696984512DABE71E6CF68CD49A26B /* ConversationViewController+Recorder.swift in Sources */,
+				DBFD6C36AA07783FAD17A08CF6A8F00B /* ConversationViewController.swift in Sources */,
+				6D8797E134D676D99FC61CFC135A7A41 /* Date+Helper.swift in Sources */,
+				256AC8EE6086FF4FDD8ED05B2F026116 /* DetectorType.swift in Sources */,
+				811701929E2EABFD2FC48C76BEDFB072 /* IMChatAudioPlayManager.swift in Sources */,
+				D2C371891CF2A172F15C3FAEB10821A2 /* IMError.swift in Sources */,
+				9EAFB3C0C308042A3D93F8BA718A57E8 /* IMMessage.swift in Sources */,
+				5900BA649627757687DF32576BE22003 /* IMMessageList.swift in Sources */,
+				A72C795BBC269BA3566CD3B7EC2DE449 /* IMMessageType.swift in Sources */,
+				1C8E293786C04BD847B6F011C6DBFC9F /* IMResult.swift in Sources */,
+				622D286C55E7EFEBB69AE660FA3CBEC5 /* InputTextView.swift in Sources */,
+				0F3A7401E58145BA5D9389C10512D599 /* LocationMessageCell.swift in Sources */,
+				97041597AA59AC6E9C7789948FF2150C /* LoginManager.swift in Sources */,
+				070DE10486CFAC0193EFCED11DA726AD /* MediaMessageCell.swift in Sources */,
+				11A1C86F84323128687BB92B2A119DEF /* MessageCellDelegate.swift in Sources */,
+				6D89F47C376A80E357166B6A509F07F3 /* MessageCollectionViewCell.swift in Sources */,
+				D268608ADD82BC46334500997E36B67A /* MessageContainerView.swift in Sources */,
+				0BED2223850B43DE61EB74228EB0D7EF /* MessageData.swift in Sources */,
+				28EEFCDB9CF5145953A461BC426BACE3 /* MessageInputBar.swift in Sources */,
+				013DD98077832573158129B1742DE8E9 /* MessageIntermediateLayoutAttributes.swift in Sources */,
+				C539D5A3529B2244AF70426C1E0781DC /* MessageLabel.swift in Sources */,
+				C2614899F3658D62360C8456A9EA05E2 /* MessageLabelDelegate.swift in Sources */,
+				98846FF62C7274DC31D9031B53E46D33 /* MessagesCollectionView.swift in Sources */,
+				0DC8DEC64AEECF6794EBDF7D971E1901 /* MessagesCollectionViewFlowLayout.swift in Sources */,
+				DA72B99F0E5364EAB06F7ECF0A6DB805 /* MessagesCollectionViewLayoutAttributes.swift in Sources */,
+				80C79045468DFE0D47DE50CE42546F70 /* MessagesDataSource.swift in Sources */,
+				28C448121F377104762D7730BCCCE5BA /* MessagesDisplayDelegate.swift in Sources */,
+				C0920F11B1F92D0E3CAF067A5990C70F /* MessagesLayoutDelegate.swift in Sources */,
+				6E91117F5091D9BF016E68CF39BC6E5D /* MessagesList.swift in Sources */,
+				5F88C288147109ABA41EBD68433739E3 /* MessageStyle.swift in Sources */,
+				0D69A6F660263F27D63C7DF6AAA3AC9F /* MessagesViewController+DataSource.swift in Sources */,
+				5FD3B061625889118EB4A4206B51E6AA /* MessagesViewController+Delegate.swift in Sources */,
+				6CCF74F40A9B51F12BAB5DE5C0A878E2 /* MessagesViewController+Keyboard.swift in Sources */,
+				EAD6C702CE0FA589B2FECD75C9075916 /* MessagesViewController+Menu.swift in Sources */,
+				9EB40AE51A5E90D427061146A4C8ABF7 /* MessagesViewController.swift in Sources */,
+				ED659DE23B8331FCC0BB8FF6BC11BF88 /* MessageType.swift in Sources */,
+				BC0C8D71A0F2B8D2C1A6D50063F9A727 /* NSAttributedString+Extension.swift in Sources */,
+				C77163B3C1D403520A6A0F52E166DC0A /* PathUtility.swift in Sources */,
+				FBD7777256FC85477EE2272EB69006BB /* ProximityManager.swift in Sources */,
+				40079510DF51E8A8D899C0FEA48B0FB7 /* RefreshView.swift in Sources */,
+				FFE4C8FFE90B208A4DD5EFDE74A9E33C /* SafelyQueue.swift in Sources */,
+				61049E11B15EFAB09ABD738A21A5A2E8 /* Sender.swift in Sources */,
+				1E1AE43727BEEEAB8F80D056559D3CCD /* SeparatorLine.swift in Sources */,
+				434475527E4B9BEF692D4C4F9F57132B /* SessionManager.swift in Sources */,
+				E07C7B0782992B70D275E376E98A480E /* String+Extension.swift in Sources */,
+				4698F0E08301EAD636288A8C29AE915B /* Task.swift in Sources */,
+				BC8DBDB49484EEDECDD41FA17D18FA75 /* TextMessageCell.swift in Sources */,
+				4B29A57A70818CE63ACE7EEEFE019B98 /* TimestampCell.swift in Sources */,
+				D9EA562AA3AB481C2E4E523735EC7870 /* ToastView.swift in Sources */,
+				1C783D06AACD347C47AB8FC8B556C8CA /* UserManager.swift in Sources */,
+				03D27EB6D16BB3CC59B411322E2200DF /* VoiceIndicatorView.swift in Sources */,
+				056493BA753D60BFEDB538366491D392 /* ZebraKing-dummy.m in Sources */,
+				5B599228432555FB4067DEFDF488FD65 /* ZebraKing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,6 +1057,39 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		031C43839C6FA910BF1B5641D5CF16C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7534683E6F1EDCC8E904B848DF69C032 /* Kingfisher.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/Kingfisher/Kingfisher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Kingfisher/Kingfisher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Kingfisher/Kingfisher.modulemap";
+				PRODUCT_MODULE_NAME = Kingfisher;
+				PRODUCT_NAME = Kingfisher;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		046566F4FD97EDF258398579AE0E4269 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A944B4CA9E6BD2D63CD3B675DA9B5B7 /* Pods-ZebraKing_Example.debug.xcconfig */;
@@ -1087,43 +1126,9 @@
 			};
 			name = Debug;
 		};
-		06A80EBB9085E2A6B8C40B036CA1C2BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7534683E6F1EDCC8E904B848DF69C032 /* Kingfisher.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/Kingfisher/Kingfisher-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Kingfisher/Kingfisher-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Kingfisher/Kingfisher.modulemap";
-				PRODUCT_MODULE_NAME = Kingfisher;
-				PRODUCT_NAME = Kingfisher;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		234BBEEB42B660F58532EB7BACBEF01C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F43E81A0EDD8BAA11EAE56895670215D /* ZebraKing.xcconfig */;
+			baseConfigurationReference = 49B123731A2BF700706CACA11A9C60FB /* ZebraKing.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1143,39 +1148,6 @@
 				MODULEMAP_FILE = "Target Support Files/ZebraKing/ZebraKing.modulemap";
 				PRODUCT_MODULE_NAME = ZebraKing;
 				PRODUCT_NAME = ZebraKing;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		28C18458B9D2A87FBB2161C59B66879B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7534683E6F1EDCC8E904B848DF69C032 /* Kingfisher.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/Kingfisher/Kingfisher-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Kingfisher/Kingfisher-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Kingfisher/Kingfisher.modulemap";
-				PRODUCT_MODULE_NAME = Kingfisher;
-				PRODUCT_NAME = Kingfisher;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -1242,7 +1214,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -1346,7 +1317,7 @@
 		};
 		87897BC8C860400509C51D06F0F22D99 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F43E81A0EDD8BAA11EAE56895670215D /* ZebraKing.xcconfig */;
+			baseConfigurationReference = 49B123731A2BF700706CACA11A9C60FB /* ZebraKing.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1369,7 +1340,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1403,7 +1375,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1414,7 +1387,7 @@
 		};
 		929E64755F5A1CA930DB3945A7D209C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F43E81A0EDD8BAA11EAE56895670215D /* ZebraKing.xcconfig */;
+			baseConfigurationReference = 49B123731A2BF700706CACA11A9C60FB /* ZebraKing.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ZebraKing";
@@ -1429,9 +1402,44 @@
 			};
 			name = Debug;
 		};
+		C092DA3DDC4F21613B37A169047455FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7534683E6F1EDCC8E904B848DF69C032 /* Kingfisher.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/Kingfisher/Kingfisher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Kingfisher/Kingfisher-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Kingfisher/Kingfisher.modulemap";
+				PRODUCT_MODULE_NAME = Kingfisher;
+				PRODUCT_NAME = Kingfisher;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C1A191312742BA8D8CB196F10FFADA95 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F43E81A0EDD8BAA11EAE56895670215D /* ZebraKing.xcconfig */;
+			baseConfigurationReference = 49B123731A2BF700706CACA11A9C60FB /* ZebraKing.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ZebraKing";
@@ -1474,7 +1482,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1488,8 +1497,8 @@
 		055CB86039F87F17BFAACCE5B1899A4E /* Build configuration list for PBXNativeTarget "Kingfisher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				28C18458B9D2A87FBB2161C59B66879B /* Debug */,
-				06A80EBB9085E2A6B8C40B036CA1C2BB /* Release */,
+				031C43839C6FA910BF1B5641D5CF16C0 /* Debug */,
+				C092DA3DDC4F21613B37A169047455FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

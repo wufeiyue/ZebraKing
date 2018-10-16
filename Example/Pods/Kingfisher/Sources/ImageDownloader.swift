@@ -97,7 +97,7 @@ public enum KingfisherError: Int {
 public let KingfisherErrorStatusCodeKey = "statusCode"
 
 /// Protocol of `ImageDownloader`.
-public protocol ImageDownloaderDelegate: AnyObject {
+public protocol ImageDownloaderDelegate: class {
     /**
      Called when the `ImageDownloader` object will start downloading an image from specified URL.
      
@@ -175,7 +175,7 @@ extension ImageDownloaderDelegate {
 }
 
 /// Protocol indicates that an authentication challenge could be handled.
-public protocol AuthenticationChallengeResponsable: AnyObject {
+public protocol AuthenticationChallengeResponsable: class {
     /**
      Called when an session level authentication challenge is received.
      This method provide a chance to handle and response to the authentication challenge before downloading could start.
@@ -294,7 +294,7 @@ open class ImageDownloader {
         processQueue = DispatchQueue(label: "com.onevcat.Kingfisher.ImageDownloader.Process.\(name)", attributes: .concurrent)
         cancelQueue = DispatchQueue(label: "com.onevcat.Kingfisher.ImageDownloader.Cancel.\(name)")
         
-        sessionHandler = ImageDownloaderSessionHandler(name: name)
+        sessionHandler = ImageDownloaderSessionHandler()
 
         // Provide a default implement for challenge responder.
         authenticationChallengeResponder = sessionHandler
@@ -463,25 +463,10 @@ extension ImageDownloader {
 /// So we need an additional handler to break the retain cycle.
 // See https://github.com/onevcat/Kingfisher/issues/235
 final class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, AuthenticationChallengeResponsable {
-
-    private let downloaderQueue: DispatchQueue
-
+    
     // The holder will keep downloader not released while a data task is being executed.
     // It will be set when the task started, and reset when the task finished.
-    private var _downloadHolder: ImageDownloader?
-    var downloadHolder: ImageDownloader? {
-        get {
-            return downloaderQueue.sync { _downloadHolder }
-        }
-        set {
-            downloaderQueue.sync { _downloadHolder = newValue }
-        }
-    }
-
-    init(name: String) {
-        downloaderQueue = DispatchQueue(label: "com.onevcat.Kingfisher.ImageDownloader.SessionHandler.\(name)")
-        super.init()
-    }
+    var downloadHolder: ImageDownloader?
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         
@@ -489,8 +474,6 @@ final class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Aut
             completionHandler(.cancel)
             return
         }
-        
-        var disposition = URLSession.ResponseDisposition.allow
         
         if let statusCode = (response as? HTTPURLResponse)?.statusCode,
            let url = dataTask.originalRequest?.url,
@@ -506,10 +489,9 @@ final class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Aut
             }
             
             callCompletionHandlerFailure(error: error, url: url)
-            disposition = .cancel
         }
         
-        completionHandler(disposition)
+        completionHandler(.allow)
     }
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {

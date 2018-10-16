@@ -56,7 +56,7 @@ open class MessageCollectionViewCell: UICollectionViewCell {
     }
     
     open func setupSubViews() {
-        avatarView.backgroundColor = .lightGray
+        avatarView.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0)
         [avatarView, messageContainerView, attachmentView].forEach({ contentView.addSubview($0) })
     }
     

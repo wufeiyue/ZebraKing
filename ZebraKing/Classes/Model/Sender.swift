@@ -35,7 +35,7 @@ extension Sender {
     
     //是否缺失必要的文件
     public var isLossNecessary: Bool {
-        return avatarURL == nil && placeholder == nil
+        return avatarURL == .none || avatarURL?.absoluteString.isEmpty == true || placeholder == nil
     }
     
     //头像url

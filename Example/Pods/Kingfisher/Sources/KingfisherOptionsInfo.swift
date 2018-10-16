@@ -80,9 +80,6 @@ public enum KingfisherOptionsInfoItem {
     ///  If set, `Kingfisher` will only cache the value in memory but not in disk.
     case cacheMemoryOnly
     
-    ///  If set, `Kingfisher` will wait for caching operation to be completed before calling the completion block.
-    case waitForCache
-    
     /// If set, `Kingfisher` will only try to retrieve the image from cache not from network.
     case onlyFromCache
     
@@ -168,7 +165,6 @@ func <== (lhs: KingfisherOptionsInfoItem, rhs: KingfisherOptionsInfoItem) -> Boo
     case (.fromMemoryCacheOrRefresh, .fromMemoryCacheOrRefresh): return true
     case (.forceTransition, .forceTransition): return true
     case (.cacheMemoryOnly, .cacheMemoryOnly): return true
-    case (.waitForCache, .waitForCache): return true
     case (.onlyFromCache, .onlyFromCache): return true
     case (.backgroundDecode, .backgroundDecode): return true
     case (.callbackDispatchQueue(_), .callbackDispatchQueue(_)): return true
@@ -198,17 +194,17 @@ extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
 
 public extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
     /// The target `ImageCache` which is used.
-    public var targetCache: ImageCache? {
+    public var targetCache: ImageCache {
         if let item = lastMatchIgnoringAssociatedValue(.targetCache(.default)),
             case .targetCache(let cache) = item
         {
             return cache
         }
-        return nil
+        return ImageCache.default
     }
     
     /// The original `ImageCache` which is used.
-    public var originalCache: ImageCache? {
+    public var originalCache: ImageCache {
         if let item = lastMatchIgnoringAssociatedValue(.originalCache(.default)),
             case .originalCache(let cache) = item
         {
@@ -218,13 +214,13 @@ public extension Collection where Iterator.Element == KingfisherOptionsInfoItem 
     }
     
     /// The `ImageDownloader` which is specified.
-    public var downloader: ImageDownloader? {
+    public var downloader: ImageDownloader {
         if let item = lastMatchIgnoringAssociatedValue(.downloader(.default)),
             case .downloader(let downloader) = item
         {
             return downloader
         }
-        return nil
+        return ImageDownloader.default
     }
     
     /// Member for animation transition when using UIImageView.
@@ -266,11 +262,6 @@ public extension Collection where Iterator.Element == KingfisherOptionsInfoItem 
     /// Whether cache the image only in memory or not.
     public var cacheMemoryOnly: Bool {
         return contains{ $0 <== .cacheMemoryOnly }
-    }
-    
-    /// Whether the caching operation will be waited or not.
-    public var waitForCache: Bool {
-        return contains{ $0 <== .waitForCache }
     }
     
     /// Whether only load the images from cache or not.

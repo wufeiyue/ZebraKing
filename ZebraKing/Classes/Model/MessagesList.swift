@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MessagesList<T> where T: MessageType, T: Hashable {
+public struct MessagesList<T> where T: MessageType & TimestampType, T: Hashable {
     
     enum StackType {
         case append
@@ -80,12 +80,12 @@ public struct MessagesList<T> where T: MessageType, T: Hashable {
         }
         
         guard case .timestamp(let lastDate)? = last?.data else {
-            return T.msg(with: followDate)
+            return T(dateMessage: followDate)
         }
         
         if followDate.timeIntervalSince(lastDate) > TimeInterval(5*60) {
             //大于5分钟
-            return T.msg(with: followDate)
+            return T(dateMessage: followDate)
         }
         
         return nil

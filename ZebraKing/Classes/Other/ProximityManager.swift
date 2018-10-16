@@ -28,34 +28,21 @@ final class ProximityManager {
     }
     
     private func addListener() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: UIDevice.proximityStateDidChangeNotification, object: nil)
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: UIDevice.proximityStateDidChangeNotification), object: nil)
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(sensorStateChange), name: .UIDeviceProximityStateDidChange, object: nil)
     }
     
     private func removeListener() {
-        NotificationCenter.default.removeObserver(self, name: UIDevice.proximityStateDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIDeviceProximityStateDidChange, object: nil)
     }
     
     @objc
     private func sensorStateChange(_ notification: Notification) {
         if UIDevice.current.proximityState == true {
             //开启红外
-            if #available(iOS 10.0, *) {
-                try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: .interruptSpokenAudioAndMixWithOthers)
-            } else {
-                // Fallback on earlier versions
-            }
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
         }
         else{
-            if #available(iOS 10.0, *) {
-                try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .interruptSpokenAudioAndMixWithOthers)
-            } else {
-                // Fallback on earlier versions
-            }
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
     }
 }

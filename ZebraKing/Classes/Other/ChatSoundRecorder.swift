@@ -73,7 +73,7 @@ final public class ChatSoundRecorder {
     
     public init(delegate: ChatAudioRecordDelegate) {
         self.delegate = delegate
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
     deinit {
@@ -154,13 +154,13 @@ final public class ChatSoundRecorder {
         
         if self.recorderPeakerTimer == nil {
             let recorderPeakerTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(onRecordPeak), userInfo: nil, repeats: true)
-            RunLoop.current.add(recorderPeakerTimer, forMode: RunLoop.Mode.common)
+            RunLoop.current.add(recorderPeakerTimer, forMode: .commonModes)
             self.recorderPeakerTimer = recorderPeakerTimer
         }
         
         if self.recorderTimer == nil {
             let recorderTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onRecording), userInfo: nil, repeats: true)
-            RunLoop.current.add(recorderTimer, forMode: RunLoop.Mode.common)
+            RunLoop.current.add(recorderTimer, forMode: .commonModes)
             self.recorderTimer = recorderTimer
         }
     }
@@ -299,11 +299,7 @@ final public class ChatSoundRecorder {
     }
     
     private func becomeFirstResponder() {
-        if #available(iOS 10.0, *) {
-            try? AVAudioSession.sharedInstance().setCategory(.record, mode: .default, options: .duckOthers)
-        } else {
-            // Fallback on earlier versions
-        }
+        try? session.setCategory(AVAudioSessionCategoryRecord, with: .duckOthers)
         try? session.setActive(true)
     }
     

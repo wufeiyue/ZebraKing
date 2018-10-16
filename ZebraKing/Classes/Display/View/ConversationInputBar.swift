@@ -57,7 +57,8 @@ open class ConversationInputBar: MessageInputBar {
     open var recordBtn: UIButton!
     
     //normal or selected
-    public var status: UIControl.State = .normal {
+//    public var status: UIControl.State = .normal {
+    public var status: UIControlState = .normal {
         didSet {
             displayViewByStatus()
         }

@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-//import TSVoiceConverter
 
 //MARK:  播放管理类
 typealias AudioCompleteBlock = () -> ()
@@ -74,16 +73,12 @@ class IMChatAudioPlayManager: NSObject {
     
     
     private func becomeFirstResponder() {
-        if #available(iOS 10.0, *) {
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .duckOthers)
-        } else {
-            // Fallback on earlier versions
-        }
+        try? session.setCategory(AVAudioSessionCategoryPlayback, with: .duckOthers)
         try? session.setActive(true)
     }
     
     private func resignFirstResponder() {
-        try? session.setActive(false, options: .notifyOthersOnDeactivation)
+        try? session.setActive(false, with: .notifyOthersOnDeactivation)
     }
 }
 

@@ -91,7 +91,8 @@ open class AttachmentView: UIView {
     private lazy var indicatorView: UIActivityIndicatorView = {
         addSubview($0)
         return $0
-    }(UIActivityIndicatorView(style: .gray))
+//    }(UIActivityIndicatorView(style: .gray))
+    }(UIActivityIndicatorView(activityIndicatorStyle: .gray))
     
     public func displayView(with messageStatus: MessageStatus) {
         

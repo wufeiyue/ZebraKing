@@ -9,22 +9,58 @@ import Foundation
 import ImSDK
 import IMMessageExt
 
-public final class UserManager: NSObject {
+public final class UserManager {
     
     /// 好友列表
-    public private(set) var friendsList = Dictionary<String, Sender>()
+    public private(set) var friendsList: Dictionary<String, Sender>?
     
     /// 个人资料
-    public fileprivate(set) var host: Sender?
+    public private(set) var host: Sender?
+    
+    /// 创建本地账户
+    ///
+    /// - Parameter id: 用户Id
+    public func createAccount(id: String) {
+        
+        //本地账户为nil
+        if host == nil {
+            
+            host = Sender(id: id)
+            
+            updateHostProfile {
+                if case .success(let facePath, let displayName) = $0 {
+                    self.host?.facePath = facePath
+                    self.host?.displayName = displayName
+                }
+            }
+        }
+        
+        //好友列表为nil
+        if friendsList == nil {
+            friendsList = Dictionary<String, Sender>()
+        }
+        
+    }
+    
+    //释放资源
+    public func free() {
+        host = nil
+        friendsList?.removeAll(keepingCapacity: false)
+        friendsList = nil
+    }
+    
+}
+
+extension UserManager {
     
     /// 获取好友资料
     ///
     /// - Parameters:
     ///   - id: 唯一id
     ///   - result: 结果
-    public func queryFriendProfile(id: String, placeholder: UIImage? = nil, result: @escaping (IMResult<Sender>) -> Void) {
+    public func queryFriendProfile(id: String, result: @escaping (IMResult<Sender>) -> Void) {
         
-        if let cacheUser = friendsList[id], cacheUser.isLossNecessary == false {
+        if let cacheUser = friendsList?[id], cacheUser.isLossNecessary == false {
             result(.success(cacheUser))
         }
         else {
@@ -37,8 +73,8 @@ public final class UserManager: NSObject {
                     sender.displayName = unwrappedProfile.nickname
                     sender.facePath = unwrappedProfile.faceURL
                     
-                    self.friendsList[id] = sender
                     result(.success(sender))
+                    self.friendsList?[id] = sender
                 }
                 else {
                     result(.failure(.unwrappedUsersProfileFailure))
@@ -50,18 +86,36 @@ public final class UserManager: NSObject {
         }
     }
     
-    public func fetchSender(id: String) -> Sender? {
-        return friendsList[id]
+    /// 获取自己的资料, (猜测selfProfile只是离线在本地, )
+    public func updateHostProfile(result: @escaping (IMResult<(facePath: String?, displayName: String)>) -> Void) {
+        TIMFriendshipManager.sharedInstance().getSelfProfile({
+            
+            var profile: (facePath: String?, displayName: String) = (nil, "")
+            
+            if let unwrappedFaceURL = $0?.faceURL, unwrappedFaceURL.isEmpty == false {
+                profile.facePath = unwrappedFaceURL
+            }
+            
+            if let unwrappedNickName = $0?.nickname, unwrappedNickName.isEmpty == false {
+                profile.displayName = unwrappedNickName
+            }
+            
+            result(.success(profile))
+            
+        }, fail: { (code , str) in
+            //同步资料失败
+            result(.failure(.unknown))
+        })
     }
     
-    //释放资源
-    public func free() {
-        host = nil
-        friendsList.removeAll(keepingCapacity: false)
+    
+    /// 获取缓存的好友资料
+    ///
+    /// - Parameter id: 用户id
+    /// - Returns: 结果
+    public func getSender(id: String) -> Sender? {
+        return friendsList?[id]
     }
-}
-
-extension UserManager {
     
     /// 修改自己的昵称
     public func modifySelfNickname(_ nick : String) {
@@ -72,41 +126,6 @@ extension UserManager {
     /// 修改自己的头像
     public func modifySelfFacePath(_ path : String) {
         updateMyUserModel(facePath: path)
-    }
-    
-    public func createAccountIfNotFound(id: String) {
-        
-        if host == nil {
-            host = Sender(id: id)
-        }
-        
-        //FIXME: - 同步我的个人信息, 如果外面不传facePath过来, 这里同步结果比较慢, 就会造成chatViewController个人信息显示成默认头像
-        updateHostProfile { sender in
-            
-        }
-        
-    }
-    
-    /// 获取自己的资料, (猜测selfProfile只是离线在本地, )
-    public func updateHostProfile(result: @escaping (IMResult<Sender?>) -> Void) {
-        TIMFriendshipManager.sharedInstance().getSelfProfile({ (profile) in
-            
-            guard let unwrappedProfile = profile else { return }
-            
-            if let unwrappedFaceURL = unwrappedProfile.faceURL, unwrappedFaceURL.isEmpty == false {
-                self.host?.facePath = unwrappedFaceURL
-            }
-            
-            if let unwrappedNickName = unwrappedProfile.nickname, unwrappedNickName.isEmpty == false {
-                self.host?.displayName = unwrappedNickName
-            }
-            
-            result(.success(self.host))
-            
-        }, fail: { (code , str) in
-            //同步资料失败
-            result(.failure(.unknown))
-        })
     }
     
     

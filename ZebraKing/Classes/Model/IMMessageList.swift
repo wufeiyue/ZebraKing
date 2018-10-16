@@ -16,7 +16,7 @@ public struct IMMessageList {
         case remove
     }
     
-    public private(set) var list = Array<IMMessage>()
+    public private(set) var list = Array<MessageElem>()
     public private(set) var messageCount: Int = 0
     private var type: StackType = .append
     
@@ -47,7 +47,7 @@ public struct IMMessageList {
         return IndexSet(tempSections)
     }
     
-    mutating func append(_ newElement: IMMessage) {
+    mutating func append(_ newElement: MessageElem) {
         
         var willSendListCount: Int = 1
         
@@ -69,7 +69,7 @@ public struct IMMessageList {
         type = .remove
     }
     
-    mutating func replaceLast(_ newElement: IMMessage) {
+    mutating func replaceLast(_ newElement: MessageElem) {
         guard list.isEmpty == false else { return }
         let range: Range<Int> = list.count - 1 ..< list.count
         list.replaceSubrange(range, with: [newElement])
@@ -79,17 +79,19 @@ public struct IMMessageList {
         list.removeSubrange((list.count - num)...list.count)
     }
     
-    private func timeTipOnNewMessageIfNeeded(last:IMMessage?, follow:IMMessage) -> IMMessage?{
+    private func timeTipOnNewMessageIfNeeded(last: MessageElem?, follow: MessageElem) -> MessageElem?{
         
-        if let followDate = follow.msg.timestamp() {
-            guard let lastDate = last?.msg.timestamp() else {
-                return IMMessage(timetip: followDate)
-            }
-            if followDate.timeIntervalSince(lastDate) > TimeInterval(5*60) {
-                //大于5分钟
-                return IMMessage(timetip: followDate)
-            }
+        let followDate = follow.timestamp
+        
+        guard let lastDate = last?.timestamp else {
+            return MessageElem(dateMessage: followDate)
         }
+        
+        if followDate.timeIntervalSince(lastDate) > TimeInterval(5*60) {
+            //大于5分钟
+            return MessageElem(dateMessage: followDate)
+        }
+        
         return nil
     }
 }
@@ -103,19 +105,19 @@ extension IMMessageList {
         return list.count
     }
     
-    func index(of: IMMessage) -> Int? {
+    func index(of: MessageElem) -> Int? {
         return list.index(of: of)
     }
     
-    mutating func inset(newsList: Array<IMMessage>) {
+    mutating func inset(newsList: Array<MessageElem>) {
         list = newsList + list
     }
     
-    mutating func addList(newsList: Array<IMMessage>) {
+    mutating func addList(newsList: Array<MessageElem>) {
         list = list + newsList
     }
     
-    subscript(index: Int) -> IMMessage {
+    subscript(index: Int) -> MessageElem {
         return list[index]
     }
 }

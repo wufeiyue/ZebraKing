@@ -9,14 +9,13 @@ import Foundation
 import ImSDK
 import IMMessageExt
 
-public final class IMLoginManager: NSObject {
+public final class LoginManager: NSObject {
     
-    public private(set) var identifier: String?
-    public private(set) var userSig: String?
-    public private(set) var appidAt3rd: String?
-    public private(set) var accountType: String?
+    public var identifier: String?
+    public var userSig: String?
+    public var appidAt3rd: String?
     
-    public static var isLoginSuccessed: Bool {
+    public static var isSuccessed: Bool {
         return TIMManager.sharedInstance().getLoginStatus() == .STATUS_LOGINED
     }
     
@@ -28,56 +27,22 @@ public final class IMLoginManager: NSObject {
     private let retryNum: Int = 5
     private var currentIndex: Int = 0
     
-    /// 注册sdk
+    
+    /// 登出
     ///
     /// - Parameters:
-    ///   - appidAt3rd: 平台分配给开发者使用的appid
-    ///   - accountType: 平台分配给开发者使用的type
-    /// - Returns: 返回true, 表示注册成功
-    @discardableResult
-    public func register(appidAt3rd: String, accountType: String?) -> Bool {
-        
-        var status: Bool = false
-        
-        if let appid = Int32(appidAt3rd) {
-            let sdkConfig = TIMSdkConfig()
-            sdkConfig.sdkAppId = appid
-            sdkConfig.accountType = accountType
-            sdkConfig.disableLogPrint = true //禁止在控制台打印
-            let initStatus = TIMManager.sharedInstance().initSdk(sdkConfig)
-            status = (initStatus == 0)
-        }
-        
-        let userConfig = TIMUserConfig()
-        userConfig.enableReadReceipt = true //开启已读回执
-        userConfig.disableRecnetContact = true //不开启最近联系人
-        let userStatus = TIMManager.sharedInstance().setUserConfig(userConfig)
-        status = (userStatus == 0)
-        
-        self.appidAt3rd = appidAt3rd
-        self.accountType = accountType
-        
-        return status
-    }
-    
-    
-    /// 重新登录
-    ///
-    /// - Parameter result: 结果 .success 登录成功  .failure 登录失败
-    public func relogin(result: @escaping (IMResult<Bool>) -> Void) {
-        login(identifier: identifier, userSig: userSig, result: result)
+    ///   - success: 登出成功
+    ///   - fail: 登出失败
+    public func logout(success: @escaping TIMSucc, fail: @escaping TIMFail) {
+        TIMManager.sharedInstance().logout(success, fail: fail)
     }
     
     /// 登录
     ///
     /// - Parameters:
-    ///   - identifier: 用户唯一id
-    ///   - userSig: 用户签名sign
     ///   - result: 结果 .success 登录成功 true  .failure 登录失败
-    public func login(identifier: String?, userSig: String?, result: @escaping (IMResult<Bool>) -> Void) {
+    public func login(result: @escaping (IMResult<Bool>) -> Void) {
         
-        self.identifier = identifier
-        self.userSig = userSig
         loginCompletion = result
         
         let status = TIMManager.sharedInstance().getLoginStatus()
@@ -86,7 +51,7 @@ public final class IMLoginManager: NSObject {
         case .STATUS_LOGINED:
             //已登录
             
-            loginCompletion(.success(true))
+            result(.success(true))
             
         case .STATUS_LOGINING:
             //登陆中
@@ -103,7 +68,7 @@ public final class IMLoginManager: NSObject {
             start(success: {
                 self.isBusy = false
                 self.stop(isDidLoginSuccessed: true)
-                self.loginCompletion(.success(true))
+                result(.success(true))
             }) { _, _ in
                 self.isBusy = true
             }
@@ -115,16 +80,6 @@ public final class IMLoginManager: NSObject {
             
         }
         
-    }
-    
-    
-    /// 登出
-    ///
-    /// - Parameters:
-    ///   - success: 登出成功
-    ///   - fail: 登出失败
-    public func logout(success: @escaping TIMSucc, fail: @escaping TIMFail) {
-        TIMManager.sharedInstance().logout(success, fail: fail)
     }
     
     private func addTimer(duration: TimeInterval) {

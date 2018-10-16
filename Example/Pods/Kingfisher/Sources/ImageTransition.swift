@@ -79,7 +79,7 @@ public enum ImageTransition {
     
     /// Custom transition.
     case custom(duration: TimeInterval,
-                 options: UIView.AnimationOptions,
+                 options: UIViewAnimationOptions,
               animations: ((UIImageView, UIImage) -> Void)?,
               completion: ((Bool) -> Void)?)
     
@@ -97,7 +97,7 @@ public enum ImageTransition {
         }
     }
     
-    var animationOptions: UIView.AnimationOptions {
+    var animationOptions: UIViewAnimationOptions {
         switch self {
         case .none:                         return []
         case .fade(_):                      return .transitionCrossDissolve

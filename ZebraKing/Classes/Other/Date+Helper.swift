@@ -8,7 +8,6 @@
 //
 
 import Foundation
-//import SwiftDate
 
 extension Date {
     public func getWeek() -> String {

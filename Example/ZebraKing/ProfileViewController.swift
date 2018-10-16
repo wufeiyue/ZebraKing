@@ -63,6 +63,7 @@ class ProfileViewController: UIViewController {
 
     var dataSource: Array<ProfileModel> = UIApplication.appdelegate?.mockSource ?? Array<ProfileModel>()
     weak var delegate: ProfileViewControllerDelegate?
+    
     lazy var tableView: UITableView = { [unowned self] in
         let view = UITableView(frame: self.view.bounds, style: .plain)
         view.delegate = self
@@ -71,6 +72,7 @@ class ProfileViewController: UIViewController {
         view.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileTableViewCellKey")
         return view
     }()
+    
     private var cellHeightInView: Int = 0
     private var canResignPage: Bool = false
     override func viewDidLoad() {
@@ -83,20 +85,19 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: .main) { notification in
             self.keyboardControl(notification)
         }
        
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification, object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: .UIKeyboardDidHide, object: nil, queue: .main) { _ in
             self.tableView.frame.size.height = self.view.bounds.size.height
         }
         
     }
     
     func keyboardControl(_ notification: Notification) {
-        var userInfo = notification.userInfo!
-        let keybroadRect =  (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-        let convertedFrame = self.view.convert(keybroadRect!, from: nil)
+        guard let keybroadRect = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let convertedFrame = self.view.convert(keybroadRect, from: nil)
         let heightOffset = self.view.bounds.size.height - convertedFrame.origin.y
         
         UIView.animate(withDuration:0.3,
@@ -119,14 +120,11 @@ class ProfileViewController: UIViewController {
         navigationController?.view.makeToast(message)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCellKey") as! ProfileTableViewCell
         let model = dataSource[indexPath.row]
@@ -263,7 +261,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     weak var delegate: ProfileTableViewCellDelegate?
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         [inputTextFile, confirmBtn, titleLabel].forEach{ contentView.addSubview($0) }

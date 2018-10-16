@@ -10,7 +10,7 @@ import Foundation
 import ImSDK
 import IMMessageExt
 import CoreLocation
-
+/*
 // 消息对象
 public final class IMMessage: NSObject {
     
@@ -258,6 +258,7 @@ extension IMMessage: MessageType {
     }
     
     private func convertMessageData() -> MessageData {
+        
         if let message = msg.getElem(0) as? TIMTextElem {
             
             //如果是纯文本的fontSize需要再MessagesCollectionViewFlowLayout类初始化时设置
@@ -266,7 +267,7 @@ extension IMMessage: MessageType {
                 .foregroundColor: UIColor.blue
                 ])
             
-            //纯文本
+            //富文本
             return .attributedText(attributedText)
         }
         else if let message = msg.getElem(0) as? TIMImageElem {
@@ -305,3 +306,4 @@ extension IMMessage: MessageType {
         }
     }
 }
+*/

@@ -9,13 +9,13 @@ import UIKit
 
 open class ConversationViewController: MessagesViewController, MessageCellDelegate, Toastable {
 
-    public let conversation: Conversation
+    public let task: Task
     
     //FIXME: - 替换成 MessagesList<IMMessage>()
     public var messagesList = IMMessageList()  //消息列表
     
-    public init(conversation: Conversation) {
-        self.conversation = conversation
+    public init(task: Task) {
+        self.task = task
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,13 +39,13 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         }
         
         //监听新消息过来
-        conversation.listenerNewMessage(msgList: { [unowned self](receiveMsg) in
+        task.listenerNewMessage(completion: { [unowned self](receiveMsg) in
             self.messagesList.addList(newsList: receiveMsg)
             self.messagesCollection.reloadDataAndKeepOffset()
         })
         
         //已读回执,刷新tableView
-        conversation.listenerUpdateReceiptMessages { [unowned self] in
+        task.listenerUpdateReceiptMessages { [unowned self] in
             self.messagesCollection.reloadData()
         }
         
@@ -67,7 +67,7 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         }
         
         //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
-        conversation.loadRecentMessages(count: 20, completion: loadCompletion)
+        task.loadRecentMessages(count: 20, completion: loadCompletion)
     }
     
     @objc
@@ -111,13 +111,13 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         }
         
         //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
-        conversation.loadRecentMessages(count: count, completion: refreshCompletion)
+        task.loadRecentMessages(count: count, completion: refreshCompletion)
     }
     
     //FIXME: - 后期要后话, conversation自己控制生命周期
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        conversation.releaseSelf()
+        task.free()
     }
 
     final override public func didReceiveMemoryWarning() {
@@ -149,7 +149,7 @@ extension ConversationViewController: MessagesDataSource {
     
     
     public func currentSender() -> Sender {
-        return conversation.host
+        return task.host
     }
     
     public func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
@@ -192,7 +192,7 @@ extension ConversationViewController: MessagesDisplayDelegate {
         return [.url, .address, .phoneNumber, .date]
     }
     
-    public func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key : Any] {
+    public func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey : Any] {
         return MessageLabel.defaultAttributes
     }
 }
@@ -212,14 +212,14 @@ extension ConversationViewController {
     }
     
     //已测试
-    func onMessageWillSend(_ message: IMMessage) {
+    func onMessageWillSend(_ message: MessageElem) {
         messagesList.append(message)
         messagesCollection.insertSections(messagesList.indexSet)
         messagesCollection.scrollToBottom()
         messageInputBar.inputTextView.text = String()
     }
     
-    func replaceLastMessage(newMsg: IMMessage) {
+    func replaceLastMessage(newMsg: MessageElem) {
         messagesList.replaceLast(newMsg)
         messagesCollection.performBatchUpdates(nil)
         if messagesList.count >= 1 {
@@ -230,12 +230,12 @@ extension ConversationViewController {
     /// 发送消息
     ///
     /// - Parameter msg:
-    func sendMsg(msg: IMMessage) {
+    func sendMsg(msg: MessageElem) {
         
         //发送消息
-        conversation.send(message: msg) { [weak self](result) in
-            
-            if case .failure(let error) = result, error.code == 80001 {
+        task.send(message: msg) { [weak self](result) in
+            //FIXME: - code 值不对
+            if case .failure(let error) = result, error._code == 80001 {
                 self?.showToast(message: "请不要发送敏感词汇")
                 self?.onMessageCancelSend()
                 return
