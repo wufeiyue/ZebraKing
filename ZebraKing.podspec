@@ -34,6 +34,6 @@ ZebraKing是基于腾讯云通信V3.0版本更新而来,此版本较v2.0变化�
 
   s.frameworks = 'CoreTelephony', 'SystemConfiguration'
   s.libraries = 'c++', 'z', 'sqlite3'
-  s.dependency 'Kingfisher'
+  s.dependency 'Kingfisher', '~> 4.9.0'
 
 end
