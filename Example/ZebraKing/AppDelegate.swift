@@ -30,8 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let accountType: String = mockSource[0].content
         let appidAt3rd: String = mockSource[1].content
         
-        ZebraKing.register(accountType: accountType, appidAt3rd: Int32(appidAt3rd)!) { notification in
-            self.onResponseNotification(notification)
+        if let appid = Int32(appidAt3rd) {
+            ZebraKing.register(accountType: accountType, appidAt3rd: appid) { notification in
+                self.onResponseNotification(notification)
+            }
         }
         
         return true
@@ -59,14 +61,14 @@ extension AppDelegate {
     private func onResponseNotification(_ notification: ChatNotification) {
         
         //消息发送人的资料
-        //let sender = notification.receiver
+        let sender = notification.receiver
         
         //推送的内容
-        let content = notification.content
+        let content = notification.content ?? "您收到一条新消息"
         
         if case .background = UIApplication.shared.applicationState {
             //处理本地系统推送(只会在后台推送)
-            UIApplication.localNotification(title: "推送消息", body: content ?? "您收到一条新消息", userInfo: ["chatNotification": notification])
+            UIApplication.localNotification(title: "推送消息", body: content, userInfo: ["receiverId": sender.id])
         } else {
             NotificationCenter.default.post(name: .didRecievedMessage, object: self, userInfo: ["chatNotification": notification])
         }
@@ -86,9 +88,11 @@ extension AppDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        if let chatNotification = notification.userInfo?["chatNotification"] as? ChatNotification {
+        
+        if let receiverId = notification.userInfo?["receiverId"] as? String {
             
-            ZebraKing.chat(notification: chatNotification) { result in
+            ZebraKing.chat(id: receiverId, result: { result in
+                
                 switch result {
                 case .success(let task):
                     let vc = ChattingViewController(task: task)
@@ -96,7 +100,8 @@ extension AppDelegate {
                 case .failure(_):
                     break
                 }
-            }
+                
+            })
         }
     }
     

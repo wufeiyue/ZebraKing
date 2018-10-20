@@ -64,7 +64,7 @@ class ViewController: UIViewController {
     }
     
     func openChattingViewController(with notification: ChatNotification) {
-        ZebraKing.chat(notification: notification) { result in
+        ZebraKing.chat(id: notification.receiver.id) { result in
             switch result {
             case .success(let task):
                 let chattingViewController = ChattingViewController(task: task)
