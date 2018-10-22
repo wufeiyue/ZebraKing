@@ -9,6 +9,12 @@ import Foundation
 import ImSDK
 import IMMessageExt
 
+public struct ChatNotification {
+    public let receiver: Sender
+    public let content: String?
+}
+
+
 //MARK: - 会话中心管理
 open class CentralManager: NSObject {
     
@@ -60,7 +66,7 @@ open class CentralManager: NSObject {
     }
     
     private func removeListenter(type: ListenterMessages.TypeFlag) {
-        guard var listenerMessages = onResponseNotification.first(where: { $0.flag == type }) else {
+        guard let listenerMessages = onResponseNotification.first(where: { $0.flag == type }) else {
             return
         }
         listenerMessages.completion = nil
@@ -76,15 +82,18 @@ open class CentralManager: NSObject {
 //MARK: - 未读消息
 extension CentralManager {
     
+    public func addListenter() {
+        TIMManager.sharedInstance().add(self)
+    }
+    
     /// 监听消息通知
     public func listenterMessages(completion: @escaping ListenterMessages.NotificationCompletion) {
-        TIMManager.sharedInstance().add(self)
         onResponseNotification.insert(ListenterMessages(flag: .outsideNotification, completion: completion))
     }
     
-    public func removeListenerMessage() {
+    public func removeListener() {
         TIMManager.sharedInstance()?.remove(self)
-        removeListenter(type: .outsideNotification)
+//        removeListenter(type: .outsideNotification)
     }
     
     //根据会话类型监听此会话的未读消息数
@@ -110,8 +119,6 @@ extension CentralManager: TIMMessageListener {
     public func onNewMessage(_ msgs: [Any]!) {
         
         for anyObjcet in msgs {
-            
-            print("有消息进来")
             
             guard let message = anyObjcet as? TIMMessage,
                 let timConversation = message.getConversation() else { return }
@@ -146,12 +153,13 @@ extension CentralManager: TIMMessageListener {
     
     private func handlerNotification(with conversation: Conversation) {
         let content = conversation.getLastMessage
-        onResponseNotification.forEach{ $0.completion?(conversation.conversation.getReceiver(), content) }
+        let receiverId: String = conversation.conversation.getReceiver()
+        onResponseNotification.forEach{ $0.completion?(receiverId, content) }
     }
 
 }
 
-public struct ListenterMessages {
+public final class ListenterMessages {
     
     public typealias NotificationCompletion = (_ receiverID: String, _ content: String?) -> Void
     

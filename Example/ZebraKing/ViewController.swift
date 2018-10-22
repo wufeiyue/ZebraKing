@@ -35,22 +35,6 @@ class ViewController: UIViewController {
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         
-        guard let sign = mockSource.filter({ $0.identifier == "sign" }).first?.content else {
-            return
-        }
-        
-        guard let id = mockSource.filter({ $0.identifier == "chatId" }).first?.content else {
-            return
-        }
-        
-        guard let appid = mockSource.filter({ $0.identifier == "appid" }).first?.content else {
-            return
-        }
-        
-        ZebraKing.login(sign: sign, userId: id, appidAt3rd: appid, result: { _ in
-            
-        })
-        
         NotificationCenter.default.addObserver(forName: .didRecievedMessage, object: nil, queue: nil) { (notification) in
             
             guard let chatNotification = notification.userInfo?["chatNotification"] as? ChatNotification else { return }

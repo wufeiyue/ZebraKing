@@ -29,6 +29,7 @@ public struct Sender {
         self.id = id
         self.displayName = displayName
     }
+    
 }
 
 extension Sender {
@@ -47,7 +48,12 @@ extension Sender {
     }
 }
 
-extension Sender: Equatable {
+extension Sender: Hashable {
+    
+    public var hashValue: Int {
+        return id.hashValue
+    }
+    
     public static func ==(lhs: Sender, rhs: Sender) -> Bool {
         return lhs.id == rhs.id
     }

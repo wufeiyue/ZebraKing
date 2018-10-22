@@ -41,6 +41,7 @@ open class SessionManager {
         TIMManager.sharedInstance().setUserConfig(userConfig)
         
         onResponseNotification(completion: completion)
+        
     }
     
     /// 登录(账号由服务器配置, 在客户端不存在注册IM账号)
@@ -60,6 +61,8 @@ open class SessionManager {
             case .success:
                 //创建自己的主机账户
                 self.userManager.createAccount(id: userId)
+                self.centralManager.addListenter()
+                
                 result(.success(true))
             case .failure:
                 result(.failure(.loginFailure))
@@ -73,7 +76,7 @@ open class SessionManager {
         loginManager.logout(success: {
             
             self.userManager.free()
-            self.centralManager.removeListenerMessage()
+            self.centralManager.removeListener()
             
             result(.success(true))
             
@@ -146,7 +149,7 @@ open class SessionManager {
         centralManager.listenterMessages{ (receiverId, content) in
             
             self.userManager.queryFriendProfile(id: receiverId, result: { result in
-                
+            
                 var sender: Sender {
                     if case .success(let value) = result {
                         return value
@@ -156,7 +159,7 @@ open class SessionManager {
                     }
                 }
                 
-                let notification = ChatNotification(receiver: sender, content: content)
+                let notification = ChatNotification(receiver: Sender(id: receiverId), content: content)
                 completion(notification)
             })
             

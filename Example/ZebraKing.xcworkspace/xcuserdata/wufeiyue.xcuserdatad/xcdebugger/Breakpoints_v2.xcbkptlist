@@ -160,13 +160,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZebraKing/AppDelegate.swift"
-            timestampString = "561615164.621148"
+            timestampString = "561868963.760131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "AppDelegate"
-            landmarkType = "21">
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "application(application:didReceiveLocalNotification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,11 +176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZebraKing/AppDelegate.swift"
-            timestampString = "561615164.6233979"
+            timestampString = "561868963.760201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "onResponseNotification(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -351,22 +351,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../ZebraKing/Classes/Model/Conversation.swift"
-            timestampString = "561369794.036642"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "listenerNewMessage(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../ZebraKing/Classes/Manager/Task.swift"
             timestampString = "561369794.036721"
             startingColumnNumber = "9223372036854775807"
@@ -416,7 +400,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../ZebraKing/Classes/Display/ViewController/ConversationViewController.swift"
-            timestampString = "561366846.147023"
+            timestampString = "561868561.505933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -432,13 +416,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZebraKing/AppDelegate.swift"
-            timestampString = "561615188.190573"
+            timestampString = "561868963.760458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../ZebraKing/Classes/Display/ViewController/ConversationViewController.swift"
+            timestampString = "561868561.506043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../ZebraKing/Classes/Manager/SessionManager.swift"
+            timestampString = "561868284.706048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "onResponseNotification(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Swift.Optional&lt;Swift.String&gt;) -&gt; () in ZebraKing.SessionManager.(onResponseNotification in _C967F477FDD113F571F009C20102F3B3)(completion: (ZebraKing.ChatNotification) -&gt; ()) -&gt; ()"
+                  moduleName = "ZebraKing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wufeiyue/Documents/GitHub/ZebraKing/ZebraKing/Classes/Manager/SessionManager.swift"
+                  timestampString = "561868964.25177"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ZebraKing.IMResult&lt;ZebraKing.Sender&gt;) -&gt; () in closure #1 (Swift.String, Swift.Optional&lt;Swift.String&gt;) -&gt; () in ZebraKing.SessionManager.(onResponseNotification in _C967F477FDD113F571F009C20102F3B3)(completion: (ZebraKing.ChatNotification) -&gt; ()) -&gt; ()"
+                  moduleName = "ZebraKing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wufeiyue/Documents/GitHub/ZebraKing/ZebraKing/Classes/Manager/SessionManager.swift"
+                  timestampString = "561868964.254873"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "162"
+                  endingLineNumber = "162"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

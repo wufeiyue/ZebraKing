@@ -153,9 +153,14 @@ private func openChattingViewController(with notification: ChatNotification) {
 
 1. 需要给MessageStatus一个(prepare)状态, 现在语音录制时, 使用的是发送中状态,导致真正到发送中时, 没有loading加载效果不好
 2. IMConversaion 消息加载封装到IMMessageList中, 利用MessagesList处理泛型消息
-3.IMMessage 消息依赖 receiver 现在已剔除, 不知道是否有逻辑遗漏
-4.未读消息, 提前发起监听的, 队列所有未读消息数, 显示正确
-5.取消消息未发出去时,使用sdk消息替换, 这样就不需要主动判断sender是我还是对方, 并且还不用在拉取资料给它赋值了
+3. IMMessage 消息依赖 receiver 现在已剔除, 不知道是否有逻辑遗漏
+4. 未读消息, 提前发起监听的, 队列所有未读消息数, 显示正确
+5. 取消消息未发出去时,使用sdk消息替换, 这样就不需要主动判断sender是我还是对方, 并且还不用在拉取资料给它赋值了
+6. 发消息出去, 个人资料不显示
+7. 消息加载时闪动效果体验不好
+8.语音消息不能播放
+9.已读未读回执不即时, 需要reloadView
+10.推到后台没有释放chatting, 锁屏也没有释放
 ## License
 
 ZebraKing is available under the MIT license. See the LICENSE file for more info.

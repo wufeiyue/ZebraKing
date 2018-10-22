@@ -17,6 +17,14 @@ public final class UserManager {
     /// 个人资料
     public private(set) var host: Sender?
     
+    //避免频繁调用查询好友资料的接口
+    private var lock: DispatchSemaphore = DispatchSemaphore(value: 1)
+    
+    //待查询资料的好友列表
+    private var waitQueryList = Array<String>()
+    
+    private var isBusy: Bool = false
+    
     /// 创建本地账户
     ///
     /// - Parameter id: 用户Id
@@ -42,17 +50,6 @@ public final class UserManager {
         
     }
     
-    //释放资源
-    public func free() {
-        host = nil
-        friendsList?.removeAll(keepingCapacity: false)
-        friendsList = nil
-    }
-    
-}
-
-extension UserManager {
-    
     /// 获取好友资料
     ///
     /// - Parameters:
@@ -60,31 +57,59 @@ extension UserManager {
     ///   - result: 结果
     public func queryFriendProfile(id: String, result: @escaping (IMResult<Sender>) -> Void) {
         
+        
         if let cacheUser = friendsList?[id], cacheUser.isLossNecessary == false {
             result(.success(cacheUser))
         }
         else {
-            
-            TIMFriendshipManager.sharedInstance()?.getUsersProfile([id], succ: { profile in
-                
-                if let unwrappedProfile = profile?.first as? TIMUserProfile {
-                    
-                    var sender = Sender(id: unwrappedProfile.identifier)
-                    sender.displayName = unwrappedProfile.nickname
-                    sender.facePath = unwrappedProfile.faceURL
-                    
-                    result(.success(sender))
-                    self.friendsList?[id] = sender
-                }
-                else {
-                    result(.failure(.unwrappedUsersProfileFailure))
-                }
-                
-            }, fail: { (code , str) in
-                result(.failure(.getUsersProfileFailure))
-            })
+            waitQueryList.append(id)
+            excute(result: result)
         }
     }
+    
+    //释放资源
+    public func free() {
+        host = nil
+        friendsList?.removeAll(keepingCapacity: false)
+        friendsList = nil
+    }
+    
+    public func excute(result: @escaping (IMResult<Sender>) -> Void) {
+        
+        _ = lock.wait(timeout: .distantFuture)
+        defer { lock.signal() }
+        
+        guard isBusy == false else { return }
+        isBusy = true
+        
+        let tempList = waitQueryList
+        
+        excuteQueryProfile(identifiers: tempList) {
+            
+            self.isBusy = false
+            
+            switch $0 {
+            case .success(let list):
+                list.forEach{ self.friendsList?[$0.id] = $0 }
+                
+                for _ in 0..<tempList.count {
+                    self.waitQueryList.removeFirst()
+                }
+                
+                result(.success(list.first!))
+                
+            case .failure(let value):
+                result(.failure(value))
+            }
+            
+            
+        }
+    
+    }
+    
+}
+
+extension UserManager {
     
     /// 获取自己的资料, (猜测selfProfile只是离线在本地, )
     public func updateHostProfile(result: @escaping (IMResult<(facePath: String?, displayName: String)>) -> Void) {
@@ -156,6 +181,39 @@ extension UserManager {
             
         }) { (code, str) in
             //TODO: 设置个人信息失败
+        }
+    }
+    
+    
+    /// 查询好友的资料
+    ///
+    /// - Parameters:
+    ///   - list: 等待查询的好友id的列表
+    ///   - result: 查询结果
+    private func excuteQueryProfile(identifiers list: Array<String>, result: @escaping (IMResult<Array<Sender>>) -> Void) {
+        DispatchQueue.main.async {
+            
+        TIMFriendshipManager.sharedInstance()?.getUsersProfile(list, succ: { profiles in
+            
+            if let unwrappedProfiles = profiles as? [TIMUserProfile] {
+                
+                let senders: Array<Sender> = unwrappedProfiles.map{
+                    var sender = Sender(id: $0.identifier)
+                    sender.displayName = $0.nickname
+                    sender.facePath = $0.faceURL
+                    return sender
+                }
+                
+                result(.success(senders))
+            }
+            else {
+                result(.failure(.unwrappedUsersProfileFailure))
+            }
+            
+        }, fail: { (code , str) in
+            result(.failure(.getUsersProfileFailure))
+        })
+            
         }
     }
 }

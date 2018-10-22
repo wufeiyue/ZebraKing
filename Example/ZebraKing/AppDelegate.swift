@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // 注册本地通知
-        registerLocalNotification()
+        registerRemoteNotifications(application)
         
         // 开发者申请key时可以拿到, 是固定值
         let accountType: String = mockSource[0].content
@@ -35,6 +35,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.onResponseNotification(notification)
             }
         }
+        
+        
+        guard let sign = mockSource.filter({ $0.identifier == "sign" }).first?.content else {
+            return true
+        }
+        
+        guard let id = mockSource.filter({ $0.identifier == "chatId" }).first?.content else {
+            return true
+        }
+        
+        guard let appid = mockSource.filter({ $0.identifier == "appid" }).first?.content else {
+            return true
+        }
+        
+        ZebraKing.login(sign: sign, userId: id, appidAt3rd: appid, result: { _ in
+            
+        })
+        
         
         return true
     }
@@ -53,6 +71,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(.newData)
     }
 
+    private func registerRemoteNotifications(_ application: UIApplication) {
+        
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+            
+            center.requestAuthorization(options: [.alert, .sound/*, .badge*/]) { (granted: Bool, error: Error?) in
+                if granted {
+                    DispatchQueue.main.async {
+                        print("用户允许通知")
+                        application.registerForRemoteNotifications()
+                    }
+                } else {
+                    // 通知关闭处理
+                }
+            }
+        } else {
+            let settings = UIUserNotificationSettings(types: [.alert, .sound /*, .badge*/], categories: nil)
+            application.registerForRemoteNotifications()
+            application.registerUserNotificationSettings(settings)
+        }
+        
+    }
+    
 }
 
 extension AppDelegate {
@@ -78,13 +120,15 @@ extension AppDelegate {
 }
 
 //MARK: - 本地通知
-extension AppDelegate {
+extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    // 注册本地通知
-    private func registerLocalNotification() {
-        let setting = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(setting)
-        UIApplication.shared.registerForRemoteNotifications()
+    /// 前台通知提醒，是否需要？？？
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // 本地通知提醒，目前用在 签到 通知提醒
+        if notification.request.identifier == "id" {
+            completionHandler(.alert)
+        }
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {

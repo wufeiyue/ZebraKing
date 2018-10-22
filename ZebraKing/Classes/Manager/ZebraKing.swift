@@ -53,16 +53,6 @@ open class ZebraKing {
     /// 开始聊天
     ///
     /// - Parameters:
-    ///   - notification: 内部传出来的通知模型
-    ///   - result: 返回结果 .success: 会话对象  .failure: 提示出错的log
-    public static func chat(notification: ChatNotification, result: @escaping (IMResult<Task>) -> Void) {
-        chat(receiver: notification.receiver, result: result)
-    }
-    
-    
-    /// 开始聊天
-    ///
-    /// - Parameters:
     ///   - receiver: 聊天的对象模型, 必要的参数是id
     ///   - result: 返回结果 .success: 会话对象  .failure: 提示出错的log
     public static func chat(receiver: Sender, result: @escaping (IMResult<Task>) -> Void) {

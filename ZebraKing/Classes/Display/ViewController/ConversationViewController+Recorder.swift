@@ -40,9 +40,9 @@ extension CommonConversationViewController: ChatAudioRecordDelegate {
     public func audioRecordFinish(_ uploadAmrData: Data, recordTime: TimeInterval) {
         //TODO: 替换最后一个消息, 发送消息
         let soundMsg = MessageElem(data: uploadAmrData, dur: Int32(recordTime), sender: currentSender())
-        dispatch_async_safely_to_main_queue { [weak self] in
-            self?.replaceLastMessage(newMsg: soundMsg)
-            self?.sendMsg(msg: soundMsg)
+        DispatchQueue.main.async {
+            self.replaceLastMessage(newMsg: soundMsg)
+            self.sendMsg(msg: soundMsg)
         }
     }
     
