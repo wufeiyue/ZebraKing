@@ -186,10 +186,10 @@ open class Conversation {
     /// 设置消息已读
     ///
     /// - Parameter message: SDK中的消息类型
-    public func alreadyRead(message: TIMMessage) {
+    public func alreadyRead(message: TIMMessage? = nil) {
         
         //必须是接收到的消息, 才可主动设置为已读
-        guard message.isSelf() == false else {
+        guard message?.isSelf() == false || message == nil else {
             //TODO: 筛选出最后一条对方的消息, 并设置为已读(数组排序要优化一下, 因为数据比较多)
             return
         }
@@ -199,6 +199,11 @@ open class Conversation {
         }) { (code, string) in
             //FIXME: - 设置消息已读失败, 将造成对方监听消息已读回执的方法不执行
         }
+    }
+    
+    /// 删除本地会话窗口
+    public func delete(with type: TIMConversationType) {
+        TIMManager.sharedInstance()?.deleteConversationAndMessages(type, receiver: receiverId)
     }
     
     //释放自己
@@ -257,7 +262,7 @@ extension Conversation: ConversationDelegate {
             }
             
             //将本地加载的这页数据时间最近的一条筛选出来, 然后设置为已读
-            if let lastOtherMessage = messages.first(where: { $0.isSelf() == false }), lastOtherMessage.isReaded() == false {
+            if let lastOtherMessage = messages.first(where: { $0.isSelf() == false }), lastOtherMessage.isPeerReaded() == false {
                 self?.alreadyRead(message: lastOtherMessage)
             }
             
@@ -284,18 +289,18 @@ extension Conversation: Hashable {
     }
     
     /// 获取会话人，单聊为对方账号，群聊为群组Id
-    var receiverId: String {
+    public var receiverId: String {
         return conversation.getReceiver()
     }
     
     /// 会话类型
-    var type: TIMConversationType {
+    public var type: TIMConversationType {
         return conversation.getType()
     }
     
     /// 加载最新一条消息
     /// 在收到推送消息过来的时候,如果没有lastMessage,就手动检索本地最新消息
-    var getLastMessage: String? {
+    public var getLastMessage: String? {
         
         if self.lastMessage != nil { return lastMessage?.messageTip }
         
@@ -309,7 +314,7 @@ extension Conversation: Hashable {
     }
     
     /// 未读消息数
-    var unreadMessageCount: Int {
+    public var unreadMessageCount: Int {
         return Int(conversation.getUnReadMessageNum())
     }
 }

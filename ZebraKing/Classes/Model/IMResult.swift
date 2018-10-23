@@ -11,7 +11,7 @@ import Foundation
 public typealias SendResultCompletion = (_ result: IMResult<Bool>) -> Void
 public typealias LoadResultCompletion = (_ result: IMResult<Array<MessageElem>>) -> Void
 public typealias MessageListCompletion = (_ message: Array<MessageElem>) -> Void
-public typealias CountCompletion = (Int) -> Void
+public typealias CountCompletion = (Int?) -> Void
 public typealias EmptyCompletion = () -> Void
 
 

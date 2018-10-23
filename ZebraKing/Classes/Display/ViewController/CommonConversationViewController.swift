@@ -9,25 +9,41 @@ import Foundation
 
 open class CommonConversationViewController: ConversationViewController, ConversationInputBarDelegate {
     
-    open var conversationInputBar: ConversationInputBar!
+    open lazy var conversationInputBar: ConversationInputBar = { [unowned self] in
+        let bar = ConversationInputBar()
+        bar.delegate = self
+        bar.status = .normal
+        bar.backgroundColor = UIColor(red: 250/255.0, green: 250/255.0, blue: 250/255.0, alpha: 1.0)
+        return bar
+    }()
     
     //音频指示器
     lazy var voiceIndicator: VoiceIndicatorView = setupVoiceIndicatorView()
     
-    //音频输入类
-    lazy var soundRecorder: ChatSoundRecorder = ChatSoundRecorder(delegate: self)
+    //音频输入类 因为子类重写需要调用, 这里放开作用域
+    public lazy var soundRecorder: ChatSoundRecorder = ChatSoundRecorder(delegate: self)
     
     //播放管理类
     lazy var chatAudioPlay = IMChatAudioPlayManager()
     
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-     
-        conversationInputBar = ConversationInputBar()
-        conversationInputBar.delegate = self
-        conversationInputBar.status = .normal
-        conversationInputBar.backgroundColor = UIColor(red: 250/255.0, green: 250/255.0, blue: 250/255.0, alpha: 1.0)
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: nil) { _ in
+            self.task.active()
+        }
+
+        NotificationCenter.default.addObserver(forName: .UIApplicationWillResignActive, object: nil, queue: nil) { _ in
+            self.task.resign()
+        }
+        
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
     }
     
     /// 自定义底部工具栏
@@ -64,7 +80,7 @@ open class CommonConversationViewController: ConversationViewController, Convers
     }
     
     public override func didContainer(in cell: MessageCollectionViewCell, message: MessageType) {
-        conversationInputBar.inputTextView.resignFirstResponder()
+        messageInputBar.inputTextView.resignFirstResponder()
     }
     
     public override func didTapMessage(in cell: MessageCollectionViewCell, message: MessageType) {

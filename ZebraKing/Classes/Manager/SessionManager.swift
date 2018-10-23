@@ -24,6 +24,18 @@ open class SessionManager {
     //单例模式
     public static var `default` = SessionManager()
     
+    //存在于列表中的所有会话
+    public var conversationList: Set<Conversation> {
+        return centralManager.conversationList
+    }
+    
+    //处于会话页面时, 是否将通知来的消息, 自动设置为已读
+    public var isAutoDidReadedWhenReceivedMessage: Bool = true {
+        didSet {
+            centralManager.isAutoDidReadedWhenReceivedMessage = isAutoDidReadedWhenReceivedMessage
+        }
+    }
+    
     required public init() { }
     
     /// 初始化注册
@@ -169,10 +181,6 @@ open class SessionManager {
     //FIXME: - 释放活跃得会话
     public func waiveChat() {
         centralManager.waiveChat()
-    }
-    
-    public func deleteConversation(with type: TIMConversationType, id: String) {
-        centralManager.deleteConversation(with: type, id: id)
     }
     
 }

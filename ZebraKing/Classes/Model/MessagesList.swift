@@ -50,6 +50,12 @@ public struct MessagesList<T> where T: MessageType & TimestampType, T: Hashable 
         type = .remove
     }
     
+    mutating func replaceLast(_ newElement: T) {
+        guard list.isEmpty == false else { return }
+        let range: Range<Int> = list.count - 1 ..< list.count
+        list.replaceSubrange(range, with: [newElement])
+    }
+    
     public mutating func replace(_ newElement: T) {
         removeLast()
         append(newElement)
@@ -93,6 +99,7 @@ public struct MessagesList<T> where T: MessageType & TimestampType, T: Hashable 
 }
 
 extension MessagesList {
+    
     public var isEmpty: Bool {
         return list.isEmpty
     }
@@ -116,5 +123,6 @@ extension MessagesList {
     public subscript(index: Int) -> T {
         return list[index]
     }
+
 }
 

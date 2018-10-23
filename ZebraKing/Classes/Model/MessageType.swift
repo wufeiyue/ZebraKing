@@ -63,12 +63,11 @@ public final class MessageElem {
     /// 时间戳构造方法
     ///
     /// - Parameter dateMessage: 日期
-    init(dateMessage: Date) {
+    public init(dateMessage: Date) {
         self.dateMessage = dateMessage
     }
     
-    
-    init(message: TIMMessage) {
+    public init(message: TIMMessage) {
         self.message = message
     }
     
@@ -76,7 +75,7 @@ public final class MessageElem {
     /// 文本构造方法
     ///
     /// - Parameter text: 文本内容
-    init(text: String, sender: Sender?) {
+    public init(text: String, sender: Sender?) {
         
         let textEle = TIMTextElem()
         textEle.text = text
@@ -94,7 +93,7 @@ public final class MessageElem {
     /// - Parameters:
     ///   - data: 音频二进制数据
     ///   - dur: 音频时长
-    init(data: Data, dur: Int32, sender: Sender?) {
+    public init(data: Data, dur: Int32, sender: Sender?) {
         
         let soundEle = TIMSoundElem()
         
@@ -358,6 +357,8 @@ extension MessageElem: MessageType {
         }
     }
 }
+
+extension MessageElem: TimestampType { }
 
 extension MessageElem: Hashable {
     

@@ -63,15 +63,8 @@ open class MessagesViewController: UIViewController {
         messagesCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCellKey")
         messagesCollection.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditingKeyboard))
-        messagesCollection.addGestureRecognizer(tap)
     }
 
-    @objc
-    private func endEditingKeyboard() {
-        messageInputBar?.inputTextView.resignFirstResponder()
-    }
-    
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         resignFirstResponder()

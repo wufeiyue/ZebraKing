@@ -109,7 +109,7 @@ open class MessageInputBar: UIView {
     }
     
     @objc
-    private func textViewDidBeginEditing() {
+    open func textViewDidBeginEditing() {
         if inputTextViewText != nil {
             defer {
                 inputTextViewText = nil

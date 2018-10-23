@@ -25,6 +25,9 @@ open class Task: NSObject {
     //FIXME: 有的会话不需要监听已读未读消息, 后期考虑做成插件, 可选的功能
     private var isNeedListenterUpdateReceiveMessage: Bool = true
     
+    //加载消息条数
+    public var loadMessageCount: Int = 20
+    
     public init(host: Sender, receiver: Sender, conversation: Conversation) {
         self.host = host
         self.receiver = receiver
@@ -82,10 +85,9 @@ open class Task: NSObject {
     /// 切换到本会话前，先加载本地的最后count条聊天的数据
     ///
     /// - Parameters:
-    ///   - count: 加载条数
     ///   - completion: 异步回调,返回加载的message数组,数组不为空即为加载成功
-    open func loadRecentMessages(count:Int, completion:@escaping LoadResultCompletion) {
-        conversation.loadRecentMessages(count: count) { (result) in
+    open func loadRecentMessages(completion:@escaping LoadResultCompletion) {
+        conversation.loadRecentMessages(count: loadMessageCount) { (result) in
             switch result {
             case .success(let messages):
 
@@ -133,6 +135,18 @@ open class Task: NSObject {
         SessionManager.default.queryFriendProfile(id: id, result: result)
     }
     
+    //当页面被电话, 锁屏打断时, 就不将接收到的消息自动设置为已读状态, 和active搭配使用
+    public func resign() {
+        SessionManager.default.isAutoDidReadedWhenReceivedMessage = false
+    }
+    
+    //当重新回到页面时, 将全部消息设置为已读, 和resign搭配使用
+    public func active() {
+        SessionManager.default.isAutoDidReadedWhenReceivedMessage = true
+        conversation.alreadyRead()
+    }
+    
+    
 }
 
 extension Task: TIMMessageReceiptListener {
@@ -145,19 +159,23 @@ extension Task: TIMMessageReceiptListener {
         for receipt in list {
             
             //是否为同一个会话
-            guard receipt.conversation.getReceiver() == conversation.conversation.getReceiver() else {
+            guard receipt.conversation.getReceiver() == conversation.receiverId else {
                 return
             }
             
-            //最后一条消息为已读状态,就直接跳过处理
-            let lastMsgs = conversation.conversation.getLastMsgs(1) as! [TIMMessage]
-            guard let lastMessage = lastMsgs.first else { return }
-            
-            if lastMessage.isSelf() && lastMessage.isPeerReaded(){
-                DispatchQueue.main.async {
-                    self.conversation.alreadyRead(message: lastMessage)
-                    self.updateReceiveMessagesCompletion?()
+            //从本地缓存中, 取最新一条消息
+            if let lastMessage = conversation.conversation.getLastMsgs(1).first as? TIMMessage {
+
+                //消息是我发出去的, 并且对方已读
+                if lastMessage.isSelf() && lastMessage.isPeerReaded() {
+                    //设置为已读
+                    conversation.alreadyRead()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.updateReceiveMessagesCompletion?()
+                    }
+                    return
                 }
+
             }
             
         }

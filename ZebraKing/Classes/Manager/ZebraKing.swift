@@ -59,8 +59,14 @@ open class ZebraKing {
         SessionManager.default.chat(receiver: receiver, result: result)
     }
     
-    public func deleteConversation(id: String) {
-        SessionManager.default.deleteConversation(with: .C2C, id: id)
+    
+    /// 移除会话, 并清空消息记录
+    ///
+    /// - Parameter id: 会话id, 仅支持C2C
+    public static func deleteConversation(where rule: (Conversation) -> Bool) {
+        SessionManager.default.conversationList.forEach{
+            if rule($0) { $0.delete(with: .C2C) }
+        }
     }
     
 }
@@ -68,7 +74,7 @@ open class ZebraKing {
 //MARK: - CentralManager
 extension ZebraKing {
     
-    /// 监听指定会话的未读消息数
+    /// 监听指定会话的未读消息数 如果消息回调结果为nil, 表示没有获取会话, 可能是没有登录成功
     public static func listenerUnreadMessage(with id: String, completion:@escaping CountCompletion) {
         SessionManager.default.listenerUnreadMessage(id: id, completion: completion)
     }

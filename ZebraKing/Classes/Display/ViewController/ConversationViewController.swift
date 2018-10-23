@@ -11,8 +11,8 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
 
     public let task: Task
     
-    //FIXME: - 替换成 MessagesList<IMMessage>()
-    public var messagesList = IMMessageList()  //消息列表
+    //消息列表
+    public var messagesList = MessagesList<MessageElem>()
     
     public init(task: Task) {
         self.task = task
@@ -46,11 +46,12 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         
         //已读回执,刷新tableView
         task.listenerUpdateReceiptMessages { [unowned self] in
+            //因为可能好几条消息都未读, 这里只刷新一个item还不行, 要reloadData
             self.messagesCollection.reloadData()
         }
         
-        let loadCompletion: LoadResultCompletion = { [unowned self] (result) in
-            
+        //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
+        task.loadRecentMessages { [unowned self] (result) in
             switch result {
             case .success(let receiveMsg):
                 
@@ -65,53 +66,48 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
                 break
             }
         }
-        
-        //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
-        task.loadRecentMessages(count: 20, completion: loadCompletion)
     }
     
     @objc
     func loadMoreMessages() {
         
-        let count: Int = 20
-        
-        let refreshCompletion: LoadResultCompletion = { [weak self] (result) in
+        //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
+        task.loadRecentMessages { [weak self] (result) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            
+                guard let this = self else { return }
                 
                 switch result {
                 case .success(let receiveMsg):
-                    
+                
                     guard receiveMsg.isEmpty == false else {
-                        self?.messagesCollection.endRefreshingAndNoMoreData()
+                        this.messagesCollection.endRefreshingAndNoMoreData()
                         return
                     }
-                    
+                
                     //1.插入数据
-                    self?.messagesList.inset(newsList: receiveMsg)
+                    this.messagesList.inset(newsList: receiveMsg)
                     //下拉加载资源时, 会导致selectedIndex索引位置改变, 需要手动更新一下
-                    self?.selectedIndexPath?.section += receiveMsg.count
+                    this.selectedIndexPath?.section += receiveMsg.count
                     
                     //2.刷新TableView
-                    self?.messagesCollection.reloadDataAndKeepOffset()
+                    this.messagesCollection.reloadDataAndKeepOffset()
                     
                     //3.收起菊花, 如果没有更多数据, 就隐藏indicator
-                    if receiveMsg.count <= count {
-                        self?.messagesCollection.endRefreshingAndNoMoreData()
+                    if receiveMsg.count <= this.task.loadMessageCount {
+                        this.messagesCollection.endRefreshingAndNoMoreData()
                     }
                     else {
-                        self?.messagesCollection.endRefreshing()
+                        this.messagesCollection.endRefreshing()
                     }
-                    
-                case .failure:
-                    self?.showToast(message: "数据拉取失败, 请退出重试")
-                    self?.messagesCollection.endRefreshing()
-                }
                 
+                case .failure:
+                    this.showToast(message: "数据拉取失败, 请退出重试")
+                    this.messagesCollection.endRefreshing()
+                }
+            
             })
         }
-        
-        //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
-        task.loadRecentMessages(count: count, completion: refreshCompletion)
     }
     
     //FIXME: - 后期要后话, conversation自己控制生命周期
@@ -212,14 +208,14 @@ extension ConversationViewController {
     }
     
     //已测试
-    func onMessageWillSend(_ message: MessageElem) {
+    public func onMessageWillSend(_ message: MessageElem) {
         messagesList.append(message)
         messagesCollection.insertSections(messagesList.indexSet)
         messagesCollection.scrollToBottom()
         messageInputBar.inputTextView.text = String()
     }
     
-    func replaceLastMessage(newMsg: MessageElem) {
+    public func replaceLastMessage(newMsg: MessageElem) {
         messagesList.replaceLast(newMsg)
         messagesCollection.performBatchUpdates(nil)
         if messagesList.count >= 1 {
@@ -230,7 +226,7 @@ extension ConversationViewController {
     /// 发送消息
     ///
     /// - Parameter msg:
-    func sendMsg(msg: MessageElem) {
+    public func sendMsg(msg: MessageElem) {
         
         //发送消息
         task.send(message: msg) { [weak self](result) in

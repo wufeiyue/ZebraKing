@@ -8,18 +8,18 @@
 
 ## 产品特色
 
+- [x] 高度可定制会话页面, 会话页面分3层结构,依次负责UI、IM、Business
 - [x] 支持富文本、语音、图片、视频、地理位置等消息,并可根据需求添加自定义消息类型
 - [x] 文本消息支持手机号,地址,日期,URL识别
 - [x] 支持根据chatId在未获取会话对象时,先监听未读消息数,降低耦合性,也不会造成内存泄漏
-- [x] 高扩展性,支持自定义页面, 会话页面分3层结构,依次负责UI、IM、Business。 根据需要自由继承
-- [x] 不依赖别的第三方库, 没有过多依赖
-- [x] 算了,懒得写了,有时间再补充
+- [x] 没有过多依赖第三方库
+- [x] 发送消息时, 根据上下文判断自动添加时间戳
 
 ## 要求
 
 - iOS 8.2
-- Xcode 10
-- Swift 4.2
+- Xcode 9.4.1
+- Swift 4.1
 
 ## 配置
 
@@ -28,7 +28,7 @@
 不出意外你现在使用的应该是swift项目, 但还是想提醒一下在Podfile别忘记加`use_frameworks!`然后就是在 Podfile中配置:
 
 ```ruby
-pod 'ZebraKing', '~> 2.0.2'
+pod 'ZebraKing', '~> 2.0.5'
 ```
 
 ### 手动安装
@@ -64,7 +64,7 @@ IM聊天支持语音输入,苹果在iOS8.0以后的版本中做了限制, 所以
 
 
 
-### 注册
+### 基础配置并处理消息通知的回调
 
 在AppDelegate中完成初始化, 找到` didFinishLaunchingWithOptions` 方法:
 
@@ -73,8 +73,9 @@ IM聊天支持语音输入,苹果在iOS8.0以后的版本中做了限制, 所以
 let accountType: String = 12345
 let appidAt3rd: String = 1234512345
 
-ZebraKing.register(accountType: accountType, appidAt3rd: appidAt3rd, delegate: self)
-        
+ZebraKing.register(accountType: accountType, appidAt3rd: appid) { notification in
+    self.onResponseNotification(notification)
+}       
 ```
 ZebraKing将消息通知的回调暴露接口供外部使用, 开发者可以利用回调方法处理消息在前台或后台的展示逻辑, 如果消息是在App切到后台发过来的,这个时候还添加本地通知的逻辑,当收到消息需要打开会话页面时, SDK有提供一个专门的接口可实现操作, 这里需要遵守`ZebraKingDelegate`协议:
 
@@ -85,7 +86,14 @@ ZebraKing将消息通知的回调暴露接口供外部使用, 开发者可以利
 ```swift
 let sign = xxxxxxx
 let id = 123456
-ZebraKing.login(sign: sign, userId: id)
+ZebraKing.login(sign: sign, userId: id, appidAt3rd: appid, result: { 
+    switch $0 {
+    case .success:
+    //TODO:登录成功
+    case .failure(let error):
+    //TODO:登录失败
+    }
+})
 ```
 
 
@@ -93,7 +101,7 @@ ZebraKing.login(sign: sign, userId: id)
 ### 发起会话
 
 ```swift
-ZebraKing.chat(notification: chatNotification) { result in
+ZebraKing.chat(id: receiveId) { result in
                 switch result {
                 case .success(let conversation):
                     let chattingViewController = ChattingViewController(conversation: conversation)
@@ -133,7 +141,7 @@ func onResponseNotification(_ notification: ChatNotification) {
 }
 
 private func openChattingViewController(with notification: ChatNotification) {
-     ZebraKing.chat(notification: notification) { result in
+     ZebraKing.chat(id: notification.receiver.id) { result in
            switch result {
            case .success(let conversation):
                 let vc = ChattingViewController(conversation: conversation)
@@ -152,15 +160,10 @@ private func openChattingViewController(with notification: ChatNotification) {
 ### 下个版本需要优化的内容
 
 1. 需要给MessageStatus一个(prepare)状态, 现在语音录制时, 使用的是发送中状态,导致真正到发送中时, 没有loading加载效果不好
-2. IMConversaion 消息加载封装到IMMessageList中, 利用MessagesList处理泛型消息
-3. IMMessage 消息依赖 receiver 现在已剔除, 不知道是否有逻辑遗漏
-4. 未读消息, 提前发起监听的, 队列所有未读消息数, 显示正确
-5. 取消消息未发出去时,使用sdk消息替换, 这样就不需要主动判断sender是我还是对方, 并且还不用在拉取资料给它赋值了
-6. 发消息出去, 个人资料不显示
-7. 消息加载时闪动效果体验不好
-8.语音消息不能播放
-9.已读未读回执不即时, 需要reloadView
-10.推到后台没有释放chatting, 锁屏也没有释放
+2. 取消消息未发出去时,使用sdk消息替换, 这样就不需要主动判断sender是我还是对方, 并且还不用在拉取资料给它赋值了
+3. 发消息出去, 个人资料不显示
+4. 消息加载时闪动效果体验不好
+
 ## License
 
 ZebraKing is available under the MIT license. See the LICENSE file for more info.

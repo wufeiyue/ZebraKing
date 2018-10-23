@@ -26,6 +26,9 @@ open class CentralManager: NSObject {
     //当前聊天的对象
     private var chattingConversation: Conversation?
     
+    //处于会话页面时, 是否将通知来的消息, 自动设置为已读
+    public var isAutoDidReadedWhenReceivedMessage: Bool = true
+    
     /// 主动触发聊天
     ///
     /// - Parameters:
@@ -73,10 +76,6 @@ open class CentralManager: NSObject {
         onResponseNotification.remove(listenerMessages)
     }
     
-    /// 删除本地会话窗口
-    public func deleteConversation(with type: TIMConversationType, id: String) {
-        TIMManager.sharedInstance()?.deleteConversationAndMessages(type, receiver: id)
-    }
 }
 
 //MARK: - 未读消息
@@ -100,13 +99,13 @@ extension CentralManager {
     public func listenerUnReadCount(with type: TIMConversationType, id: String, completion:@escaping CountCompletion) {
         
         let wrappedConversation = conversation(with: type, id: id)
-        let unreadCount = wrappedConversation?.unreadMessageCount ?? 0
         
         let onresponseNotification: ListenterMessages.NotificationCompletion = { ( _, _ )in
-            completion(unreadCount)
+            completion(wrappedConversation?.unreadMessageCount)
         }
         
         onResponseNotification.insert(ListenterMessages(flag: .unreadMessage, completion: onresponseNotification))
+        completion(wrappedConversation?.unreadMessageCount)
     }
     
     public func removeListenerUnReadCount() {
@@ -131,7 +130,7 @@ extension CentralManager: TIMMessageListener {
                 didExistingConversation.onReceiveMessageCompletion?(message)
                 
                 //正处于当前活跃的会话页面时,将消息设置为已读
-                if didExistingConversation == chattingConversation {
+                if didExistingConversation == chattingConversation && isAutoDidReadedWhenReceivedMessage {
                     chattingConversation?.alreadyRead(message: message)
                     return
                 }
