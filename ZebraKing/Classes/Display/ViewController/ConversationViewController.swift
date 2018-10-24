@@ -7,12 +7,9 @@
 
 import UIKit
 
-open class ConversationViewController: MessagesViewController, MessageCellDelegate, Toastable {
+open class ConversationViewController: MessagesViewController, MessageCellDelegate, ChatAudioRecordDelegate {
 
     public let task: Task
-    
-    //消息列表
-    public var messagesList = MessagesList<MessageElem>()
     
     public init(task: Task) {
         self.task = task
@@ -40,7 +37,6 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         
         //监听新消息过来
         task.listenerNewMessage(completion: { [unowned self](receiveMsg) in
-            self.messagesList.addList(newsList: receiveMsg)
             self.messagesCollection.reloadDataAndKeepOffset()
         })
         
@@ -50,64 +46,51 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
             self.messagesCollection.reloadData()
         }
         
-        //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
-        task.loadRecentMessages { [unowned self] (result) in
-            switch result {
-            case .success(let receiveMsg):
-                
-                guard receiveMsg.isEmpty == false else { return }
-                
-                self.messagesList.addList(newsList: receiveMsg)
-                self.messagesCollection.reloadData()
-                self.messagesCollection.scrollToBottom()
-                
-            case .failure:
-                self.showToast(message: "数据拉取失败, 请退出重试")
-                break
-            }
-        }
+        loadMoreMessages()
     }
     
-    @objc
-    func loadMoreMessages() {
+    private func loadMoreMessages() {
         
         //FIXME: - loadRecentMessages要在viewController销毁时, 置为nil, 否则会因为逃逸闭包, unowned修饰引起崩溃
-        task.loadRecentMessages { [weak self] (result) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+        task.loadRecentMessages { [weak self] (result, isFirstLoadData) in
+           
+            guard let this = self else { return }
             
-                guard let this = self else { return }
+            switch result {
+            case .success(let receiveMsg):
+            
+                guard receiveMsg.isEmpty == false else {
+                    this.messagesCollection.endRefreshingAndNoMoreData()
+                    return
+                }
                 
-                switch result {
-                case .success(let receiveMsg):
-                
-                    guard receiveMsg.isEmpty == false else {
-                        this.messagesCollection.endRefreshingAndNoMoreData()
-                        return
-                    }
-                
-                    //1.插入数据
-                    this.messagesList.inset(newsList: receiveMsg)
+                if isFirstLoadData {
+                    this.messagesCollection.reloadDataAndMoveToBottom()
+                }
+                else {
+                    
                     //下拉加载资源时, 会导致selectedIndex索引位置改变, 需要手动更新一下
                     this.selectedIndexPath?.section += receiveMsg.count
                     
-                    //2.刷新TableView
+                    //1.刷新TableView
                     this.messagesCollection.reloadDataAndKeepOffset()
                     
-                    //3.收起菊花, 如果没有更多数据, 就隐藏indicator
+                    //2.收起菊花, 如果没有更多数据, 就隐藏indicator
                     if receiveMsg.count <= this.task.loadMessageCount {
                         this.messagesCollection.endRefreshingAndNoMoreData()
                     }
                     else {
                         this.messagesCollection.endRefreshing()
                     }
-                
-                case .failure:
-                    this.showToast(message: "数据拉取失败, 请退出重试")
-                    this.messagesCollection.endRefreshing()
                 }
-            
-            })
+                
+            case .failure:
+                this.showToast(message: "数据拉取失败, 请退出重试")
+                this.messagesCollection.endRefreshing()
+            }
+        
         }
+        
     }
     
     //FIXME: - 后期要后话, conversation自己控制生命周期
@@ -119,13 +102,17 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
     final override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         //避免消息过多，内存激增。
-        messagesList.removeSubrange(num: 20)
+        task.removeSubrange()
         messagesCollection.reloadData()
     }
     
     public func didTapMessage(in cell: MessageCollectionViewCell, message: MessageType) { }
     
     public func didContainer(in cell: MessageCollectionViewCell, message: MessageType) { }
+    
+    func showToast(message: String) {
+        fatalError("子类必须实现")
+    }
 }
 
 extension ConversationViewController: MessagesDataSource {
@@ -149,12 +136,14 @@ extension ConversationViewController: MessagesDataSource {
     }
     
     public func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messagesList[indexPath.section]
+        return task.messagesList[indexPath.section]
     }
     
     public func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messagesList.count
+        return task.messagesList.count
     }
+    
+    
     
 }
 
@@ -196,29 +185,29 @@ extension ConversationViewController: MessagesDisplayDelegate {
 extension ConversationViewController {
     
     func onMessageCancelSend() {
-        guard messagesList.isEmpty == false else { return }
+        guard task.messagesList.isEmpty == false else { return }
         
-        messagesList.removeLast()
+        task.removeLast()
         //FIXME: - 不用刷新是否可行
-        messagesCollection.deleteSections(messagesList.indexSet)
+        messagesCollection.deleteSections(task.messagesList.indexSet)
 
-        if messagesList.isEmpty == false {
+        if task.messagesList.isEmpty == false {
             messagesCollection.reloadDataAndKeepOffset()
         }
     }
     
     //已测试
     public func onMessageWillSend(_ message: MessageElem) {
-        messagesList.append(message)
-        messagesCollection.insertSections(messagesList.indexSet)
+        task.append(message)
+        messagesCollection.insertSections(task.messagesList.indexSet)
         messagesCollection.scrollToBottom()
         messageInputBar.inputTextView.text = String()
     }
     
     public func replaceLastMessage(newMsg: MessageElem) {
-        messagesList.replaceLast(newMsg)
+        task.replaceLast(newMsg)
         messagesCollection.performBatchUpdates(nil)
-        if messagesList.count >= 1 {
+        if task.messagesList.count >= 1 {
             messagesCollection.reloadDataAndKeepOffset()
         }
     }
@@ -231,13 +220,13 @@ extension ConversationViewController {
         //发送消息
         task.send(message: msg) { [weak self](result) in
             //FIXME: - code 值不对
-            if case .failure(let error) = result, error._code == 80001 {
+            if case .failure(let error) = result, error == .unsafe {
                 self?.showToast(message: "请不要发送敏感词汇")
                 self?.onMessageCancelSend()
                 return
             }
             
-            guard let section = self?.messagesList.index(of: msg) else { return }
+            guard let section = self?.task.messagesList.index(of: msg) else { return }
             self?.messagesCollection.reloadSections([section])
         }
         

@@ -55,7 +55,7 @@ public final class UserManager {
     /// - Parameters:
     ///   - id: 唯一id
     ///   - result: 结果
-    public func queryFriendProfile(id: String, result: @escaping (IMResult<Sender>) -> Void) {
+    public func queryFriendProfile(id: String, result: @escaping (Result<Sender>) -> Void) {
         
         
         if let cacheUser = friendsList?[id], cacheUser.isLossNecessary == false {
@@ -74,7 +74,7 @@ public final class UserManager {
         friendsList = nil
     }
     
-    public func excute(result: @escaping (IMResult<Sender>) -> Void) {
+    public func excute(result: @escaping (Result<Sender>) -> Void) {
         
         _ = lock.wait(timeout: .distantFuture)
         defer { lock.signal() }
@@ -112,7 +112,7 @@ public final class UserManager {
 extension UserManager {
     
     /// 获取自己的资料, (猜测selfProfile只是离线在本地, )
-    public func updateHostProfile(result: @escaping (IMResult<(facePath: String?, displayName: String)>) -> Void) {
+    public func updateHostProfile(result: @escaping (Result<(facePath: String?, displayName: String)>) -> Void) {
         TIMFriendshipManager.sharedInstance().getSelfProfile({
             
             var profile: (facePath: String?, displayName: String) = (nil, "")
@@ -190,7 +190,7 @@ extension UserManager {
     /// - Parameters:
     ///   - list: 等待查询的好友id的列表
     ///   - result: 查询结果
-    private func excuteQueryProfile(identifiers list: Array<String>, result: @escaping (IMResult<Array<Sender>>) -> Void) {
+    private func excuteQueryProfile(identifiers list: Array<String>, result: @escaping (Result<Array<Sender>>) -> Void) {
         DispatchQueue.main.async {
             
         TIMFriendshipManager.sharedInstance()?.getUsersProfile(list, succ: { profiles in

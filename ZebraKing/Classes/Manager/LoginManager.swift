@@ -19,7 +19,7 @@ public final class LoginManager: NSObject {
         return TIMManager.sharedInstance().getLoginStatus() == .STATUS_LOGINED
     }
     
-    private var loginCompletion: ((IMResult<Bool>) -> Void)!
+    private var loginCompletion: ((Result<Bool>) -> Void)!
     private var timer: Timer?
     //是否正在登录中
     private var isBusy: Bool = false
@@ -41,7 +41,7 @@ public final class LoginManager: NSObject {
     ///
     /// - Parameters:
     ///   - result: 结果 .success 登录成功 true  .failure 登录失败
-    public func login(result: @escaping (IMResult<Bool>) -> Void) {
+    public func login(result: @escaping (Result<Bool>) -> Void) {
         
         loginCompletion = result
         

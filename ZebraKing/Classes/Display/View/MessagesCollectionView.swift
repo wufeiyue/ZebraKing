@@ -80,4 +80,19 @@ open class MessagesCollectionView: UICollectionView {
         setContentOffset(newOffset, animated: false)
     }
     
+    //数据加载并移至最底部
+    public func reloadDataAndMoveToBottom() {
+        
+        reloadData()
+        
+        let collectionViewContentHeight = collectionViewLayout.collectionViewContentSize.height
+        
+        guard collectionViewContentHeight > 0 else {
+            return
+        }
+        
+        let newOffset = CGPoint(x: contentOffset.x, y: contentOffset.y + collectionViewContentHeight)
+        setContentOffset(newOffset, animated: false)
+        
+    }
 }

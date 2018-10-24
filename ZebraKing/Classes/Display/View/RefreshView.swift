@@ -102,7 +102,7 @@ open class RefreshView: UIView {
         completion?()
         
     }
-    
+
     override open func layoutSubviews() {
         super.layoutSubviews()
         indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)

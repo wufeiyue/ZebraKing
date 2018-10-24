@@ -28,7 +28,7 @@ open class ZebraKing {
     ///   - sign: 服务器分配的签名
     ///   - userId: 服务器分配的用户id
     ///   - result: 登录结果的回调
-    public static func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (IMResult<Bool>) -> Void) {
+    public static func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (Result<Bool>) -> Void) {
         SessionManager.default.login(sign: sign, userId: userId, appidAt3rd: appidAt3rd, result: result)
     }
     
@@ -36,7 +36,7 @@ open class ZebraKing {
     /// 退出登录
     ///
     /// - Parameter result: 结果
-    public static func logout(result: @escaping (IMResult<Bool>) -> Void) {
+    public static func logout(result: @escaping (Result<Bool>) -> Void) {
         SessionManager.default.logout(result: result)
     }
     
@@ -45,7 +45,7 @@ open class ZebraKing {
     /// - Parameters:
     ///   - id: 为对方用户 identifier
     ///   - result: 返回结果, .success: 会话对象  .failure: 提示出错的log
-    public static func chat(id: String, result: @escaping (IMResult<Task>) -> Void) {
+    public static func chat(id: String, result: @escaping (Result<Task>) -> Void) {
         chat(receiver: Sender(id: id), result: result)
     }
     
@@ -55,7 +55,7 @@ open class ZebraKing {
     /// - Parameters:
     ///   - receiver: 聊天的对象模型, 必要的参数是id
     ///   - result: 返回结果 .success: 会话对象  .failure: 提示出错的log
-    public static func chat(receiver: Sender, result: @escaping (IMResult<Task>) -> Void) {
+    public static func chat(receiver: Sender, result: @escaping (Result<Task>) -> Void) {
         SessionManager.default.chat(receiver: receiver, result: result)
     }
     

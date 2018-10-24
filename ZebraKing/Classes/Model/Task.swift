@@ -18,6 +18,9 @@ open class Task: NSObject {
     /// 聊天对象
     public var receiver: Sender!
     
+    //消息列表
+    public private(set) var messagesList = MessagesList<MessageElem>()
+    
     /// 会话
     private let conversation: Conversation
     
@@ -53,6 +56,8 @@ open class Task: NSObject {
         TIMManager.sharedInstance().getUserConfig().receiptListener = nil
     }
     
+    
+    
     /// 监听收到的消息
     ///
     /// - Parameter msg: 收到的消息
@@ -62,8 +67,13 @@ open class Task: NSObject {
             self.conversation.listenerNewMessage(completion: { (list) in
                 
                 self.queryFriendProfile(id: self.receiver.id, result: {
+                    
+                    let receiverMsgList = self.updateMessages(list)
+                    
                     self.receiver = $0.value
-                    completion(self.updateMessages(list))
+                    self.messagesList.addList(newsList: receiverMsgList)
+                    
+                    completion(receiverMsgList)
                 })
                 
                 if self.isNeedListenterUpdateReceiveMessage {
@@ -85,21 +95,26 @@ open class Task: NSObject {
     /// 切换到本会话前，先加载本地的最后count条聊天的数据
     ///
     /// - Parameters:
-    ///   - completion: 异步回调,返回加载的message数组,数组不为空即为加载成功
-    open func loadRecentMessages(completion:@escaping LoadResultCompletion) {
+    ///   - completion: 异步回调,返回加载的message数组,有可能回调成功时, 返回的数据为空
+    open func loadRecentMessages(completion:@escaping (Result<Array<MessageElem>>, Bool) -> Void) {
         conversation.loadRecentMessages(count: loadMessageCount) { (result) in
+            
+            let isFirstLoadData = self.messagesList.isEmpty
+            
             switch result {
             case .success(let messages):
 
                 //依据本地是否有消息记录, 如果有记录再获取好友资料
                 guard messages.isEmpty == false else {
-                    completion(.success(messages))
+                    completion(.success(messages), isFirstLoadData)
                     return
                 }
+                
+                self.messagesList.inset(newsList: messages)
 
                 self.queryFriendProfile(id: self.receiver.id, result: {
                     self.receiver = $0.value
-                    completion(.success(self.updateMessages(messages)))
+                    completion(.success(self.updateMessages(messages)), isFirstLoadData)
                 })
                 
                 if self.isNeedListenterUpdateReceiveMessage {
@@ -108,7 +123,7 @@ open class Task: NSObject {
                 }
 
             case .failure(let error):
-                completion(.failure(error))
+                completion(.failure(error), isFirstLoadData)
             }
         }
     }
@@ -131,7 +146,7 @@ open class Task: NSObject {
         })
     }
     
-    private func queryFriendProfile(id: String, result: @escaping (IMResult<Sender>) -> Void) {
+    private func queryFriendProfile(id: String, result: @escaping (Result<Sender>) -> Void) {
         SessionManager.default.queryFriendProfile(id: id, result: result)
     }
     
@@ -148,6 +163,30 @@ open class Task: NSObject {
     
     
 }
+
+extension Task {
+    open func removeLast() {
+        messagesList.removeLast()
+    }
+    
+    open func replaceLast() {
+        messagesList.removeLast()
+    }
+    
+    func replaceLast(_ newElement: MessageElem) {
+        messagesList.replaceLast(newElement)
+    }
+    
+    func append(_ newElement: MessageElem) {
+        messagesList.append(newElement)
+    }
+    
+    //当内存吃紧时, 自动移除数组元素
+    open func removeSubrange() {
+        messagesList.removeSubrange(num: 20)
+    }
+}
+
 
 extension Task: TIMMessageReceiptListener {
     

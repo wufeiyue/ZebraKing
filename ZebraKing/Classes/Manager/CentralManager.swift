@@ -139,7 +139,7 @@ extension CentralManager: TIMMessageListener {
                     //列表中,别的会话发过来的消息, 就给个通知
                     handlerNotification(with: conversation)
                 }
-                
+
             }
             else {
                 //新的会话不在列表中,可能是对方先发起的聊天,需要插入到会话列表中

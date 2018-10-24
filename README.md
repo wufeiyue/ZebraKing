@@ -123,9 +123,6 @@ func onResponseNotification(_ notification: ChatNotification) {
     //消息发送人的资料
     //let sender = notification.receiver
 
-    //是否处于会话活跃窗口(一般处于会话窗口就不让在前台推送了)
-    let isChatting = notification.isChatting
-
     //推送的内容
     let content = notification.content
 
@@ -134,7 +131,7 @@ func onResponseNotification(_ notification: ChatNotification) {
         UIApplication.localNotification(title: "推送消息", 
                                         body: content ?? "您收到一条新消息", 
                                         userInfo: ["chatNotification": notification])
-    } else if !isChatting {
+    } else {
         openChattingViewController(with: notification)
     }
         
@@ -162,7 +159,8 @@ private func openChattingViewController(with notification: ChatNotification) {
 1. 需要给MessageStatus一个(prepare)状态, 现在语音录制时, 使用的是发送中状态,导致真正到发送中时, 没有loading加载效果不好
 2. 取消消息未发出去时,使用sdk消息替换, 这样就不需要主动判断sender是我还是对方, 并且还不用在拉取资料给它赋值了
 3. 发消息出去, 个人资料不显示
-4. 消息加载时闪动效果体验不好
+4. 点击时间戳没有触发响应导致不能收回键盘
+5. 新增插件的功能, 方便做日志埋点
 
 ## License
 

@@ -161,7 +161,12 @@ open class Conversation {
             this.lastMessage = message
             
         }) { (code, description) in
-            result(.failure(.sendMessageFailure))
+            if code == 80001 {
+                result(.failure(.unsafe))
+            }
+            else {
+                result(.failure(.sendMessageFailure))
+            }
         }
         
     }
@@ -228,7 +233,7 @@ extension Conversation: ConversationDelegate {
     /// - Parameters:
     ///   - count: 加载条数
     ///   - completion: 异步回调,返回加载的message数组,数组不为空即为加载成功
-    public func loadRecentMessages(count:Int, completion:@escaping LoadResultCompletion) {
+    public func loadRecentMessages(count:Int, completion:@escaping (Result<Array<MessageElem>>) -> Void) {
         //取到不包含timeTip和saftyTip的message数组
         /*
          消息排序规则:
@@ -248,7 +253,7 @@ extension Conversation: ConversationDelegate {
     ///   - count: 加载的条数
     ///   - message: 用于检索的message
     ///   - completion: 返回加载的message数组,数组不为空即为加载成功
-    private func loadRecentMessages(count: Int, from message: MessageElem?, completion: @escaping LoadResultCompletion){
+    private func loadRecentMessages(count: Int, from message: MessageElem?, completion: @escaping (Result<Array<MessageElem>>) -> Void){
         
         conversation.getMessage(Int32(count), last: message?.message, succ: { [weak self](anys) in
             

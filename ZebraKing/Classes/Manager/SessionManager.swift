@@ -62,7 +62,7 @@ open class SessionManager {
     ///   - sign: 服务器分配的签名
     ///   - userId: 服务器分配的用户id
     ///   - result: 登录结果的回调
-    public func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (IMResult<Bool>) -> Void) {
+    public func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (Result<Bool>) -> Void) {
         
         loginManager.appidAt3rd = appidAt3rd
         loginManager.userSig = sign
@@ -84,7 +84,7 @@ open class SessionManager {
     }
     
     /// 退出登录
-    public func logout(result: @escaping (IMResult<Bool>) -> Void) {
+    public func logout(result: @escaping (Result<Bool>) -> Void) {
         loginManager.logout(success: {
             
             self.userManager.free()
@@ -113,7 +113,7 @@ open class SessionManager {
     /// - Parameters:
     ///   - receiver: 会话对象
     ///   - result: 返回用于ConversationViewController(task: Task)构造聊天类的Task对象
-    public func chat(receiver: Sender, result: @escaping (IMResult<Task>) -> Void) {
+    public func chat(receiver: Sender, result: @escaping (Result<Task>) -> Void) {
         
         //如果已经登录, 就直接返回成功的结果, 可以解决RxSwift合并流
         loginManager.login() {
@@ -196,7 +196,7 @@ extension SessionManager {
         userManager.modifySelfFacePath(path)
     }
  
-    public func queryFriendProfile(id: String, result: @escaping (IMResult<Sender>) -> Void) {
+    public func queryFriendProfile(id: String, result: @escaping (Result<Sender>) -> Void) {
         userManager.queryFriendProfile(id: id, result: result)
     }
 }

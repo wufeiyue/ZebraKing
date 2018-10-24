@@ -18,10 +18,10 @@ open class CommonConversationViewController: ConversationViewController, Convers
     }()
     
     //音频指示器
-    lazy var voiceIndicator: VoiceIndicatorView = setupVoiceIndicatorView()
+    open lazy var voiceIndicator: VoiceIndicatorView = setupVoiceIndicatorView()
     
     //音频输入类 因为子类重写需要调用, 这里放开作用域
-    public lazy var soundRecorder: ChatSoundRecorder = ChatSoundRecorder(delegate: self)
+    open lazy var soundRecorder: ChatSoundRecorder = ChatSoundRecorder(delegate: self)
     
     //播放管理类
     lazy var chatAudioPlay = IMChatAudioPlayManager()
@@ -167,18 +167,6 @@ open class CommonConversationViewController: ConversationViewController, Convers
         })
     }
     
-    /// 录音按钮点击回调
-    ///
-    /// - Parameters:
-    ///   - view: 工具条视图
-    ///   - btn: 录音按钮对象
-    open func inputBar(_ bar: ConversationInputBar, recordBtnDidTapped btn: UIButton) { }
-
-    /// 控制手柄点击回调
-    ///
-    /// - Parameters:
-    ///   - view: 工具条视图
-    ///   - btn: 控制手柄按钮对象public
     public func inputBar(_ bar: ConversationInputBar, controlBtnDidTapped btn: UIButton) {
         
         if bar.status == .normal {
@@ -200,29 +188,100 @@ open class CommonConversationViewController: ConversationViewController, Convers
         
     }
     
-    /// 发送按钮点击回调
-    ///
-    /// - Parameters:
-    ///   - view: 工具条视图
-    ///   - btn: 发送按钮对象public
     public func inputBar(_ bar: ConversationInputBar, senderBtnDidTapped btn: UIButton) {
         guard let text = bar.inputTextView.text, text.isEmpty == false else {
             showToast(message: "输入的内容不能为空")
             return
         }
         let message = MessageElem(text: text, sender: currentSender())
-//        message.receiver = currentSender()
         onMessageWillSend(message)
         sendMsg(msg: message)
     }
     
-    /// 录音按钮长按回调
-    ///
-    /// - Parameters:
-    ///   - view: 工具条视图
-    ///   - gesture: 长按手势
     public func inputBar(_ bar: ConversationInputBar, recordBtnLongPressGesture gesture: UIGestureRecognizer) {
-        longPressVoiceButton(sender: gesture)
+        switch gesture.state {
+        case .began: //长按开始
+            soundRecorder.startRecording()
+            guard soundRecorder.isVaildRecorder else {
+                return
+            }
+            voiceIndicator.recording()
+            
+        case .changed: //长按时移动
+            guard soundRecorder.recordState != .stop else {
+                return
+            }
+            voiceIndicator.recognizerChanged(sender: gesture)
+            
+        case .ended: //长按结束
+            guard soundRecorder.recordState != .stop else {
+                return
+            }
+            voiceIndicator.endRecord()
+            if voiceIndicator.isFinishRecording {
+                //结束录音
+                soundRecorder.stopRecord()
+            } else {
+                //取消录音
+                soundRecorder.cancelRecord()
+            }
+            
+        default:
+            break
+        }
+        
+    }
+    
+    public func audioRecordStateDidChange(_ status: ChatRecorderState) {
+        switch status {
+        case .maxRecord:    //最大录音
+            voiceIndicator.endRecord()
+        case .relaseCancelDidPrepare: //取消
+            onMessageCancelSend()
+        case .tooShort:     //时间太短
+            voiceIndicator.messageTooShort()
+        case .prepare:      //准备好了
+            //TODO: 插入一个空的音频文件
+            let msg = MessageElem(data: Data(), dur: 0, sender: currentSender())
+            onMessageWillSend(msg)
+        default:
+            break
+        }
+    }
+    
+    public func audioRecordPeakDidChange(_ value: Int) {
+        voiceIndicator.updateMetersValue(value - 1)
+    }
+    
+    public func audioRecordFinish(_ uploadAmrData: Data, recordTime: TimeInterval) {
+        //TODO: 替换最后一个消息, 发送消息
+        let soundMsg = MessageElem(data: uploadAmrData, dur: Int32(recordTime), sender: currentSender())
+        replaceLastMessage(newMsg: soundMsg)
+        sendMsg(msg: soundMsg)
+    }
+    
+    /// 请求录音权限失败的处理
+    public func audioRecordRequestPermissionFailure() {
+        let alertVC = UIAlertController(title: "\"\(Bundle.displayName)\"想访问您的麦克风", message: "只有打开麦克风,才可以发送语音哦~", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "不允许", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "好", style: .default, handler: { (action) in
+            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(url)
+            }
+        }))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+}
+
+extension VoiceIndicatorView {
+    fileprivate func recognizerChanged(sender: UIGestureRecognizer) {
+        let location = sender.location(in: self)
+        if point(inside: location, with: nil) {
+            slideToCancelRecord()
+        } else {
+            recording()
+        }
     }
 }
 
