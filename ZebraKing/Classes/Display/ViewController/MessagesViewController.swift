@@ -76,19 +76,21 @@ open class MessagesViewController: UIViewController {
     }
     
     private func setupDefaults() {
-        //设置布局是从左上角开始
+        //设置布局是从左上角开始, 必须注释, 否则在iPhone X上布局会错乱
         if #available(iOS 11.0, *) {
             messagesCollection.contentInsetAdjustmentBehavior = .never
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
         extendedLayoutIncludesOpaqueBars = true
-        
-        messagesCollection.keyboardDismissMode = .onDrag
+        //FIXME: - 设置成onDrag, 会造成inputAccessoryView位置发生改变
+        messagesCollection.keyboardDismissMode = .interactive
         //设置如果collection的内容没有占满整个collectionView，
         //这个就不能下拉滑动，没法实现下拉；但是设置下面这个就可以实现下拉了
         messagesCollection.alwaysBounceVertical = true
     }
+    
+    
     
     private func setupSubviews() {
         view.addSubview(messagesCollection)
@@ -98,21 +100,20 @@ open class MessagesViewController: UIViewController {
         
         messagesCollection.translatesAutoresizingMaskIntoConstraints = false
         
-        var constraints = Array<NSLayoutConstraint>()
-        
         if #available(iOS 11.0, *) {
-            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0))
-            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
-            
-        } else {
-            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0))
-            constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .bottom, relatedBy: .equal, toItem: bottomLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
+            let top = messagesCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topLayoutGuide.length)
+            let bottom = messagesCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            let leading = messagesCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+            let trailing = messagesCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            NSLayoutConstraint.activate([top, bottom, trailing, leading])
         }
-        
-        constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0))
-        constraints.append(NSLayoutConstraint(item: messagesCollection, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0))
-        
-        view.addConstraints(constraints)
+        else {
+            let top = NSLayoutConstraint(item: messagesCollection, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0)
+            let bottom = NSLayoutConstraint(item: messagesCollection, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+            let leading = NSLayoutConstraint(item: messagesCollection, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
+            let trailing = NSLayoutConstraint(item: messagesCollection, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
+            view.addConstraints([top, bottom, trailing, leading])
+        }
     }
 
     override open func didReceiveMemoryWarning() {
@@ -128,7 +129,7 @@ open class MessagesViewController: UIViewController {
             addKeyboardObservers()
             messageCollectionViewBottomInset = keyboardOffsetFrame.size.height
         }
-        
+        adjustScrollViewInset()
     }
     
     final override public var inputAccessoryView: UIView? {

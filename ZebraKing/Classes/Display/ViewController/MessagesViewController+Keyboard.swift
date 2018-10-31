@@ -46,12 +46,23 @@ extension MessagesViewController {
         if scrollsToBottomOnKeybordBeginsEditing {
             guard let inputTextView = notification.object as? InputTextView, inputTextView === messageInputBar.inputTextView else { return }
             //延迟0.1秒是为了避免两个监听方法一块执行, 对messagesCollection.setContentOffset操作有影响, 导致键盘弹出时, scrollview没有移到最底部
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.messagesCollection.scrollToBottom(animated: true)
-            }
+//            }
         }
     }
     
+    func adjustScrollViewInset() {
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            let navigationBarInset = navigationController?.navigationBar.frame.height ?? 0
+            let statusBarInset: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : 20
+            let topInset = navigationBarInset + statusBarInset
+            messagesCollection.contentInset.top = topInset
+            messagesCollection.scrollIndicatorInsets.top = topInset
+        }
+    }
     
     var keyboardOffsetFrame: CGRect {
         guard let inputFrame = inputAccessoryView?.frame else { return .zero }

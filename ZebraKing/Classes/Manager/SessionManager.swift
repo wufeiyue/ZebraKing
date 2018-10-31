@@ -13,13 +13,13 @@ import ImSDK
 open class SessionManager {
     
     //会话管理中心
-    private var centralManager = CentralManager()
+    internal var centralManager = CentralManager()
     
     //用户管理中心
-    private var userManager = UserManager()
+    internal var userManager = UserManager()
     
     //用户登录中心
-    private var loginManager = LoginManager()
+    internal var loginManager = LoginManager()
     
     //单例模式
     public static var `default` = SessionManager()
@@ -113,7 +113,7 @@ open class SessionManager {
     /// - Parameters:
     ///   - receiver: 会话对象
     ///   - result: 返回用于ConversationViewController(task: Task)构造聊天类的Task对象
-    public func chat(receiver: Sender, result: @escaping (Result<Task>) -> Void) {
+    public func chat(receiver: Sender, configuration: Task.Configuration, result: @escaping (Result<Task>) -> Void) {
         
         //如果已经登录, 就直接返回成功的结果, 可以解决RxSwift合并流
         loginManager.login() {
@@ -121,27 +121,14 @@ open class SessionManager {
             switch $0 {
             case .success(_):
                 
-                /// 判断已登录状态, 就可以判定是调用了Login方法, 因为初始化host对象在login方法中进行的
-                guard let host = self.userManager.host else {
-                    result(.failure(.getHostProfileFailure))
-                    return
-                }
-                
-                var tempReceiver: Sender = receiver
-                
-                //资料是否完整
-                if receiver.isLossNecessary {
-                    //缺失必要的资料就到缓存中再拉取一次
-                    if let cacheReceiver = self.userManager.getSender(id: receiver.id) {
-                        tempReceiver = cacheReceiver
-                    }
-                }
+                //FIXME: - 判断已登录状态, 就可以判定是调用了Login方法, 因为初始化host对象在login方法中进行的
+                let host = self.userManager.host!
                 
                 // 用于发起聊天的会话对象
                 let converstion = self.centralManager.holdChat(with: .C2C, id: receiver.id)
                 
                 if let unwrappedConversation = converstion {
-                    let task = Task(host: host, receiver: tempReceiver, conversation: unwrappedConversation)
+                    let task = Task(host: host, receiver: receiver, conversation: unwrappedConversation, configuration: configuration)
                     result(.success(task))
                 }
                 else {
@@ -154,6 +141,11 @@ open class SessionManager {
             
         }
     }
+    
+    public func deleteConversation(where rule: (Conversation) throws -> Bool) rethrows {
+        try centralManager.deleteConversation(where: rule)
+    }
+    
     
     //开启消息监听, 避免消息监听遗漏, 要放在登录方法调用之前
     private func onResponseNotification(completion: @escaping (ChatNotification) -> Void) {
@@ -182,6 +174,7 @@ open class SessionManager {
     public func waiveChat() {
         centralManager.waiveChat()
     }
+    
     
 }
 extension SessionManager {

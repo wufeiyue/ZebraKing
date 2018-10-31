@@ -18,23 +18,27 @@ open class Task: NSObject {
     /// 聊天对象
     public var receiver: Sender!
     
-    //消息列表
+    /// 消息列表
     public private(set) var messagesList = MessagesList<MessageElem>()
     
+    /// 配置
+    internal let configuration: Configuration
+    
     /// 会话
-    private let conversation: Conversation
+    internal let conversation: Conversation
     
     private var updateReceiveMessagesCompletion: (() -> Void)?
     //FIXME: 有的会话不需要监听已读未读消息, 后期考虑做成插件, 可选的功能
     private var isNeedListenterUpdateReceiveMessage: Bool = true
     
-    //加载消息条数
+    /// 加载消息条数
     public var loadMessageCount: Int = 20
     
-    public init(host: Sender, receiver: Sender, conversation: Conversation) {
+    public init(host: Sender, receiver: Sender, conversation: Conversation, configuration: Configuration) {
         self.host = host
         self.receiver = receiver
         self.conversation = conversation
+        self.configuration = configuration
         super.init()
     }
     
@@ -55,8 +59,6 @@ open class Task: NSObject {
         SessionManager.default.waiveChat()
         TIMManager.sharedInstance().getUserConfig().receiptListener = nil
     }
-    
-    
     
     /// 监听收到的消息
     ///
@@ -134,6 +136,24 @@ open class Task: NSObject {
     }
     
     private func updateMessages(_ originList: Array<MessageElem>) -> Array<MessageElem> {
+        
+        //资料是否完整
+        if receiver.isLossNecessary {
+            //缺失必要的资料就到缓存中再拉取一次
+            if let cacheReceiver = SessionManager.default.userManager.getSender(id: receiver.id) {
+                receiver = cacheReceiver
+            }
+        }
+        
+        if host.isLossNecessary {
+            if let local = SessionManager.default.userManager.host {
+                host = local
+            }
+        }
+        
+        receiver.placeholder = configuration.receivePlaceholder
+        host.placeholder = configuration.hostPlaceholder
+        
         return originList.map({
             //FIXME: 代码不优雅
             if $0.message == nil || $0.message.isSelf() {
@@ -161,6 +181,21 @@ open class Task: NSObject {
         conversation.alreadyRead()
     }
     
+    public struct Configuration {
+        
+        public var hostPlaceholder: UIImage?
+        public var receivePlaceholder: UIImage?
+        
+        public init() {}
+        
+        public init(hostPlaceholder: UIImage?, receivePlaceholder: UIImage?) {
+            self.hostPlaceholder = hostPlaceholder
+            self.receivePlaceholder = receivePlaceholder
+        }
+        
+        public static var `default` = Configuration(hostPlaceholder: MessageStyle.avatar.image,
+                                                    receivePlaceholder: MessageStyle.avatar.image)
+    }
     
 }
 

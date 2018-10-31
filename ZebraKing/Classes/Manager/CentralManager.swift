@@ -48,6 +48,13 @@ open class CentralManager: NSObject {
         chattingConversation = nil
     }
     
+    /// 移除会话
+    public func deleteConversation(where rule: (Conversation) throws -> Bool) rethrows {
+        guard let conversation = try conversationList.first(where: rule) else { return }
+        conversation.delete(with: .C2C)
+        conversationList.remove(conversation)
+    }
+    
     /// 从集合中获取指定会话(如果集合中不存在,才会创建一个)
     ///
     /// - Parameters:
@@ -151,6 +158,8 @@ extension CentralManager: TIMMessageListener {
     }
     
     private func handlerNotification(with conversation: Conversation) {
+        //仅支持C2C通知
+        guard conversation.type == .C2C else { return }
         let content = conversation.getLastMessage
         let receiverId: String = conversation.conversation.getReceiver()
         onResponseNotification.forEach{ $0.completion?(receiverId, content) }

@@ -58,6 +58,7 @@ open class VoiceIndicatorView: UIView {
     }
     
     private func setup() {
+        isHidden = true
         addSubview(containerView)
         [noteLabel, cancelImageView, tooShotPromptImageView, recordingView].forEach{ containerView.addSubview($0) }
     }

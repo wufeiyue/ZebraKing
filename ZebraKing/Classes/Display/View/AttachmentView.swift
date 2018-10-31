@@ -25,6 +25,21 @@ public struct AttachmentStyle {
     public var image: UIImage? = MessageStyle.retry.image
     
     public init() { }
+    
+    public static func defaultStyle(_ message: MessageType) -> AttachmentStyle {
+        
+        var style = AttachmentStyle()
+        
+        if message.isRead {
+            style.textColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
+            style.text = "已读"
+        }
+        else {
+            style.textColor = .orange
+            style.text = "未读"
+        }
+        return style
+    }
 }
 
 public struct AttachmentLayout {

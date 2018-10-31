@@ -1,18 +1,18 @@
 //
-//  IMChatAudioPlayManager.swift
+//  ChatAudioPlayManager.swift
 //  ZebraKing
 //
-//  Created by gongjie on 2017/7/19.
+//  Created by 武飞跃 on 2017/7/19.
 //  Copyright © 2017年 ZebraKing. All rights reserved.
 //
 
 import UIKit
 import AVFoundation
 
-//MARK:  播放管理类
-typealias AudioCompleteBlock = () -> ()
+//MARK: 播放管理类
+public typealias AudioCompleteBlock = () -> ()
 
-class IMChatAudioPlayManager: NSObject {
+open class ChatAudioPlayManager: NSObject {
     
     var soundPlayer: AVAudioPlayer?
     public var playCompletion: AudioCompleteBlock?
@@ -82,9 +82,9 @@ class IMChatAudioPlayManager: NSObject {
     }
 }
 
-extension IMChatAudioPlayManager: AVAudioPlayerDelegate {
+extension ChatAudioPlayManager: AVAudioPlayerDelegate {
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playCompletion?()
         playCompletion = nil
         
@@ -97,7 +97,7 @@ extension IMChatAudioPlayManager: AVAudioPlayerDelegate {
         
     }
     
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+    public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         playCompletion?()
         playCompletion = nil
         

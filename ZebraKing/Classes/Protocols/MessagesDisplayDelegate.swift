@@ -13,8 +13,8 @@ public protocol MessagesDisplayDelegate: AnyObject {
     
     func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType]
     
-//    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any]
     func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey: Any]
+    
     func attachmentStyle(at indexPath: IndexPath, message: MessageType, in messagesCollectionView: MessagesCollectionView) -> AttachmentStyle
 }
 
@@ -31,7 +31,7 @@ extension MessagesDisplayDelegate {
     }
     
     public func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
-        return []
+        return [.url, .address, .phoneNumber, .date]
     }
     
     public func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey: Any] {
@@ -39,16 +39,6 @@ extension MessagesDisplayDelegate {
     }
     
     public func attachmentStyle(at indexPath: IndexPath, message: MessageType, in messagesCollectionView: MessagesCollectionView) -> AttachmentStyle {
-        
-        var style = AttachmentStyle()
-        if message.isRead {
-            style.textColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
-            style.text = "已读"
-        }
-        else {
-            style.textColor = .orange
-            style.text = "未读"
-        }
-        return style
+        return AttachmentStyle.defaultStyle(message)
     }
 }

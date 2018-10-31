@@ -20,6 +20,8 @@ open class MessagesCollectionView: UICollectionView {
     
     open weak var messageCellDelegate: MessageCellDelegate?
     
+    open var closeKeyboardCompletion: (() -> Void)?
+    
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         backgroundColor = .white
@@ -49,6 +51,7 @@ open class MessagesCollectionView: UICollectionView {
         
         let cell = cellForItem(at: indexPath) as? MessageCollectionViewCell
         cell?.handleTapGesture(gesture)
+        closeKeyboardCompletion?()
     }
     
     public func scrollToBottom(animated: Bool = false) {

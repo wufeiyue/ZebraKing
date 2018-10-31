@@ -29,6 +29,15 @@ public protocol MessagesLayoutDelegate: AnyObject {
 }
 
 extension MessagesLayoutDelegate {
+    
+    public func messagePadding(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
+    }
+    
+    public func avatarSize(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+        return CGSize(width: 42, height: 42)
+    }
+    
     public func messageInsets(at indexPath: IndexPath, message: MessageType, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
         return UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     }
@@ -65,4 +74,5 @@ extension MessagesLayoutDelegate {
         }
         return .zero
     }
+    
 }

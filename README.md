@@ -77,9 +77,7 @@ ZebraKing.register(accountType: accountType, appidAt3rd: appid) { notification i
     self.onResponseNotification(notification)
 }       
 ```
-ZebraKing将消息通知的回调暴露接口供外部使用, 开发者可以利用回调方法处理消息在前台或后台的展示逻辑, 如果消息是在App切到后台发过来的,这个时候还添加本地通知的逻辑,当收到消息需要打开会话页面时, SDK有提供一个专门的接口可实现操作, 这里需要遵守`ZebraKingDelegate`协议:
-
-
+ZebraKing将消息通知的回调暴露接口供外部使用, 开发者可以利用回调方法处理消息在前台或后台的展示逻辑
 
 ### 登录
 
@@ -152,6 +150,12 @@ private func openChattingViewController(with notification: ChatNotification) {
 } 
 ```
 
+### 版本更新
+> 2.0.7
+1. 修改MessageViewController方法作用域, 便于子类自定义配置. 
+2. 移除CommonViewController类, 其功能在上游实现, 避免多级集成带来的阅读压力
+3. 为chat()方法新增一个可选参数, 将配置聊天对象资料的信息封装起来
+4. 解决在iPhone X上的适配问题, 修复刷新视图显示错误
 
 
 ### 下个版本需要优化的内容
@@ -161,6 +165,7 @@ private func openChattingViewController(with notification: ChatNotification) {
 3. 发消息出去, 个人资料不显示
 4. 点击时间戳没有触发响应导致不能收回键盘
 5. 新增插件的功能, 方便做日志埋点
+6. 切换文本和语音消息是, 如果文本消息超过一行, 当切换到发送语音状态后, inputBar会升高
 
 ## License
 

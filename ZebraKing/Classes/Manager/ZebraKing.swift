@@ -45,8 +45,8 @@ open class ZebraKing {
     /// - Parameters:
     ///   - id: 为对方用户 identifier
     ///   - result: 返回结果, .success: 会话对象  .failure: 提示出错的log
-    public static func chat(id: String, result: @escaping (Result<Task>) -> Void) {
-        chat(receiver: Sender(id: id), result: result)
+    public static func chat(id: String, configuration: Task.Configuration = .default, result: @escaping (Result<Task>) -> Void) {
+        chat(receiver: Sender(id: id), configuration: configuration, result: result)
     }
     
     
@@ -55,18 +55,16 @@ open class ZebraKing {
     /// - Parameters:
     ///   - receiver: 聊天的对象模型, 必要的参数是id
     ///   - result: 返回结果 .success: 会话对象  .failure: 提示出错的log
-    public static func chat(receiver: Sender, result: @escaping (Result<Task>) -> Void) {
-        SessionManager.default.chat(receiver: receiver, result: result)
+    public static func chat(receiver: Sender, configuration: Task.Configuration = .default, result: @escaping (Result<Task>) -> Void) {
+        SessionManager.default.chat(receiver: receiver, configuration: configuration, result: result)
     }
     
     
     /// 移除会话, 并清空消息记录
     ///
     /// - Parameter id: 会话id, 仅支持C2C
-    public static func deleteConversation(where rule: (Conversation) -> Bool) {
-        SessionManager.default.conversationList.forEach{
-            if rule($0) { $0.delete(with: .C2C) }
-        }
+    public static func deleteConversation(where rule: (Conversation) throws -> Bool) rethrows {
+        try SessionManager.default.deleteConversation(where: rule)
     }
     
 }

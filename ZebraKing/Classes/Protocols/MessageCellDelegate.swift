@@ -25,11 +25,11 @@ public protocol MessageCellDelegate: MessageLabelDelegate {
 
 extension MessageCellDelegate {
     
-    public func didTapMessage(in cell: MessageCollectionViewCell, message: MessageType) {}
-    
     public func didTapAvatar(in cell: MessageCollectionViewCell, message: MessageType) {}
     
     public func didTapAttachment(in cell: MessageCollectionViewCell, message: MessageType) {}
     
-    public func didContainer(in cell: MessageCollectionViewCell, message: MessageType) {}
+    public func didContainer(in cell: MessageCollectionViewCell, message: MessageType) { }
+    
+    public func didTapMessage(in cell: MessageCollectionViewCell, message: MessageType) { }
 }

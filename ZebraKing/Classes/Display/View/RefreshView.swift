@@ -69,7 +69,8 @@ open class RefreshView: UIView {
             return
         }
         
-        if abs(scrollView.contentOffset.y) <= height {
+        //当前值 < height时, 还在滚动判断表示 contentInset.top == -height 此时已进入待刷新
+        if scrollView.contentOffset.y + scrollView.contentInset.top < height {
             if isBusy == false {
                 isBusy = true
                 action()

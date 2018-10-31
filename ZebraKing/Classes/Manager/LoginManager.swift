@@ -145,6 +145,4 @@ public final class LoginManager: NSObject {
         }
     }
     
-    
-    
 }

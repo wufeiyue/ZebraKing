@@ -23,26 +23,12 @@ public protocol ConversationInputBarDelegate: class {
     ///   - btn: 发送按钮对象
     func inputBar(_ bar: ConversationInputBar, senderBtnDidTapped btn: UIButton)
     
-    /// 录音按钮点击回调
-    ///
-    /// - Parameters:
-    ///   - view: 工具条视图
-    ///   - btn: 录音按钮对象
-    func inputBar(_ bar: ConversationInputBar, recordBtnDidTapped btn: UIButton)
-    
     /// 录音按钮长按回调
     ///
     /// - Parameters:
     ///   - view: 工具条视图
     ///   - gesture: 长按手势
     func inputBar(_ bar: ConversationInputBar, recordBtnLongPressGesture gesture: UIGestureRecognizer)
-}
-
-extension ConversationInputBarDelegate {
-    public func inputBar(_ bar: ConversationInputBar, controlBtnDidTapped btn: UIButton) {}
-    public func inputBar(_ bar: ConversationInputBar, senderBtnDidTapped btn: UIButton) {}
-    public func inputBar(_ bar: ConversationInputBar, recordBtnDidTapped btn: UIButton) {}
-    public func inputBar(_ bar: ConversationInputBar, recordBtnLongPressGesture gesture: UIGestureRecognizer) {}
 }
 
 open class ConversationInputBar: MessageInputBar {
@@ -56,8 +42,6 @@ open class ConversationInputBar: MessageInputBar {
     //录音按钮
     open var recordBtn: UIButton!
     
-    //normal or selected
-//    public var status: UIControl.State = .normal {
     public var status: UIControlState = .normal {
         didSet {
             displayViewByStatus()
@@ -69,22 +53,13 @@ open class ConversationInputBar: MessageInputBar {
     
     //MARK: - 改变样式
     
-    open override func setupConstraints() {
+    open override func setupSubConstraints() {
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
         controlBtn.translatesAutoresizingMaskIntoConstraints = false
         senderBtn.translatesAutoresizingMaskIntoConstraints = false
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         recordBtn.translatesAutoresizingMaskIntoConstraints = false
-        
-        addConstraints([
-            
-            NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: padding.top),
-            NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -padding.bottom),
-            NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0)
-            
-        ])
         
         
         let list: Array<NSLayoutConstraint> = [
@@ -191,6 +166,14 @@ open class ConversationInputBar: MessageInputBar {
     @objc
     private func controlBtnDidTapped(sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        
+        if status == .normal {
+            status = .selected
+        }
+        else {
+            status = .normal
+        }
+        
         delegate?.inputBar(self, controlBtnDidTapped: sender)
     }
     
@@ -208,8 +191,4 @@ open class ConversationInputBar: MessageInputBar {
         delegate?.inputBar(self, recordBtnLongPressGesture: gesture)
     }
     
-    @objc
-    private func recordBtnDidTapped(sender: UIButton) {
-        delegate?.inputBar(self, recordBtnDidTapped: sender)
-    }
 }
