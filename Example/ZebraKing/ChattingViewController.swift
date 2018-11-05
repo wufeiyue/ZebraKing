@@ -8,7 +8,7 @@
 import UIKit
 import ZebraKing
 
-class ChattingViewController: CommonConversationViewController {
+class ChattingViewController: ConversationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,4 +23,7 @@ class ChattingViewController: CommonConversationViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    open override func showToast(message: String) {
+        self.toast_showToast(message: message)
+    }
 }

@@ -209,7 +209,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     self.present(nav, animated: true, completion: nil)
                     
                 case .failure(let error):
-                    self.showToast(message: error.localizedDescription)
+                    self.toast_showToast(message: error.localizedDescription)
                 }
             }
             

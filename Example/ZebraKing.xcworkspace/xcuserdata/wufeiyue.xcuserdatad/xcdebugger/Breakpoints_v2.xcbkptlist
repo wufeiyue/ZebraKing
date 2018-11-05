@@ -277,7 +277,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "143"
             endingLineNumber = "143"
-            landmarkName = "onNewMessage(_:)"
+            landmarkName = "listenerUnReadCount(with:id:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -293,7 +293,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
             endingLineNumber = "137"
-            landmarkName = "onNewMessage(_:)"
+            landmarkName = "listenerUnReadCount(with:id:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -341,7 +341,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
             endingLineNumber = "154"
-            landmarkName = "chat(receiver:result:)"
+            landmarkName = "onResponseNotification(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -421,7 +421,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
             endingLineNumber = "151"
-            landmarkName = "chat(receiver:result:)"
+            landmarkName = "onResponseNotification(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

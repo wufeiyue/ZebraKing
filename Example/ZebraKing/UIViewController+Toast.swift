@@ -10,11 +10,11 @@ import Foundation
 import Toast_Swift
 
 protocol Toastable {
-    func showToast(message: String, completion: ((_ didTap: Bool) -> Void)?)
+    func toast_showToast(message: String, completion: ((_ didTap: Bool) -> Void)?)
 }
 
 extension Toastable where Self: UIViewController {
-    func showToast(message: String, completion: ((_ didTap: Bool) -> Void)? = nil) {
+    func toast_showToast(message: String, completion: ((_ didTap: Bool) -> Void)? = nil) {
         view.makeToast(message, duration: 2, position: .center, title: nil, image: nil, style: ToastManager.shared.style, completion: completion)
     }
 }
