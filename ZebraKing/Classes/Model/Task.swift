@@ -48,7 +48,7 @@ open class Task: NSObject {
     ///   - message: 待发送的消息实例
     ///   - result:
     //FIXME: 将消息数组传出去
-    open func send(message: MessageElem, result:@escaping SendResultCompletion) {
+    open func send(message: MessageElem, result:@escaping Conversation.ResultCompletion) {
         DispatchQueue.main.async {
             self.conversation.send(message: message, result: result)
         }
@@ -63,7 +63,7 @@ open class Task: NSObject {
     /// 监听收到的消息
     ///
     /// - Parameter msg: 收到的消息
-    open func listenerNewMessage(completion: @escaping MessageListCompletion) {
+    open func listenerNewMessage(completion: @escaping Conversation.MessagesCompletion) {
         DispatchQueue.main.async {
             
             self.conversation.listenerNewMessage(completion: { (list) in

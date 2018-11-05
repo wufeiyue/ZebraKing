@@ -62,8 +62,17 @@ public final class UserManager {
             result(.success(cacheUser))
         }
         else {
-            waitQueryList.append(id)
-            excute(result: result)
+//            waitQueryList.append(id)
+//            excute(result: result)
+            excuteQueryProfile(identifiers: [id]) {
+                switch $0 {
+                case .success(let list):
+                    list.forEach{ self.friendsList?[$0.id] = $0 }
+                    result(.success(list.first!))
+                case .failure(let error):
+                    result(.failure(error))
+                }
+            }
         }
     }
     
@@ -76,34 +85,34 @@ public final class UserManager {
     
     public func excute(result: @escaping (Result<Sender>) -> Void) {
         
-        _ = lock.wait(timeout: .distantFuture)
-        defer { lock.signal() }
+//        _ = lock.wait(timeout: .distantFuture)
+//        defer { lock.signal() }
+//
+//        guard isBusy == false else { return }
+//        isBusy = true
+//
+//        let tempList = waitQueryList
         
-        guard isBusy == false else { return }
-        isBusy = true
-        
-        let tempList = waitQueryList
-        
-        excuteQueryProfile(identifiers: tempList) {
-            
-            self.isBusy = false
-            
-            switch $0 {
-            case .success(let list):
-                list.forEach{ self.friendsList?[$0.id] = $0 }
-                
-                for _ in 0..<tempList.count {
-                    self.waitQueryList.removeFirst()
-                }
-                
-                result(.success(list.first!))
-                
-            case .failure(let value):
-                result(.failure(value))
-            }
-            
-            
-        }
+//        excuteQueryProfile(identifiers: tempList) {
+//
+//            self.isBusy = false
+//
+//            switch $0 {
+//            case .success(let list):
+//                list.forEach{ self.friendsList?[$0.id] = $0 }
+//
+//                for _ in 0..<tempList.count {
+//                    self.waitQueryList.removeFirst()
+//                }
+//
+//                result(.success(list.first!))
+//
+//            case .failure(let value):
+//                result(.failure(value))
+//            }
+//
+//
+//        }
     
     }
     

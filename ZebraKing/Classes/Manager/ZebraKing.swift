@@ -73,13 +73,13 @@ open class ZebraKing {
 extension ZebraKing {
     
     /// 监听指定会话的未读消息数 如果消息回调结果为nil, 表示没有获取会话, 可能是没有登录成功
-    public static func listenerUnreadMessage(with id: String, completion:@escaping CountCompletion) {
+    public static func listenerUnreadMessage(with id: String, completion:@escaping CentralManager.CountCompletion) {
         SessionManager.default.listenerUnreadMessage(id: id, completion: completion)
     }
     
     /// 移除对会话消息数量改变的监听
-    public static func removeListenerUnreadMessage() {
-        SessionManager.default.removeListenerUnreadMessage()
+    public static func removeListenerUnreadMessage(id: String) {
+        SessionManager.default.removeListenerUnreadMessage(id: id)
     }
     
 }

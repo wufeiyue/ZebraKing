@@ -99,13 +99,13 @@ open class SessionManager {
     }
     
     //根据聊天对象的Id监听其发过来的未读消息数
-    public func listenerUnreadMessage(id: String, completion: @escaping CountCompletion) {
+    public func listenerUnreadMessage(id: String, completion: @escaping CentralManager.CountCompletion) {
         centralManager.listenerUnReadCount(with: .C2C, id: id, completion: completion)
     }
     
     //移除未读消息监听
-    public func removeListenerUnreadMessage() {
-        centralManager.removeListenerUnReadCount()
+    public func removeListenerUnreadMessage(id: String) {
+        centralManager.removeListenter(id: id)
     }
     
     /// 发起聊天
@@ -150,7 +150,7 @@ open class SessionManager {
     //开启消息监听, 避免消息监听遗漏, 要放在登录方法调用之前
     private func onResponseNotification(completion: @escaping (ChatNotification) -> Void) {
         
-        centralManager.listenterMessages{ (receiverId, content) in
+        centralManager.listenterMessages{ (receiverId, content, unreadCount) in
             
             self.userManager.queryFriendProfile(id: receiverId, result: { result in
             
@@ -163,7 +163,7 @@ open class SessionManager {
                     }
                 }
                 
-                let notification = ChatNotification(receiver: Sender(id: receiverId), content: content)
+                let notification = ChatNotification(receiver: sender, content: content, unreadCount: unreadCount)
                 completion(notification)
             })
             

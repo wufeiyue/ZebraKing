@@ -80,8 +80,9 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         }
         
         //监听新消息过来
-        task.listenerNewMessage(completion: { [unowned self](receiveMsg) in
-            self.messagesCollection.reloadDataAndKeepOffset()
+        task.listenerNewMessage(completion: { [weak self](receiveMsg) in
+            //消息的监听回调可能不是当前会话的, 也会走进来, 所以为了
+            self?.messagesCollection.reloadDataAndKeepOffset()
         })
         
         //已读回执,刷新tableView

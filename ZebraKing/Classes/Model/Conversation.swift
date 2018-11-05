@@ -115,6 +115,9 @@ extension ConversationDelegate {
 
 open class Conversation {
     
+    public typealias ResultCompletion = (_ result: Result<Bool>) -> Void
+    public typealias MessagesCompletion = (_ message: Array<MessageElem>) -> Void
+    
     var conversation: TIMConversation
     
     public var onReceiveMessageCompletion: ((_ message: TIMMessage) -> Void)?
@@ -146,7 +149,7 @@ open class Conversation {
     ///   - message: 待发送的消息实例
     ///   - result:
     //FIXME: 将消息数组传出去
-    public func send(message: MessageElem, result:@escaping SendResultCompletion) {
+    public func send(message: MessageElem, result:@escaping ResultCompletion) {
         
         conversation.send(message.message, succ: { [weak self] in
             
@@ -175,7 +178,7 @@ open class Conversation {
     /// 监听收到的消息
     ///
     /// - Parameter msg: 收到的消息
-    public func listenerNewMessage(completion: @escaping MessageListCompletion){
+    public func listenerNewMessage(completion: @escaping MessagesCompletion){
         onReceiveMessageCompletion = { [weak self] in
             guard let this = self else { return }
             //监听到的新消息
@@ -211,16 +214,14 @@ open class Conversation {
         TIMManager.sharedInstance()?.deleteConversationAndMessages(type, receiver: receiverId)
     }
     
-    //释放自己
-    open func free() {
-        pageMessageList.removeAll(keepingCapacity: false)
+    func free() {
         onReceiveMessageCompletion = nil
-        updateReceiveMessagesCompletion = nil
+        pageMessageList.removeAll(keepingCapacity: false)
     }
     
     deinit {
-        onReceiveMessageCompletion = nil
-        updateReceiveMessagesCompletion = nil
+//        onReceiveMessageCompletion = nil
+//        updateReceiveMessagesCompletion = nil
     }
     
   
@@ -288,7 +289,7 @@ extension Conversation: Hashable {
     
     public static func == (lhs: Conversation, rhs: Conversation) -> Bool {
         if lhs.conversation.getType() == rhs.conversation.getType() {
-            return lhs.conversation.getReceiver() == rhs.conversation.getReceiver()
+            return lhs.receiverId == rhs.receiverId
         }
         return lhs.conversation == rhs.conversation
     }

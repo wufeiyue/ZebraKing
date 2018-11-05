@@ -8,7 +8,7 @@
 
 ## 产品特色
 
-- [x] 高度可定制会话页面, 会话页面分3层结构,依次负责UI、IM、Business
+- [x] 高度可定制会话页面, 暴露接口可实现功能齐全
 - [x] 支持富文本、语音、图片、视频、地理位置等消息,并可根据需求添加自定义消息类型
 - [x] 文本消息支持手机号,地址,日期,URL识别
 - [x] 支持根据chatId在未获取会话对象时,先监听未读消息数,降低耦合性,也不会造成内存泄漏
@@ -28,7 +28,8 @@
 不出意外你现在使用的应该是swift项目, 但还是想提醒一下在Podfile别忘记加`use_frameworks!`然后就是在 Podfile中配置:
 
 ```ruby
-pod 'ZebraKing', '~> 2.0.5'
+use_frameworks!
+pod 'ZebraKing', '~> 2.0.8'
 ```
 
 ### 手动安装
@@ -73,8 +74,9 @@ IM聊天支持语音输入,苹果在iOS8.0以后的版本中做了限制, 所以
 let accountType: String = 12345
 let appidAt3rd: String = 1234512345
 
-ZebraKing.register(accountType: accountType, appidAt3rd: appid) { notification in
-    self.onResponseNotification(notification)
+ZebraKing.register(accountType: accountType, appidAt3rd: appid) {
+    //新消息通知(登录之后有新消息过来才会调用)
+    self.onResponseNotification($0)
 }       
 ```
 ZebraKing将消息通知的回调暴露接口供外部使用, 开发者可以利用回调方法处理消息在前台或后台的展示逻辑
@@ -128,15 +130,15 @@ func onResponseNotification(_ notification: ChatNotification) {
         //处理本地系统推送(只会在后台推送)
         UIApplication.localNotification(title: "推送消息", 
                                         body: content ?? "您收到一条新消息", 
-                                        userInfo: ["chatNotification": notification])
+                                        userInfo: ["id": sender.id]) /* 不可将Sender对象直接当做value传入*/
     } else {
-        openChattingViewController(with: notification)
+        presentChatting(with: sender.id)
     }
-        
+    
 }
 
-private func openChattingViewController(with notification: ChatNotification) {
-     ZebraKing.chat(id: notification.receiver.id) { result in
+private func presentChatting(with id: String) {
+     ZebraKing.chat(id: id) { result in
            switch result {
            case .success(let conversation):
                 let vc = ChattingViewController(conversation: conversation)
@@ -151,6 +153,8 @@ private func openChattingViewController(with notification: ChatNotification) {
 ```
 
 ### 版本更新
+> 2.0.8
+1. 修复监听未读消息时, 可能出现监听失效的情况
 > 2.0.7
 1. 修改MessageViewController方法作用域, 便于子类自定义配置. 
 2. 移除CommonViewController类, 其功能在上游实现, 避免多级集成带来的阅读压力
