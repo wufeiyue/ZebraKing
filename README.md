@@ -18,8 +18,7 @@
 ## 要求
 
 - iOS 8.2
-- Xcode 9.4.1
-- Swift 4.1
+- Swift 4.+
 
 ## 配置
 
@@ -29,7 +28,10 @@
 
 ```ruby
 use_frameworks!
+//swift4.2以前
 pod 'ZebraKing', '~> 2.0.8'
+//swift4.2及以后版本
+pod 'ZebraKing', '~> 3.0.8'
 ```
 
 ### 手动安装
