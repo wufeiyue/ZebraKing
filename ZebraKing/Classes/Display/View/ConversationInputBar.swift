@@ -42,7 +42,7 @@ open class ConversationInputBar: MessageInputBar {
     //录音按钮
     open var recordBtn: UIButton!
     
-    public var status: UIControlState = .normal {
+    public var status: UIControl.State = .normal {
         didSet {
             displayViewByStatus()
         }

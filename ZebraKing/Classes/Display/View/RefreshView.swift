@@ -9,7 +9,7 @@ import UIKit
 
 open class RefreshView: UIView {
     
-    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let indicator = UIActivityIndicatorView(style: .gray)
     
     public let height: CGFloat
     private let action: () -> Void

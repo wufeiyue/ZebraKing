@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                       ProfileModel(title: "本地账户的", identifier: "chatId"),
                       ProfileModel(title: "会话对象的", identifier: "otherChatId")]
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         // 注册本地通知
         registerRemoteNotifications(application)
@@ -53,9 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         })
         
-        
         return true
     }
+    
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("已经注册通知")

@@ -1,12 +1,11 @@
 PODS:
-  - Kingfisher (4.9.0)
-  - Toast-Swift (3.0.1)
-  - ZebraKing (2.0.7):
-    - Kingfisher (~> 4.9.0)
+  - Kingfisher (4.10.1)
+  - Toast-Swift (4.0.0)
+  - ZebraKing (3.0.8):
+    - Kingfisher
 
 DEPENDENCIES:
-  - Kingfisher (~> 4.9.0)
-  - Toast-Swift (~> 3.0.1)
+  - Toast-Swift
   - ZebraKing (from `../`)
 
 SPEC REPOS:
@@ -19,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
-  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
-  ZebraKing: baea1666aaf174259f9b01eac096d03e713c9333
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
+  ZebraKing: 3622693aa927c2e6e871b1146e199aaebf22e9fe
 
-PODFILE CHECKSUM: 944e3c39cbcba14215cb96e3f1255b29a6a57076
+PODFILE CHECKSUM: a18494ce88ede14d41f8bef3b26b3229d4d2021a
 
 COCOAPODS: 1.6.0.beta.1

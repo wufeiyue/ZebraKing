@@ -219,7 +219,7 @@ public final class RecordingSinalImageView: UIImageView {
         anim.toValue = NSValue(cgPoint: CGPoint(x: 0, y: value))
         anim.duration = duration
         anim.isRemovedOnCompletion = false
-        anim.fillMode = kCAFillModeForwards
+        anim.fillMode = CAMediaTimingFillMode.forwards
         layer.mask?.add(anim, forKey: animationKey)
         
         fromValue = value

@@ -34,7 +34,6 @@
  */
 - (int)createGroup:(NSString*)type groupId:(NSString*)groupId groupName:(NSString*)groupName succ:(TIMCreateGroupSucc)succ fail:(TIMFail)fail;
 
-
 /**
  *  解散群组
  *

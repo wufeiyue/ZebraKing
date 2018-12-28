@@ -2,8 +2,8 @@ use_frameworks!
 
 target 'ZebraKing_Example' do
   pod 'ZebraKing', :path => '../'
-  pod 'Toast-Swift', '~> 3.0.1'
-  pod 'Kingfisher', '~> 4.9.0'
+  pod 'Toast-Swift'
+  #pod 'Kingfisher'
 end
 
 post_install do |installer|

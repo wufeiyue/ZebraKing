@@ -107,7 +107,7 @@ open class AttachmentView: UIView {
         addSubview($0)
         return $0
 //    }(UIActivityIndicatorView(style: .gray))
-    }(UIActivityIndicatorView(activityIndicatorStyle: .gray))
+    }(UIActivityIndicatorView(style: .gray))
     
     public func displayView(with messageStatus: MessageStatus) {
         

@@ -45,7 +45,8 @@ typedef enum _EQALBindFailReason
     EQALBindFail_GuidNULL,//guid为空
     EQALBindFail_UnpackRegPackFail,//解注册包失败
     EQALBindFail_RegTimeOut,//注册超时
-    EQALBindFail_isBinding//正在注册中
+    EQALBindFail_isBinding,//正在注册中
+    EQALBindFail_sendPackFail//unbind发包失败
     
     //>1000的错误码为状态svr返回
 }EQALBindFailReason;
@@ -120,7 +121,9 @@ extern uint32_t g_isready;
     id<QalConnListenerProtocol> _conncb;
     id<QalLogListenerProtocol> _logcb;
     id<QalUserStatusListenerProtocol> _statuscb;
+    id<QalInitCallbackProtocol> _initcb;
     int shortConn;
+    NSString* clientVersion;
 }
 
 +(void)setMsfFilePath:(NSString*) filePath;
@@ -184,6 +187,11 @@ extern uint32_t g_isready;
  @param cb 用户状态通知回调
  */
 -(void)setUserStatusListener:(id<QalUserStatusListenerProtocol>) cb;
+
+/*
+ init callback
+ */
+-(void)setInitListener:(id<QalInitCallbackProtocol>) cb;
 
 /*
  发送消息
@@ -264,7 +272,25 @@ extern uint32_t g_isready;
 
 - (void)setOpenAppid:(NSString *)aOpenAppid;
 
+- (void)setClientVersion:(NSString*)version;
+- (NSString*)getClientVersion;
+
 -(int)getNetType;
+
+/*
+ 设置当前网络的免流Proxy
+ @param sig sig
+ @param list 免流list
+ */
+
+-(void)setProxylist:(NSString*)sig andList:(NSArray*)list;
+
+/*
+ 取消当前网络的免流Proxy
+ @param sig sig
+ */
+
+-(void)cancelProxylist:(NSString*)sig;
 
 
 

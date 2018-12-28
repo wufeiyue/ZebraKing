@@ -98,27 +98,27 @@ open class MessageLabel: UILabel {
     
     private var attributesNeedUpdate = false
     
-    public static var defaultAttributes: [NSAttributedStringKey: Any] = {
+    public static var defaultAttributes: [NSAttributedString.Key: Any] = {
         return [
             .foregroundColor: UIColor.darkText,
-            .underlineStyle: NSUnderlineStyle.styleSingle,
+            .underlineStyle: NSUnderlineStyle.single,
             .underlineColor: UIColor.darkText
         ]
     }()
     
     //地址
-    open internal(set) var addressAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var addressAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
     //日期
-    open internal(set) var dateAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var dateAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
     //电话
-    open internal(set) var phoneNumberAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var phoneNumberAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
     //url
-    open internal(set) var urlAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var urlAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
-    public func setAttributes(_ attributes: [NSAttributedStringKey: Any], detector: DetectorType) {
+    public func setAttributes(_ attributes: [NSAttributedString.Key: Any], detector: DetectorType) {
         switch detector {
         case .phoneNumber:
             phoneNumberAttributes = attributes
@@ -256,7 +256,7 @@ open class MessageLabel: UILabel {
         }
     }
     
-    private func detectorAttributes(for detectorType: DetectorType) -> [NSAttributedStringKey: Any] {
+    private func detectorAttributes(for detectorType: DetectorType) -> [NSAttributedString.Key: Any] {
         
         switch detectorType {
         case .address:
@@ -271,7 +271,7 @@ open class MessageLabel: UILabel {
         
     }
     
-    private func detectorAttributes(for checkingResultType: NSTextCheckingResult.CheckingType) -> [NSAttributedStringKey: Any] {
+    private func detectorAttributes(for checkingResultType: NSTextCheckingResult.CheckingType) -> [NSAttributedString.Key: Any] {
         switch checkingResultType {
         case .address:
             return addressAttributes

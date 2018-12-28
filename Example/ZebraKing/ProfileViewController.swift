@@ -85,18 +85,18 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
             self.keyboardControl(notification)
         }
        
-        NotificationCenter.default.addObserver(forName: .UIKeyboardDidHide, object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification, object: nil, queue: .main) { _ in
             self.tableView.frame.size.height = self.view.bounds.size.height
         }
         
     }
     
     func keyboardControl(_ notification: Notification) {
-        guard let keybroadRect = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
+        guard let keybroadRect = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         let convertedFrame = self.view.convert(keybroadRect, from: nil)
         let heightOffset = self.view.bounds.size.height - convertedFrame.origin.y
         
@@ -261,7 +261,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     weak var delegate: ProfileTableViewCellDelegate?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         [inputTextFile, confirmBtn, titleLabel].forEach{ contentView.addSubview($0) }

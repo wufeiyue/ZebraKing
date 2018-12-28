@@ -73,12 +73,19 @@ open class ChatAudioPlayManager: NSObject {
     
     
     private func becomeFirstResponder() {
-        try? session.setCategory(AVAudioSessionCategoryPlayback, with: .duckOthers)
+//        try? session.setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback), with: .duckOthers)
+        
+        if #available(iOS 10.0, *) {
+            try? session.setCategory(.playback, mode: .default, options: .duckOthers)
+        } else {
+            session.perform(NSSelectorFromString("setCategory:error:"), with: AVAudioSession.Category.playback)
+        }
+        
         try? session.setActive(true)
     }
     
     private func resignFirstResponder() {
-        try? session.setActive(false, with: .notifyOthersOnDeactivation)
+        try? session.setActive(false, options: .notifyOthersOnDeactivation)
     }
 }
 

@@ -557,6 +557,14 @@ typedef NS_ENUM(NSInteger, TIMProfileFlag) {
      * 用户语言
      */
     TIM_PROFILE_FLAG_LANGUAGE            = (0x01 << 9),
+    /**
+     * 用户等级
+     */
+    TIM_PROFILE_FLAG_LEVEL               = (0x01 << 10),
+    /**
+     * 用户角色
+     */
+    TIM_PROFILE_FLAG_ROLE                = (0x01 << 11),
 };
 
 #pragma mark - block回调
@@ -1245,12 +1253,22 @@ typedef void (^TIMGetProfileSucc)(TIMUserProfile * profile);
 @property(nonatomic,assign) uint32_t language;
 
 /**
+ *  等级
+ */
+@property(nonatomic,assign) uint32_t level;
+
+/**
+ *  角色
+ */
+@property(nonatomic,assign) uint32_t role;
+
+/**
  *  好友分组名称 NSString* 列表
  */
 @property(nonatomic,strong) NSArray* friendGroups;
 
 /**
- *  自定义字段集合,key是NSString*类型,value是NSData*类型
+ *  自定义字段集合,key是NSString类型,value是NSData类型或者NSNumber类型
  *  (key值按照后台配置的字符串传入)
  */
 @property(nonatomic,strong) NSDictionary* customInfo;

@@ -28,7 +28,7 @@ open class ZebraKing {
     ///   - sign: 服务器分配的签名
     ///   - userId: 服务器分配的用户id
     ///   - result: 登录结果的回调
-    public static func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (Result<Bool>) -> Void) {
+    public static func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (Result<Void>) -> Void) {
         SessionManager.default.login(sign: sign, userId: userId, appidAt3rd: appidAt3rd, result: result)
     }
     
@@ -36,7 +36,7 @@ open class ZebraKing {
     /// 退出登录
     ///
     /// - Parameter result: 结果
-    public static func logout(result: @escaping (Result<Bool>) -> Void) {
+    public static func logout(result: @escaping (Result<Void>) -> Void) {
         SessionManager.default.logout(result: result)
     }
     

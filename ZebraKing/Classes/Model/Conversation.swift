@@ -115,7 +115,7 @@ extension ConversationDelegate {
 
 open class Conversation {
     
-    public typealias ResultCompletion = (_ result: Result<Bool>) -> Void
+    public typealias ResultCompletion = (_ result: Result<Void>) -> Void
     public typealias MessagesCompletion = (_ message: Array<MessageElem>) -> Void
     
     var conversation: TIMConversation
@@ -153,7 +153,7 @@ open class Conversation {
         
         conversation.send(message.message, succ: { [weak self] in
             
-            result(.success(true))
+            result(.success(()))
             
             guard let this = self else { return }
             

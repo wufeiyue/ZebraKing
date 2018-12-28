@@ -10,11 +10,11 @@ import Foundation
 extension MessagesViewController {
     
     func addMenuControllerObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.menuControllerWillShow(_:)), name: .UIMenuControllerWillShowMenu, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.menuControllerWillShow(_:)), name: UIMenuController.willShowMenuNotification, object: nil)
     }
     
     func removeMenuControllerObservers() {
-        NotificationCenter.default.removeObserver(self, name: .UIMenuControllerWillShowMenu, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIMenuController.willShowMenuNotification, object: nil)
     }
     
     @objc
@@ -23,11 +23,11 @@ extension MessagesViewController {
         guard let currentMenuController = notification.object as? UIMenuController,
             let selectedIndexPath = selectedIndexPathForMenu else { return }
         
-        NotificationCenter.default.removeObserver(self, name: .UIMenuControllerWillShowMenu, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIMenuController.willShowMenuNotification, object: nil)
         defer {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(MessagesViewController.menuControllerWillShow(_:)),
-                                                   name: .UIMenuControllerWillShowMenu, object: nil)
+                                                   name: UIMenuController.willShowMenuNotification, object: nil)
             selectedIndexPathForMenu = nil
         }
         

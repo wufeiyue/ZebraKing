@@ -159,7 +159,8 @@
 - (int)setTime:(time_t)time;
 
 /**
- *  设置消息发送方
+ *  设置消息发送方（需要先将消息到导入到本地，调用 convertToImportedMsg 方法）
+
  *
  *  @param sender 发送方Id
  *

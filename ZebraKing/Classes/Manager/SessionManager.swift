@@ -62,7 +62,7 @@ open class SessionManager {
     ///   - sign: 服务器分配的签名
     ///   - userId: 服务器分配的用户id
     ///   - result: 登录结果的回调
-    public func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (Result<Bool>) -> Void) {
+    public func login(sign: String, userId: String, appidAt3rd: String, result: @escaping (Result<Void>) -> Void) {
         
         loginManager.appidAt3rd = appidAt3rd
         loginManager.userSig = sign
@@ -75,7 +75,7 @@ open class SessionManager {
                 self.userManager.createAccount(id: userId)
                 self.centralManager.addListenter()
                 
-                result(.success(true))
+                result(.success(()))
             case .failure:
                 result(.failure(.loginFailure))
             }
@@ -84,13 +84,13 @@ open class SessionManager {
     }
     
     /// 退出登录
-    public func logout(result: @escaping (Result<Bool>) -> Void) {
+    public func logout(result: @escaping (Result<Void>) -> Void) {
         loginManager.logout(success: {
             
             self.userManager.free()
             self.centralManager.removeListener()
             
-            result(.success(true))
+            result(.success(()))
             
         }) { (code, str) in
             //TODO: 退出登录失败

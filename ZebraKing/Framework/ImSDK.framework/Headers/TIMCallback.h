@@ -238,9 +238,9 @@
 - (void)onGroupAdd:(TIMGroupInfo*)groupInfo;
 
 /**
- *  解散群的通知回调
+ * 本地群组资料被删除的通知回调，包括主动退群，被踢，群被解散，群被回收
  *
- *  @param groupId 解散群的群ID
+ * @param groupId 对应的群ID
  */
 - (void)onGroupDelete:(NSString*)groupId;
 

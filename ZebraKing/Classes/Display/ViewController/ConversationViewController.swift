@@ -141,11 +141,11 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: nil) { _ in
             self.task.active()
         }
         
-        NotificationCenter.default.addObserver(forName: .UIApplicationWillResignActive, object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { _ in
             self.task.resign()
         }
         
@@ -154,8 +154,8 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         task.free()
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     //MARK: - MessageCellDelegate
@@ -226,7 +226,7 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         
     }
     
-    open func controlBtnDidTapped(state: UIControlState) {
+    open func controlBtnDidTapped(state: UIControl.State) {
         switch state {
         case .normal:
             break
@@ -315,7 +315,7 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
         let alertVC = UIAlertController(title: "\"\(Bundle.displayName)\"想访问您的麦克风", message: "只有打开麦克风,才可以发送语音哦~", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "不允许", style: .cancel, handler: nil))
         alertVC.addAction(UIAlertAction(title: "好", style: .default, handler: { (action) in
-            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.openURL(url)
             }
         }))
