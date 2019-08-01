@@ -78,10 +78,14 @@ extension ZebraKing {
     }
     
     /// 移除对会话消息数量改变的监听
+    @available(*, deprecated, renamed: "removeUnReadMessageListener")
     public static func removeListenerUnreadMessage(id: String) {
-        SessionManager.default.removeListenerUnreadMessage(id: id)
+        SessionManager.default.removeListenerUnreadMessage()
     }
     
+    public static func removeUnReadMessageListener() {
+        SessionManager.default.removeListenerUnreadMessage()
+    }
 }
 
 //MARK: - UserManager
@@ -90,14 +94,30 @@ extension ZebraKing {
     /// 修改我的昵称
     ///
     /// - Parameter nickName: 昵称
-    public static func modifySelfNickname(_ nickName: String) {
-        SessionManager.default.modifySelfNickname(nickName)
+    public static func updateHostProfile(nickName: String,
+                                         result: @escaping (Swift.Result<String, ZebraKingError>) -> Void) {
+        SessionManager.default.modifySelfNickname(nickName, result: result)
     }
     
     /// 修改我的头像
     ///
     /// - Parameter path: 头像地址(服务器存放图片的地址)
+    public static func updateHostProfile(avatar: String,
+                                         result: @escaping (Swift.Result<String, ZebraKingError>) -> Void) {
+        SessionManager.default.modifySelfFacePath(avatar, result: result)
+    }
+    
+    @available(*, deprecated, renamed: "updateHostProfile")
+    public static func modifySelfNickname(_ nickName: String) {
+        SessionManager.default.modifySelfNickname(nickName, result: { _ in
+            
+        })
+    }
+    
+    @available(*, deprecated, renamed: "updateHostProfile")
     public static func modifySelfFacePath(path: String) {
-        SessionManager.default.modifySelfFacePath(path)
+        SessionManager.default.modifySelfFacePath(path, result: { _ in
+            
+        })
     }
 }

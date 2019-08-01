@@ -68,13 +68,9 @@ open class Task: NSObject {
             
             self.conversation.listenerNewMessage(completion: { (list) in
                 
-                self.queryFriendProfile(id: self.receiver.id, result: {
-                    
-                    let receiverMsgList = self.updateMessages(list)
-                    
-                    self.receiver = $0.value
+                self.queryAllUserProfile(completion: { [unowned self] (host, receiver) in
+                    let receiverMsgList = self.updateMessages(list, receiver: receiver, host: host)
                     self.messagesList.addList(newsList: receiverMsgList)
-                    
                     completion(receiverMsgList)
                 })
                 
@@ -114,11 +110,11 @@ open class Task: NSObject {
                 
                 self.messagesList.inset(newsList: messages)
 
-                self.queryFriendProfile(id: self.receiver.id, result: {
-                    self.receiver = $0.value
-                    completion(.success(self.updateMessages(messages)), isFirstLoadData)
+                self.queryAllUserProfile(completion: { [unowned self] (host, receiver) in
+                    let list = self.updateMessages(messages, receiver: receiver, host: host)
+                    completion(.success(list), isFirstLoadData)
                 })
-                
+
                 if self.isNeedListenterUpdateReceiveMessage {
                     self.isNeedListenterUpdateReceiveMessage = false
                     TIMManager.sharedInstance().getUserConfig().receiptListener = self
@@ -135,39 +131,60 @@ open class Task: NSObject {
         TIMManager.sharedInstance()?.deleteConversationAndMessages(.C2C, receiver: receiver.id)
     }
     
-    private func updateMessages(_ originList: Array<MessageElem>) -> Array<MessageElem> {
+    //FIXME: 如果消息中出现有两条消息一样的情况,请检查这个方法逻辑,目前没有发现问题
+    private func queryAllUserProfile(completion: @escaping (Sender, Sender) -> Void) {
         
-        //资料是否完整
+        var index = 0
+        
+        func transform() {
+            guard index == 2 else { return }
+            completion(host, receiver)
+        }
+        
+        //好友资料是否完整
         if receiver.isLossNecessary {
-            //缺失必要的资料就到缓存中再拉取一次
-            if let cacheReceiver = SessionManager.default.userManager.getSender(id: receiver.id) {
-                receiver = cacheReceiver
+            SessionManager.default.queryFriendProfile(id: receiver.id) { [weak self](result) in
+                if case .success(let sender) = result {
+                    self?.receiver = sender
+                    self?.receiver.placeholder = self?.configuration.receivePlaceholder
+                }
+                index += 1
+                transform()
             }
         }
+        else {
+            index += 1
+            transform()
+        }
         
+        //我的资料是否完整
         if host.isLossNecessary {
-            if let local = SessionManager.default.userManager.host {
-                host = local
+            SessionManager.default.getHost { [weak self](result) in
+                if case .success(let sender) = result {
+                    self?.host = sender
+                    self?.host.placeholder = self?.configuration.hostPlaceholder
+                }
+                index += 1
+                transform()
             }
         }
-        
-        receiver.placeholder = configuration.receivePlaceholder
-        host.placeholder = configuration.hostPlaceholder
-        
-        return originList.map({
-            //FIXME: 代码不优雅
-            if $0.message == nil || $0.message.isSelf() {
-                $0.messageSender = host
-            }
-            else {
-                $0.messageSender = receiver
-            }
-            return $0
-        })
+        else {
+            index += 1
+            transform()
+        }
     }
     
-    private func queryFriendProfile(id: String, result: @escaping (Result<Sender>) -> Void) {
-        SessionManager.default.queryFriendProfile(id: id, result: result)
+    private func updateMessages(_ originList: Array<MessageElem>, receiver: Sender, host: Sender) -> Array<MessageElem> {
+        return originList.map{ m -> MessageElem in
+            //FIXME: 代码不优雅
+            if m.message == nil || m.message.isSelf() {
+                m.messageSender = host
+            }
+            else {
+                m.messageSender = receiver
+            }
+            return m
+        }
     }
     
     //当页面被电话, 锁屏打断时, 就不将接收到的消息自动设置为已读状态, 和active搭配使用
@@ -253,6 +270,14 @@ extension Task: TIMMessageReceiptListener {
             }
             
         }
+        
+    }
+    
+}
+
+fileprivate class Observable<E> {
+    
+    class func zip(o1: E, o2: E, completion: (E, E) -> Void) {
         
     }
     

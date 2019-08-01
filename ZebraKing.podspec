@@ -8,10 +8,10 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ZebraKing'
-  s.version          = '3.0.8'
+  s.version          = '3.1.1'
   s.summary          = 'ZebraKing这是基于腾讯云通信IM封装而来,简单可依赖,定期依据官网更新版本, 欢迎使用'
   s.description      = <<-DESC
-ZebraKing是基于腾讯云通信V3.0版本更新而来,此版本较v2.0变化不大,移除一些多余的API,整体逻辑更清晰, 使用swift4.2编写
+ZebraKing是基于腾讯云通信V3.0版本更新而来,此版本较v2.0变化不大,移除一些多余的API,整体逻辑更清晰, 支持swift 5.0。
                        DESC
 
   s.homepage         = 'https://github.com/wufeiyue/ZebraKing'

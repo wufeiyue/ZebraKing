@@ -383,8 +383,8 @@ open class ConversationViewController: MessagesViewController, MessageCellDelega
     final override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         //避免消息过多，内存激增。
-        task.removeSubrange()
-        messagesCollection.reloadData()
+//        task.removeSubrange()
+//        messagesCollection.reloadData()
     }
     
     public required init?(coder aDecoder: NSCoder) {

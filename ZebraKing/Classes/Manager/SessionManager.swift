@@ -71,10 +71,7 @@ open class SessionManager {
         loginManager.login() {
             switch $0 {
             case .success:
-                //创建自己的主机账户
-                self.userManager.createAccount(id: userId)
                 self.centralManager.addListenter()
-                
                 result(.success(()))
             case .failure:
                 result(.failure(.loginFailure))
@@ -104,8 +101,8 @@ open class SessionManager {
     }
     
     //移除未读消息监听
-    public func removeListenerUnreadMessage(id: String) {
-        centralManager.removeListenter(id: id)
+    public func removeListenerUnreadMessage() {
+        centralManager.removeUnReadCountListenter()
     }
     
     /// 发起聊天
@@ -115,30 +112,36 @@ open class SessionManager {
     ///   - result: 返回用于ConversationViewController(task: Task)构造聊天类的Task对象
     public func chat(receiver: Sender, configuration: Task.Configuration, result: @escaping (Result<Task>) -> Void) {
         
-        //如果已经登录, 就直接返回成功的结果, 可以解决RxSwift合并流
-        loginManager.login() {
+        loginManager.login() { [unowned self] in
             
             switch $0 {
             case .success(_):
                 
-                //FIXME: - 判断已登录状态, 就可以判定是调用了Login方法, 因为初始化host对象在login方法中进行的
-                let host = self.userManager.host!
-                
                 // 用于发起聊天的会话对象
                 let converstion = self.centralManager.holdChat(with: .C2C, id: receiver.id)
-                
-                if let unwrappedConversation = converstion {
-                    let task = Task(host: host, receiver: receiver, conversation: unwrappedConversation, configuration: configuration)
-                    result(.success(task))
-                }
-                else {
+                guard let unwrappedConversation = converstion else {
                     result(.failure(.unknown))
+                    return
                 }
+                
+                self.userManager.getHost(result: { (r) in
+                    switch r {
+                    case let.success(sender):
+                        
+                        let task = Task(host: sender,
+                                        receiver: receiver,
+                                        conversation: unwrappedConversation,
+                                        configuration: configuration)
+                        
+                        result(.success(task))
+                    case .failure(let error):
+                        result(.failure(error))
+                    }
+                })
                 
             case .failure(let error):
                 result(.failure(error))
             }
-            
         }
     }
     
@@ -146,11 +149,10 @@ open class SessionManager {
         try centralManager.deleteConversation(where: rule)
     }
     
-    
     //开启消息监听, 避免消息监听遗漏, 要放在登录方法调用之前
     private func onResponseNotification(completion: @escaping (ChatNotification) -> Void) {
         
-        centralManager.listenterMessages{ (receiverId, content, unreadCount) in
+        centralManager.listenterMessages{ [unowned self] (receiverId, content, unreadCount) in
             
             self.userManager.queryFriendProfile(id: receiverId, result: { result in
             
@@ -180,16 +182,22 @@ open class SessionManager {
 extension SessionManager {
     
     /// 修改我的昵称
-    public func modifySelfNickname(_ nick : String) {
-        userManager.modifySelfNickname(nick)
+    public func modifySelfNickname(_ nick : String,
+                                   result: @escaping (Swift.Result<String, ZebraKingError>) -> Void) {
+        userManager.modifySelfNickname(nick, result: result)
     }
     
     /// 修改自己的头像
-    public func modifySelfFacePath(_ path : String) {
-        userManager.modifySelfFacePath(path)
+    public func modifySelfFacePath(_ path : String,
+                                   result: @escaping (Swift.Result<String, ZebraKingError>) -> Void) {
+        userManager.modifySelfFacePath(path, result: result)
     }
  
     public func queryFriendProfile(id: String, result: @escaping (Result<Sender>) -> Void) {
         userManager.queryFriendProfile(id: id, result: result)
+    }
+    
+    public func getHost(result: @escaping (Result<Sender>) -> Void) {
+        userManager.getHost(result: result)
     }
 }

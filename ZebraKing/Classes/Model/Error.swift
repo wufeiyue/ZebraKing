@@ -11,8 +11,8 @@ import ImSDK
 import IMMessageExt
 
 public enum ZebraKingError: Error {
-    case loginFailure       //登录失败
-    case logoutFailure      //退出登录失败
+    case loginFailure           //登录失败
+    case logoutFailure          //退出登录失败
     case unknown                //未知错误
     case getUsersProfileFailure //获取用户资料失败
     case unwrappedUsersProfileFailure //转换用户资料失败
@@ -20,6 +20,7 @@ public enum ZebraKingError: Error {
     case loadLocalMessageFailure //获取会话消息
     case sendMessageFailure     //消息发送失败
     case unsafe     //敏感词汇
+    case updateUserProfileFailure   //修改用户资料失败
 }
 
 public enum Result<T> {
@@ -57,6 +58,8 @@ extension ZebraKingError: CustomStringConvertible {
             return "消息发送失败"
         case .unsafe:
             return "请不要发送敏感词汇"
+        case .updateUserProfileFailure:
+            return "用户的资料修改失败"
         }
     }
 }

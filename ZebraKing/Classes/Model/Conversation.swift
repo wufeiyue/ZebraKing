@@ -283,6 +283,10 @@ extension Conversation: ConversationDelegate {
 
 extension Conversation: Hashable {
 
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(conversation.hashValue)
+    }
+
     public var hashValue: Int {
         return conversation.hashValue
     }

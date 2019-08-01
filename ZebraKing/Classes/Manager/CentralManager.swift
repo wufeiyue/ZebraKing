@@ -24,7 +24,7 @@ open class CentralManager: NSObject {
     internal private(set) var conversationList = Set<Conversation>()
     
     // 监听消息通知
-    private var onResponseNotification = Set<NotifiableMessages>()
+    private var onResponseNotification: NotifiableMessages?
     private var unReadCountCompletion: CountCompletion?
     
     //当前聊天的对象
@@ -73,34 +73,50 @@ open class CentralManager: NSObject {
     /// - Returns: 返回一个会话任务
     private func conversation(with type: TIMConversationType, id: String) -> Conversation? {
         
-        if let targetConversation = conversationList.first(where: { $0.receiverId == id && $0.type == type }) {
-            return targetConversation
+        guard let c = Conversation(type: type, id: id) else {
+            return nil
         }
         
-        if let targetConversation = Conversation(type: type, id: id) {
-            conversationList.insert(targetConversation)
-            return targetConversation
+        if conversationList.contains(c) == false {
+            conversationList.insert(c)
         }
         
-        return nil
+        return c
+        
+        /*
+         使用下面的方法,报crash
+         Fatal error: Duplicate elements of type 'Conversation' were found in a Set.
+         This usually means either that the type violates Hashable's requirements, or
+         that members of such a set were mutated after insertion.
+         */
+        
+//        if let targetConversation = conversationList.first(where: { $0.receiverId == id && $0.type == type }) {
+//            return targetConversation
+//        }
+//
+//        if let targetConversation = Conversation(type: type, id: id) {
+//            conversationList.insert(targetConversation)
+//            return targetConversation
+//        }
+//
+//        return nil
     }
     
-    public func removeListenter(id: String) {
-        //FIXME: 移除消息监听, 后期要改成通知监听的模式
-        if id.isEmpty {
-            onResponseNotification.forEach({
-                if $0.identifier != "outsideNotification" {
-                    $0.free()
-                    onResponseNotification.remove($0)
-                }
-            })
-        }
+    /// 根据会话类型监听此会话的未读消息数
+    public func listenerUnReadCount(with type: TIMConversationType, id: String, completion:@escaping CountCompletion) {
         
-        guard let listenerMessages = onResponseNotification.first(where: { $0.identifier == id }) else {
-            return
+        let unreadCount = conversation(with: type, id: id)?.unreadMessageCount ?? 0
+        
+        completion(unreadCount)
+        
+        DispatchQueue.main.async {
+            self.unReadCountCompletion = completion
         }
-        listenerMessages.free()
-        onResponseNotification.remove(listenerMessages)
+    }
+    
+    /// 移除未读消息监听
+    public func removeUnReadCountListenter() {
+        unReadCountCompletion = nil
     }
     
 }
@@ -112,35 +128,15 @@ extension CentralManager {
         TIMManager.sharedInstance().add(self)
     }
     
-    /// 监听消息通知
-    internal func listenterMessages(completion: @escaping NotifiableMessages.Completion) {
-        onResponseNotification.insert(NotifiableMessages(identifier: "outsideNotification", completion: completion))
-    }
-    
     internal func removeListener() {
         TIMManager.sharedInstance()?.remove(self)
     }
     
-    //根据会话类型监听此会话的未读消息数
-    public func listenerUnReadCount(with type: TIMConversationType, id: String, completion:@escaping CountCompletion) {
-        
-        let unreadCount = conversation(with: type, id: id)?.unreadMessageCount ?? 0
-        
-        completion(unreadCount)
-        
-        DispatchQueue.main.async {
-            self.unReadCountCompletion = completion
-        }
-        
-//
-//        let listenter = NotifiableMessages(identifier: id, completion: { (_, _, unreadCount) in
-//            DispatchQueue.main.async { completion(unreadCount) }
-//        })
-//
-//        listenter.completion?("", nil, unreadCount)
-//
-//        onResponseNotification.insert(listenter)
+    /// 监听消息通知
+    internal func listenterMessages(completion: @escaping NotifiableMessages.Completion) {
+        onResponseNotification = NotifiableMessages(completion: completion)
     }
+    
     
 }
 
@@ -191,51 +187,25 @@ extension CentralManager: TIMMessageListener {
         let receiverId = conversation.receiverId
         let unreadCount = conversation.unreadMessageCount
         
-        onResponseNotification.forEach{ $0.send(receiverId, content, unreadCount) }
-        
+        onResponseNotification?.send(receiverId, content, unreadCount)
         unReadCountCompletion?(unreadCount)
         
     }
 
 }
 
-public final class NotifiableMessages {
+final class NotifiableMessages {
     
     public typealias Completion = (_ receiverID: String, _ content: String?, _ unreadCount: Int) -> Void
     
-    let identifier: String
     var completion: Completion?
     
-    init(identifier: String, completion: @escaping Completion) {
-        self.identifier = identifier
+    init(completion: @escaping Completion) {
         self.completion = completion
     }
     
-    func emptySignl() {
-        completion?("", nil, 0)
-    }
-    
-    func free() {
-        if completion != nil {
-            completion = nil
-        }
-    }
-    
     func send(_ receiverID: String, _ content: String?, _ unreadCount: Int) {
-        DispatchQueue.main.async {
-            self.completion?(receiverID, content, unreadCount)
-        }
-    }
-}
-
-extension NotifiableMessages: Hashable {
-    
-    public var hashValue: Int {
-        return identifier.hashValue
-    }
-    
-    public static func == (lhs: NotifiableMessages, rhs: NotifiableMessages) -> Bool {
-        return lhs.identifier == rhs.identifier
+        completion?(receiverID, content, unreadCount)
     }
 }
 
